@@ -1,0 +1,2 @@
+mvn install:install-file -Dfile=pdfA-4.4.jar -DgroupId=com.pdfTools -DartifactId=pdfA -Dversion=4.4 -Dpackaging=jar
+mvn install:install-file -Dfile=pdfA.validator-4.3.jar -DgroupId=com.pdfTools -DartifactId=pdfA.validator -Dversion=4.3 -Dpackaging=jar

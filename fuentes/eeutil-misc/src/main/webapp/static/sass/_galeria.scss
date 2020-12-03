@@ -1,0 +1,326 @@
+
+
+.gallery{
+  position: relative;
+  header{
+    display: block;
+    min-height: 50px;
+    h5{
+      display: block;
+      margin: 0;
+    }
+    .actions{
+      float: right;
+      button{
+        margin: 0;
+      }
+    }
+  }
+}
+
+.gallery{ 
+  .gallery_content{
+    position: relative;
+    clear: both;
+    content: "";
+    display: table;
+    width: 100%;
+  }
+
+  .gallery_tree{
+    float: left;
+    width: 25%;
+    border-right: 1px solid #ccc;
+    min-height: 500px;
+    max-height: 800px;
+    overflow-y: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    border: 8px solid rgb(224, 243, 255);
+    border-radius: 5px;		
+}
+
+.js-arbol-lista-item-text {font-size:1rem!important;}
+
+.has-children > .g-arbol-lista-item-cont:before {
+	font-family: morfont;
+	content: '+'!important;
+	font-size: 8px;
+	margin-right: 0px;
+}
+
+.has-children > .g-arbol-lista-item-cont.is-open:before {
+	content: '-'!important;
+	font-size: 10px;
+	margin-right: 3px;
+}
+	
+.mf-icon-folder.is-open:before {
+	content: $mf-icon-folder-open!important;
+}
+
+.g-arbol-lista-item-cont.is-open {
+	.mf-icon-folder:before {
+		content:$mf-icon-folder-open!important;
+	}
+}
+
+
+  .gallery_visor.only{
+    width: 100%;
+  }
+
+  .gallery_visor{
+    float: left;
+    margin-left: 1%;
+    width: 74%;
+    overflow-y: auto;
+    min-height: 500px;
+    max-height: 800px;
+    position: relative;
+    border: 8px solid rgb(224, 243, 255);
+    border-radius: 5px;
+  }
+
+  .gallery_tree.is-hidden{
+    display: none;
+  }
+}
+
+.tr-upload-veil {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #808080;
+    top: 0;
+    bottom: 0;
+}
+
+.trad-drag-upload__title {
+  font-size: 3vw;
+  margin: 3vh auto 0;
+  width: 281px;
+  color: #DEDEDE;
+  display: block;
+  margin: 20vh auto 0px;
+  text-align:center;
+}
+
+.trad-drag-upload__title:before {
+	display:block;
+	font-family:morfont;
+	content: $mf-icon-arrow-redo;
+	padding-bottom:20px;
+}
+
+
+.gallery{
+  position: relative;
+  header{
+    display: block;
+    min-height: 50px;
+    h5{
+      display: block;
+      margin: 0;
+    }
+    .actions{
+      float: right;
+      button{
+        margin: 0;
+      }
+    }
+  }
+}
+
+.gallery{ 
+  .gallery_content{
+    position: relative;
+    clear: both;
+    content: "";
+    display: table;
+    width: 100%;
+  }
+
+  .gallery_tree{
+    float: left;
+    width: 25%;
+    border-right: 1px solid #ccc;
+    min-height: 500px;
+    max-height: 800px;
+    overflow-y: auto;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    border: 8px solid rgb(224, 243, 255);
+    border-radius: 5px;
+  }
+
+  .gallery_visor.only{
+    width: 100%;
+  }
+
+  .gallery_visor{
+    float: left;
+    margin-left: 1%;
+    width: 74%;
+    overflow-y: auto;
+    min-height: 500px;
+    max-height: 800px;
+    position: relative;
+    border: 8px solid rgb(224, 243, 255);
+    border-radius: 5px;
+  }
+
+  .gallery_tree.is-hidden{
+    display: none;
+  }
+}
+
+.tr-upload-veil {
+    font-size: 1.6em;
+    font-weight: bold;
+    color: #808080;
+    top: 0;
+    bottom: 0;
+}
+
+.trad-drag-upload__title {
+  font-size: 34px;
+  margin: 175px auto 0;
+  width: 281px;
+  color: #DEDEDE;
+  display: block;
+  margin: 126px auto 0px;
+  
+ .mf-icon-folder-import {
+    display: block;
+    margin: 0 auto;
+    width: 78px;
+    font-size: 75px;
+  }
+}
+
+/*Pasar todos los estilos js a las calses corresponidentes (mf- o gi-)*/
+
+#js-arbol-input {
+  width: 98%;
+  position: absolute;
+  left: 0;
+  margin: 0 1%;
+  z-index: 9;
+
+  &.is-hidden {
+    display: none;
+  }
+}
+
+#js-arbol {
+  .js-arbol-lista {
+    margin: 0;
+    list-style: none;
+    width: 100%;
+
+    .js-arbol-lista-item {
+      width: 100%;
+      cursor: pointer;
+      position: relative;
+      .g-arbol-lista-item-cont{
+        padding: 1px, 5px;
+        &:hover {
+          background-color: $app-color;
+          .actions{
+            display: inline-block;
+          }
+        }
+        span.name{
+          text-overflow: ellipsis;
+          overflow: hidden;
+          //width: 75%;
+          white-space: nowrap;
+          display: inline-block;
+          vertical-align: bottom;
+        }
+        &.is-selected {
+          background-color: $app-color;
+          &:hover {
+            background-color: darken($app-color, 7);
+          }
+          .actions{
+            display: inline-block;
+          }
+        }
+        .mf-icon-folder{
+          color: #6C8CA0;
+        }
+        .mf-icon-doc{
+          color: #4E6674;
+        }
+
+        .js-arbol-lista-item-text {
+          cursor: text;
+        }
+        .actions{
+          display: none;
+          position: absolute;
+          right: 2px;
+          top: 0;
+          
+        }
+      }
+    }
+
+    .js-arbol-espacio {
+      width: 100%;
+      height: 3px;
+      opacity: 0;
+      -webkit-transition: opacity 0.3s, height 0.3s, ease-in-out; /* Safari */
+      transition: opacity 0.3s, height 0.3s, ease-in-out;
+      &.drag-over {
+        border: 1px dashed #ccc;
+        background-color: #E7E7E7;
+        height: 20px;
+        @extend .glow;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+#js-gallery-ver {
+  position: absolute;
+  background: white;
+  
+
+  .js-gallery-ver--lista-datos{
+    list-style: none;
+  }
+  .js-gallery-ver--mover-izda,
+  .js-gallery-ver--mover-dcha{    
+    position: absolute;
+    top: 210px;
+    font-size: 35px;
+    color: #7DA4BD;
+    border: none;
+  }
+  .js-gallery-ver--mover-izda{    
+    left: 10px;
+  }
+  .js-gallery-ver--mover-dcha{    
+    right: 10px;
+  }
+  .js-gallery-ver--visor{
+    width: 240px;
+    height: 300px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+  }
+}
+
+.js-arbol-lista-item .js-arbol-lista-item{
+  padding: 1px 0 0 10px !important;
+  .actions{
+    right: -2.5px;
+  }
+}

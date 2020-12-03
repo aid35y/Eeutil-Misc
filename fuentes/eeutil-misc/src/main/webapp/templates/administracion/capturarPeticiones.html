@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="common/layout">
+
+<head>
+
+	<script th:src="|${#httpServletRequest.getContextPath()}/js/administracion/capturarPeticiones.js|"></script>
+
+</head>
+
+<body>
+    <div layout:fragment="content">
+    	<form id="modificarCapturaForm" th:action="@{/administracion/modificarCaptura}" method="post">
+                <input type="hidden" name="aplicacion" id="aplicacion"/>
+                <input type="hidden" name="operacion" id="operacion" />
+                <input type="hidden" name="capturar" id="capturar" />
+        </form>
+        
+        <form id="eliminarTodasPeticionesForm" th:action="@{/administracion/eliminarTodasPeticiones}" method="post">
+        </form>
+        
+        <form id="eliminarPeticionForm" th:action="@{/administracion/eliminarPeticion}" method="post">
+                <input type="hidden" name="aplicacion" id="aplicacion"/>
+                <input type="hidden" name="operacion" id="operacion" />
+        </form>
+        
+        <form id="descargarPeticionForm" th:action="@{/administracion/descargarPeticion}" method="post">
+             	<input type="hidden" name="aplicacion" id="aplicacion"/>
+                <input type="hidden" name="operacion" id="operacion" />
+                <input type="hidden" name="fecha" id="fecha" />
+        </form>
+    
+    	<input type="hidden" id="labelActivar" th:value="#{administracion.capturarPeticiones.activar}"/>
+    	<input type="hidden" id="labelDesactivar" th:value="#{administracion.capturarPeticiones.desactivar}"/>
+    	<input type="hidden" id="laberEliminarSimple" th:value="#{administracion.capturarPeticiones.eliminarSimple}"/>
+    	<input type="hidden" id="laberEliminarTodas" th:value="#{administracion.capturarPeticiones.eliminarTodas}"/>
+    
+    	<div class="mf-window-header">
+            <div class="mf-window-header--hgroup">
+                <h3 class="mf-window-header--title" th:text="#{principal.administracion.capturarPeticiones}"></h3>
+            </div>
+            
+            <ul class="mf-window-toolbar" th:fragment="actionButtons" id="actionButtons">
+                <li class="mf-window-toolbar--tool">
+                    <a onclick="showDialogDelete('','')">
+                        <span class="mf-icon mf-icon-trash"></span>
+                        <span th:text="#{administracion.capturarPeticiones.eliminar}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="contentData">
+			
+			<table id="capturarPeticionesList" class="mf-table-data mf-table-data__sortable mf-table-data__zebra fld">
+            	<thead>
+                    <tr>
+                        <th class="mf-sort-ln" href="·" th:title="#{administracion.capturarPeticiones.tabla.aplicacion}" th:text="#{administracion.capturarPeticiones.tabla.aplicacion}"></th>      
+                        <th class="mf-sort-ln" href="·" th:title="#{administracion.capturarPeticiones.tabla.operacion}" th:text="#{administracion.capturarPeticiones.tabla.operacion}"></th>  
+                        <th class="mf-sort-ln" href="·" th:title="#{administracion.capturarPeticiones.tabla.activo}" th:text="#{administracion.capturarPeticiones.tabla.activo}"></th>
+                        <th class="mf-sort-ln" href="·" th:title="#{administracion.capturarPeticiones.tabla.acciones}" th:text="#{administracion.capturarPeticiones.tabla.acciones}"></th>                                        
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr th:each="appOperacion,iterationStatus : *{datos}" th:id="'operacion_'+${iterationStatus.count - 1}">
+						<td class="grid-column-creador" th:text="${appOperacion.aplicacion}"></td>
+						<td class="grid-column-creador" th:text="${appOperacion.operacion}"></td>
+						<td class="grid-column-creador" th:text="${appOperacion.capturar}"></td>
+						<td class="grid-column-actions last-column">
+                            <a id="btn_editar_documento" title="Modificar" href="#!" class="mf-table-data--row-action  mf-action  mf-action__editar" 
+								th:onclick="|javascript:showDialogEdit('${appOperacion.aplicacion}','${appOperacion.operacion}','${appOperacion.capturar}')|"
+								th:attr="data-modal-title=#{administracion.capturarPeticiones.modificar}" >
+								<span class="mf-icon mf-icon-doc-config"></span>
+							</a>
+							<a id="btn_consultar_documento" title="Consultar" href="#!" class="mf-table-data--row-action  mf-action  mf-action__editar" 
+								th:onclick="|javascript:showDialogFind('${appOperacion.aplicacion}','${appOperacion.operacion}')|"
+								th:attr="data-modal-title=#{administracion.capturarPeticiones.consultar}" >
+								<span class="mf-icon mf-icon-search"></span>
+							</a>
+                            <a id="btn_delete_documento" title="Borrar" href="#!" class="mf-table-data--row-action  mf-action  mf-action__borrar" 
+								th:onclick="|javascript:showDialogDelete('${appOperacion.aplicacion}','${appOperacion.operacion}')|"
+								th:attr="data-modal-title=#{administracion.capturarPeticiones.eliminar}" >
+								<span class="mf-icon mf-icon-trash"></span>
+							</a>
+                        </td>    
+                	</tr>
+                </tbody>
+            </table>
+                                              
+	        <div class="js-timer-veil mf-veil hidden">
+	        </div>
+		    
+        </div>
+        
+        <div id="init-modal-modificar-captura" 
+		    data-title="Modificar Captura peticiones" 
+		    data-modal="1" 
+		    data-draggable="0"
+		    data-clazz="tr-dialog tr-help-dialog mf-document-dialog js-dialog-documento" 
+		    data-position_h="center"
+		    data-position_v="center" 
+		    data-width="400px"
+		    class="buttonbar--btn simbutton hidden">
+		    <div class="modal">
+		    	<div>
+		    		<label id="labelModificar"></label>
+		    	</div>	
+		    </div>
+		</div>
+		
+		<div id="init-modal-find-capturas" 
+		    data-title="Consultar peticiones" 
+		    data-modal="1" 
+		    data-draggable="0"
+		    data-clazz="tr-dialog tr-help-dialog mf-document-dialog js-dialog-documento" 
+		    data-position_h="center"
+		    data-position_v="center" 
+		    data-width="500px"
+		    class="buttonbar--btn simbutton hidden">
+		    <div class="modal">
+		    	<div>
+		    		<table id="peticionesList" class="mf-table-data mf-table-data__sortable mf-table-data__zebra fld">
+		            	<thead>
+		                    <tr>
+		                        <th class="mf-sort-ln" href="·" th:title="#{administracion.capturarPeticiones.tabla.aplicacion}" th:text="#{administracion.capturarPeticiones.tabla.aplicacion}"></th>      
+		                        <th class="mf-sort-ln" href="·" th:title="#{administracion.capturarPeticiones.tabla.operacion}" th:text="#{administracion.capturarPeticiones.tabla.operacion}"></th>  
+		                        <th class="mf-sort-ln" href="·" th:title="#{administracion.capturarPeticiones.tabla.fecha}" th:text="#{administracion.capturarPeticiones.tabla.fecha}"></th>
+		                        <th class="mf-sort-ln" href="·" th:title="#{administracion.capturarPeticiones.tabla.acciones}" th:text="#{administracion.capturarPeticiones.tabla.acciones}"></th>                                        
+		                    </tr>
+		                </thead>
+		                <tbody>
+		                </tbody>
+		            </table>
+		    	</div>	
+		    </div>
+		</div>
+		
+		<div id="init-modal-eliminar-captura" 
+		    data-title="Eliminar Captura peticiones" 
+		    data-modal="1" 
+		    data-draggable="0"
+		    data-clazz="tr-dialog tr-help-dialog mf-document-dialog js-dialog-documento" 
+		    data-position_h="center"
+		    data-position_v="center" 
+		    data-width="400px"
+		    class="buttonbar--btn simbutton hidden">
+		    <div class="modal">
+		    	<div>
+		    		<label id="labelEliminar"></label>
+		    	</div>	
+		    </div>
+		</div>
+
+    </div>
+</body>
+</html>
