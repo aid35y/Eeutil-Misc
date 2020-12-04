@@ -1,15 +1,13 @@
-/* Copyright (C) 2012-13 MINHAP, Gobierno de España
-   This program is licensed and may be used, modified and redistributed under the terms
-   of the European Public License (EUPL), either version 1.1 or (at your
-   option) any later version as soon as they are approved by the European Commission.
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
-   or implied. See the License for the specific language governing permissions and
-   more details.
-   You should have received a copy of the EUPL1.1 license
-   along with this program; if not, you may find it at
-   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl */
+/*
+ * Copyright (C) 2012-13 MINHAP, Gobierno de España This program is licensed and may be used,
+ * modified and redistributed under the terms of the European Public License (EUPL), either version
+ * 1.1 or (at your option) any later version as soon as they are approved by the European
+ * Commission. Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions and
+ * more details. You should have received a copy of the EUPL1.1 license along with this program; if
+ * not, you may find it at http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+ */
 
 
 package es.mpt.dsic.eeutil.service.sia.model;
@@ -23,9 +21,11 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para MATERIAS complex type.
+ * <p>
+ * Clase Java para MATERIAS complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>
+ * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
  * 
  * <pre>
  * &lt;complexType name="MATERIAS">
@@ -53,124 +53,112 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "MATERIAS", propOrder = {
-    "materia"
-})
+@XmlType(name = "MATERIAS", propOrder = {"materia"})
 public class MATERIAS {
 
-    @XmlElement(name = "MATERIA")
-    protected List<MATERIAS.MATERIA> materia;
+  @XmlElement(name = "MATERIA")
+  protected List<MATERIAS.MATERIA> materia;
+
+  /**
+   * Gets the value of the materia property.
+   * 
+   * <p>
+   * This accessor method returns a reference to the live list, not a snapshot. Therefore any
+   * modification you make to the returned list will be present inside the JAXB object. This is why
+   * there is not a <CODE>set</CODE> method for the materia property.
+   * 
+   * <p>
+   * For example, to add a new item, do as follows:
+   * 
+   * <pre>
+   * getMATERIA().add(newItem);
+   * </pre>
+   * 
+   * 
+   * <p>
+   * Objects of the following type(s) are allowed in the list {@link MATERIAS.MATERIA }
+   * 
+   * 
+   */
+  public List<MATERIAS.MATERIA> getMATERIA() {
+    if (materia == null) {
+      materia = new ArrayList<MATERIAS.MATERIA>();
+    }
+    return this.materia;
+  }
+
+
+  /**
+   * <p>
+   * Clase Java para anonymous complex type.
+   * 
+   * <p>
+   * El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+   * 
+   * <pre>
+   * &lt;complexType>
+   *   &lt;complexContent>
+   *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
+   *       &lt;sequence>
+   *         &lt;element name="CODMATERIA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+   *         &lt;element name="DESMATERIA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+   *       &lt;/sequence>
+   *     &lt;/restriction>
+   *   &lt;/complexContent>
+   * &lt;/complexType>
+   * </pre>
+   * 
+   * 
+   */
+  @XmlAccessorType(XmlAccessType.FIELD)
+  @XmlType(name = "", propOrder = {"codmateria", "desmateria"})
+  public static class MATERIA {
+
+    @XmlElement(name = "CODMATERIA")
+    protected String codmateria;
+    @XmlElement(name = "DESMATERIA")
+    protected String desmateria;
 
     /**
-     * Gets the value of the materia property.
+     * Obtiene el valor de la propiedad codmateria.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the materia property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getMATERIA().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link MATERIAS.MATERIA }
-     * 
+     * @return possible object is {@link String }
      * 
      */
-    public List<MATERIAS.MATERIA> getMATERIA() {
-        if (materia == null) {
-            materia = new ArrayList<MATERIAS.MATERIA>();
-        }
-        return this.materia;
+    public String getCODMATERIA() {
+      return codmateria;
     }
-
 
     /**
-     * <p>Clase Java para anonymous complex type.
+     * Define el valor de la propiedad codmateria.
      * 
-     * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
-     * 
-     * <pre>
-     * &lt;complexType>
-     *   &lt;complexContent>
-     *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
-     *       &lt;sequence>
-     *         &lt;element name="CODMATERIA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *         &lt;element name="DESMATERIA" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
-     *       &lt;/sequence>
-     *     &lt;/restriction>
-     *   &lt;/complexContent>
-     * &lt;/complexType>
-     * </pre>
-     * 
+     * @param value allowed object is {@link String }
      * 
      */
-    @XmlAccessorType(XmlAccessType.FIELD)
-    @XmlType(name = "", propOrder = {
-        "codmateria",
-        "desmateria"
-    })
-    public static class MATERIA {
-
-        @XmlElement(name = "CODMATERIA")
-        protected String codmateria;
-        @XmlElement(name = "DESMATERIA")
-        protected String desmateria;
-
-        /**
-         * Obtiene el valor de la propiedad codmateria.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getCODMATERIA() {
-            return codmateria;
-        }
-
-        /**
-         * Define el valor de la propiedad codmateria.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setCODMATERIA(String value) {
-            this.codmateria = value;
-        }
-
-        /**
-         * Obtiene el valor de la propiedad desmateria.
-         * 
-         * @return
-         *     possible object is
-         *     {@link String }
-         *     
-         */
-        public String getDESMATERIA() {
-            return desmateria;
-        }
-
-        /**
-         * Define el valor de la propiedad desmateria.
-         * 
-         * @param value
-         *     allowed object is
-         *     {@link String }
-         *     
-         */
-        public void setDESMATERIA(String value) {
-            this.desmateria = value;
-        }
-
+    public void setCODMATERIA(String value) {
+      this.codmateria = value;
     }
+
+    /**
+     * Obtiene el valor de la propiedad desmateria.
+     * 
+     * @return possible object is {@link String }
+     * 
+     */
+    public String getDESMATERIA() {
+      return desmateria;
+    }
+
+    /**
+     * Define el valor de la propiedad desmateria.
+     * 
+     * @param value allowed object is {@link String }
+     * 
+     */
+    public void setDESMATERIA(String value) {
+      this.desmateria = value;
+    }
+
+  }
 
 }

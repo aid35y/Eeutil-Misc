@@ -1,15 +1,13 @@
-/* Copyright (C) 2012-13 MINHAP, Gobierno de España
-   This program is licensed and may be used, modified and redistributed under the terms
-   of the European Public License (EUPL), either version 1.1 or (at your
-   option) any later version as soon as they are approved by the European Commission.
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
-   or implied. See the License for the specific language governing permissions and
-   more details.
-   You should have received a copy of the EUPL1.1 license
-   along with this program; if not, you may find it at
-   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl */
+/*
+ * Copyright (C) 2012-13 MINHAP, Gobierno de España This program is licensed and may be used,
+ * modified and redistributed under the terms of the European Public License (EUPL), either version
+ * 1.1 or (at your option) any later version as soon as they are approved by the European
+ * Commission. Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions and
+ * more details. You should have received a copy of the EUPL1.1 license along with this program; if
+ * not, you may find it at http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+ */
 
 package es.mpt.dsic.inside.ws.service.impl;
 
@@ -17,21 +15,17 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.jws.WebService;
 import javax.mail.util.ByteArrayDataSource;
-
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.pdftools.NativeLibrary;
 import com.pdftools.pdf2pdf.Pdf2PdfAPI;
-
 import es.mpt.dsic.inside.pdf.converter.PdfConverter;
 import es.mpt.dsic.inside.pdf.exception.PdfConversionException;
 import es.mpt.dsic.inside.security.context.AplicacionContext;
@@ -51,125 +45,113 @@ import es.mpt.dsic.inside.ws.service.util.UtilPdfA;
 @WebService(endpointInterface = "es.mpt.dsic.inside.ws.service.EeUtilServiceMtom")
 public class EeUtilServiceMtomImpl implements EeUtilServiceMtom {
 
-	protected final static Log logger = LogFactory
-			.getLog(EeUtilServiceMtomImpl.class);
+  protected final static Log logger = LogFactory.getLog(EeUtilServiceMtomImpl.class);
 
-	@Autowired
-	private AplicacionContext aplicacionContext;
+  @Autowired
+  private AplicacionContext aplicacionContext;
 
-	@Autowired
-	private UtilPdfA utilPdfA;
+  @Autowired
+  private UtilPdfA utilPdfA;
 
-	@Autowired
-	private EeutilAplicacionConversionService aplicacionConversionService;
-	
-	@Autowired
-	PdfConverter pdfConverter;
+  @Autowired
+  private EeutilAplicacionConversionService aplicacionConversionService;
 
-	@Override
-	public PdfSalidaMtom convertirPDFA(ApplicationLogin info,
-			DocumentoEntradaMtom docEntrada, Integer nivelCompilacion) throws InSideException {
-		try {
-			logger.debug("convertirPDFA");
-			logger.debug("mime:" + docEntrada.getMime());
-			logger.debug("contenido:" + docEntrada.getContenido());
-			PdfSalidaMtom retorno = new PdfSalidaMtom();
+  @Autowired
+  PdfConverter pdfConverter;
 
-			AppInfo appInfo = aplicacionContext.getAplicacionInfo();
-			String ipOpenOffice = appInfo.getPropiedades().get("ip.openoffice");
-			String portOpenOffice = appInfo.getPropiedades().get(
-					"port.openoffice");
+  @Override
+  public PdfSalidaMtom convertirPDFA(ApplicationLogin info, DocumentoEntradaMtom docEntrada,
+      Integer nivelCompilacion) throws InSideException {
+    try {
+      logger.debug("convertirPDFA");
+      logger.debug("mime:" + docEntrada.getMime());
+      logger.debug("contenido:" + docEntrada.getContenido());
+      PdfSalidaMtom retorno = new PdfSalidaMtom();
 
-			String filePathIn = FileUtil.createFilePath("PDF_", IOUtils.toByteArray(docEntrada.getContenido()
-					.getInputStream()));
+      AppInfo appInfo = aplicacionContext.getAplicacionInfo();
+      String ipOpenOffice = appInfo.getPropiedades().get("ip.openoffice");
+      String portOpenOffice = appInfo.getPropiedades().get("port.openoffice");
 
-			File pdfOriginal = pdfConverter.convertir(ipOpenOffice,
-					portOpenOffice, new File(filePathIn), docEntrada.getMime());
+      String filePathIn = FileUtil.createFilePath("PDF_",
+          IOUtils.toByteArray(docEntrada.getContenido().getInputStream()));
 
-			Boolean isPDFA = utilPdfA.isPDFA(
-					IOUtils.toByteArray(new FileInputStream(pdfOriginal)),
-					docEntrada.getPassword(), nivelCompilacion);
+      File pdfOriginal = pdfConverter.convertir(ipOpenOffice, portOpenOffice, new File(filePathIn),
+          docEntrada.getMime());
 
-			if (!isPDFA) {
-				Pdf2PdfAPI.setLicenseKey(utilPdfA.getConverterKey());
+      Boolean isPDFA = utilPdfA.isPDFA(IOUtils.toByteArray(new FileInputStream(pdfOriginal)),
+          docEntrada.getPassword(), nivelCompilacion);
 
-				Pdf2PdfAPI api = new Pdf2PdfAPI();
-				if (nivelCompilacion == null) {
-					api.setCompliance(NativeLibrary.COMPLIANCE.ePDFA2b);
-				} else {
-					api.setCompliance(nivelCompilacion);
-				}
-				api.setReportDetails(utilPdfA.isConverterReportDetails());
-				api.setReportSummary(utilPdfA.isConverterReportSummary());
-				api.setSubsetFonts(utilPdfA.isConverterSubsetFonts());
-				api.setPostAnalyze(utilPdfA.isConverterPostAnalyze());
+      if (!isPDFA) {
+        Pdf2PdfAPI.setLicenseKey(utilPdfA.getConverterKey());
 
-				int numberPages = utilPdfA.getPdfNumbersPages(pdfOriginal);
-				// insercion en bbdd
-				aplicacionConversionService.saveAplicacionConversionInfo(info
-						.getIdApplicacion(), numberPages);
+        Pdf2PdfAPI api = new Pdf2PdfAPI();
+        if (nivelCompilacion == null) {
+          api.setCompliance(NativeLibrary.COMPLIANCE.ePDFA2b);
+        } else {
+          api.setCompliance(nivelCompilacion);
+        }
+        api.setReportDetails(utilPdfA.isConverterReportDetails());
+        api.setReportSummary(utilPdfA.isConverterReportSummary());
+        api.setSubsetFonts(utilPdfA.isConverterSubsetFonts());
+        api.setPostAnalyze(utilPdfA.isConverterPostAnalyze());
 
-				boolean convert = api.convertMem2(
-						IOUtils.toByteArray(new FileInputStream(pdfOriginal)),
-						docEntrada.getPassword());
+        int numberPages = utilPdfA.getPdfNumbersPages(pdfOriginal);
+        // insercion en bbdd
+        aplicacionConversionService.saveAplicacionConversionInfo(info.getIdApplicacion(),
+            numberPages);
 
-				if (convert) {
-					retorno.setMime("application/pdf");
-					DataSource dataSource = new ByteArrayDataSource(
-							api.getPDF(), "application/pdf");
-					retorno.setContenido(new DataHandler(dataSource));
-				} else {
-					EstadoInfo estadoInfo = new EstadoInfo();
-					estadoInfo.setDescripcion(new String(api.getLog(), XMLUtil.UTF8_CHARSET));
-					throw new InSideException("Error al convertir a PDF/A: ",
-							estadoInfo);
-				}
-			} else {
-				retorno.setMime("application/pdf");
-				DataSource dataSource = new ByteArrayDataSource(
-						IOUtils.toByteArray(new FileInputStream(pdfOriginal)),
-						"application/pdf");
-				retorno.setContenido(new DataHandler(dataSource));
-			}
+        boolean convert = api.convertMem2(IOUtils.toByteArray(new FileInputStream(pdfOriginal)),
+            docEntrada.getPassword());
 
-			return retorno;
-		} catch (NumberFormatException e) {
-			logger.error("Error al convertir a PDF/A");
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error al convertir a PDF/A: ",
-					estadoInfo);
-		} catch (FileNotFoundException e) {
-			logger.error("Error al convertir a PDF/A");
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error al convertir a PDF/A: ",
-					estadoInfo);
-		} catch (IOException e) {
-			logger.error("Error al convertir a PDF/A");
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error al convertir a PDF/A: ",
-					estadoInfo);
-		} catch (PdfConversionException e) {
-			logger.error("Error al convertir a PDF/A");
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error al convertir a PDF/A: ",
-					estadoInfo);
-		}
-	}
+        if (convert) {
+          retorno.setMime("application/pdf");
+          DataSource dataSource = new ByteArrayDataSource(api.getPDF(), "application/pdf");
+          retorno.setContenido(new DataHandler(dataSource));
+        } else {
+          EstadoInfo estadoInfo = new EstadoInfo();
+          estadoInfo.setDescripcion(new String(api.getLog(), XMLUtil.UTF8_CHARSET));
+          throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+        }
+      } else {
+        retorno.setMime("application/pdf");
+        DataSource dataSource = new ByteArrayDataSource(
+            IOUtils.toByteArray(new FileInputStream(pdfOriginal)), "application/pdf");
+        retorno.setContenido(new DataHandler(dataSource));
+      }
 
-	@Override
-	public Boolean comprobarPDFA(ApplicationLogin info,
-			DocumentoEntradaMtom docEntrada, Integer nivelCompilacion) throws InSideException {
-		try {
-			Boolean isPDFA = utilPdfA
-					.isPDFA(IOUtils.toByteArray(docEntrada.getContenido()
-							.getInputStream()), docEntrada.getPassword(), nivelCompilacion);
+      return retorno;
+    } catch (NumberFormatException e) {
+      logger.error("Error al convertir a PDF/A");
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+    } catch (FileNotFoundException e) {
+      logger.error("Error al convertir a PDF/A");
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+    } catch (IOException e) {
+      logger.error("Error al convertir a PDF/A");
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+    } catch (PdfConversionException e) {
+      logger.error("Error al convertir a PDF/A");
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+    }
+  }
 
-			return isPDFA;
-		} catch (IOException e) {
-			logger.error("Error al comprobar a PDF/A");
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error al comprobar a PDF/A: ",
-					estadoInfo);
-		}
-	}
+  @Override
+  public Boolean comprobarPDFA(ApplicationLogin info, DocumentoEntradaMtom docEntrada,
+      Integer nivelCompilacion) throws InSideException {
+    try {
+      Boolean isPDFA =
+          utilPdfA.isPDFA(IOUtils.toByteArray(docEntrada.getContenido().getInputStream()),
+              docEntrada.getPassword(), nivelCompilacion);
+
+      return isPDFA;
+    } catch (IOException e) {
+      logger.error("Error al comprobar a PDF/A");
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error al comprobar a PDF/A: ", estadoInfo);
+    }
+  }
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+ï»¿<?xml version="1.0" encoding="ISO-8859-1"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0" xmlns:m="http://www.facturae.es/Facturae/2014/v3.2.1/Facturae" xmlns:ds="http://www.w3.org/2000/09/xmldsig#" xmlns:tns="http://schemas.xmlsoap.org/soap/envelope/">
 	<xsl:output method="html" indent="yes"/>
 	<xsl:decimal-format grouping-separator="." decimal-separator=","/>
@@ -75,7 +75,7 @@
 						var datos = document.getElementById(capa).style.display;
 						if (datos != "none")
 						{
-							document.getElementById(capa + "Link").innerHTML = "Mostrar más datos";
+							document.getElementById(capa + "Link").innerHTML = "Mostrar mÃ¡s datos";
 							document.getElementById(capa).style.display="none";							
 						}
 						else
@@ -198,7 +198,7 @@
 								descripcion = 'Centilitros-CLT';
 								break;
 							case '16':
-								descripcion = 'Centímetros-CMT';
+								descripcion = 'CentÃ­metros-CMT';
 								break;
 							case '17':
 								descripcion = 'Cubos-BI';
@@ -216,7 +216,7 @@
 								descripcion = 'Gramos-GRM';
 								break;
 							case '22':
-								descripcion = 'Kilómetros-KMT';
+								descripcion = 'KilÃ³metros-KMT';
 								break;	
 							case '23':
 								descripcion = 'Latas-CA';
@@ -228,7 +228,7 @@
 								descripcion = 'Metros-MTR';
 								break;
 							case '26':
-								descripcion = 'Milímetros-MMT';
+								descripcion = 'MilÃ­metros-MMT';
 								break;
 							case '27':
 								descripcion = '6-Packs';
@@ -249,7 +249,7 @@
 								descripcion = 'Tarrinas-TB';
 								break;
 							case '33':
-								descripcion = 'Metro cúbico-MTQ';
+								descripcion = 'Metro cÃºbico-MTQ';
 								break;
 							case '34':
 								descripcion = 'Segundo-SEC';
@@ -269,10 +269,10 @@
 						var descripcion = '';
 						switch(valor) {
 							case 'F':
-								descripcion = 'Física';
+								descripcion = 'FÃ­sica';
 								break;
 							case 'J':
-								descripcion = 'Jurídica';
+								descripcion = 'JurÃ­dica';
 								break;								
 							default:
 								descripcion = valor;
@@ -292,7 +292,7 @@
 								descripcion = 'Residente';
 								break;
 							case 'U':
-								descripcion = 'Residente en la Unión Europea';
+								descripcion = 'Residente en la UniÃ³n Europea';
 								break;			
 							default:
 								descripcion = valor;
@@ -359,31 +359,31 @@
 								descripcion = 'Letra Aceptada';
 								break;
 							case '06':
-								descripcion = 'Crédito Documentario';
+								descripcion = 'CrÃ©dito Documentario';
 								break;
 							case '07':
-								descripcion = 'Contrato Adjudicación';
+								descripcion = 'Contrato AdjudicaciÃ³n';
 								break;
 							case '08':
 								descripcion = 'Letra de cambio';
 								break;
 							case '09':
-								descripcion = 'Pagaré a la  Orden';
+								descripcion = 'PagarÃ© a la  Orden';
 								break;
 							case '10':
-								descripcion = 'Pagaré No a la Orden';
+								descripcion = 'PagarÃ© No a la Orden';
 								break;
 							case '11':
 								descripcion = 'Cheque';
 								break;
 							case '12':
-								descripcion = 'Reposición';
+								descripcion = 'ReposiciÃ³n';
 								break;
 							case '13':
 								descripcion = 'Especiales';
 								break;
 							case '14':
-								descripcion = 'Compensación';
+								descripcion = 'CompensaciÃ³n';
 								break;
 							case '15':
 								descripcion = 'Giro postal';
@@ -478,7 +478,7 @@
 								descripcion = 'IVPEE';
 								break;
 							case '23':
-								descripcion = 'Impuesto sobre la producción de combustible nuclear gastado y residuos radiactivos resultantes de la generación de energía nucleoeléctrica';
+								descripcion = 'Impuesto sobre la producciÃ³n de combustible nuclear gastado y residuos radiactivos resultantes de la generaciÃ³n de energÃ­a nucleoelÃ©ctrica';
 								break;
 							case '24':
 								descripcion = 'Impuesto sobre el almacenamiento de combustible nuclear gastado y residuos radioactivos en instalaciones centralizadas';
@@ -487,7 +487,7 @@
 								descripcion = 'IDEC';
 								break;
 							case '26':
-								descripcion = 'Impuesto sobre las labores del tabaco en la Comunidad Autónoma de Canarias';
+								descripcion = 'Impuesto sobre las labores del tabaco en la Comunidad AutÃ³noma de Canarias';
 								break;
 							case '27':
 								descripcion = 'IGFEI';
@@ -510,28 +510,28 @@
 								descripcion = 'Bielorruso';
 								break;
 							case 'bg':
-								descripcion = 'Búlgaro';
+								descripcion = 'BÃºlgaro';
 								break;
 							case 'ca':
-								descripcion = 'Catalán';
+								descripcion = 'CatalÃ¡n';
 								break;
 							case 'cs':
 								descripcion = 'Checo';
 								break;
 							case 'da':
-								descripcion = 'Danés';
+								descripcion = 'DanÃ©s';
 								break;
 							case 'de':
-								descripcion = 'Alemán';
+								descripcion = 'AlemÃ¡n';
 								break;
 							case 'el':
 								descripcion = 'Griego moderno';
 								break;		
 							case 'en':
-								descripcion = 'Inglés';
+								descripcion = 'InglÃ©s';
 								break;
 							case 'es':
-								descripcion = 'Español';
+								descripcion = 'EspaÃ±ol';
 								break;
 							case 'et':
 								descripcion = 'Estonio';
@@ -540,13 +540,13 @@
 								descripcion = 'Vascuence';
 								break;
 							case 'fi':
-								descripcion = 'Finlandés';
+								descripcion = 'FinlandÃ©s';
 								break;
 							case 'fr':
-								descripcion = 'Francés';
+								descripcion = 'FrancÃ©s';
 								break;
 							case 'ga':
-								descripcion = 'Gaélico de Irlanda';
+								descripcion = 'GaÃ©lico de Irlanda';
 								break;
 							case 'gl':
 								descripcion = 'Gallego';
@@ -555,16 +555,16 @@
 								descripcion = 'Croata';
 								break;
 							case 'hu':
-								descripcion = 'Húngaro';
+								descripcion = 'HÃºngaro';
 								break;
 							case 'is':
-								descripcion = 'Islandés';
+								descripcion = 'IslandÃ©s';
 								break;
 							case 'it':
 								descripcion = 'Italiano';
 								break;
 							case 'lv':
-								descripcion = 'Letón';
+								descripcion = 'LetÃ³n';
 								break;
 							case 'lt':
 								descripcion = 'Lituano';
@@ -573,10 +573,10 @@
 								descripcion = 'Macedonio';
 								break;
 							case 'mt':
-								descripcion = 'Maltés';
+								descripcion = 'MaltÃ©s';
 								break;
 							case 'nl':
-								descripcion = 'Neerlandés';
+								descripcion = 'NeerlandÃ©s';
 								break;
 							case 'no':
 								descripcion = 'Noruego';
@@ -585,7 +585,7 @@
 								descripcion = 'Polaco';
 								break;
 							case 'pt':
-								descripcion = 'Portugués';
+								descripcion = 'PortuguÃ©s';
 								break;
 							case 'ro':
 								descripcion = 'Rumano';
@@ -600,7 +600,7 @@
 								descripcion = 'Esloveno';
 								break;
 							case 'sq':
-								descripcion = 'Albanés';
+								descripcion = 'AlbanÃ©s';
 								break;
 							case 'sr':
 								descripcion = 'Serbio';
@@ -626,7 +626,7 @@
 			<xsl:apply-templates select="//m:Facturae"/>
 		</html>
 	</xsl:template>
-	<!-- Versión 3.2.1 -->
+	<!-- VersiÃ³n 3.2.1 -->
 	<xsl:template match="m:Facturae">				
 			<body>					
 					<div id="principal">					
@@ -651,10 +651,10 @@
 															<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																<tr>
 																	<td align="center" width="33%">
-																		<font class="titulopeque">NÚMERO</font>
+																		<font class="titulopeque">NÃšMERO</font>
 																		<br/><xsl:value-of select="FileHeader/Batch/BatchIdentifier"/></td>
 																	<td align="center" width="34%">
-																		<font class="titulopeque">VERSIÓN</font>
+																		<font class="titulopeque">VERSIÃ“N</font>
 																		<br/>
 																			<xsl:value-of select="FileHeader/SchemaVersion"/></td>
 																	<td align="center" width="33%">
@@ -698,7 +698,7 @@
 																		<font class="titulopeque">NUM. FACTURAS</font>
 																		<br/><xsl:value-of select="FileHeader/Batch/InvoicesCount"/></td>
 																	<td align="center" width="34%">
-																		<font class="titulopeque">MONEDA DE FACTURACIÓN</font>
+																		<font class="titulopeque">MONEDA DE FACTURACIÃ“N</font>
 																		<br/><xsl:value-of select="FileHeader/Batch/InvoiceCurrencyCode"/></td>
 																</tr>
 															</table>
@@ -717,7 +717,7 @@
 										<table border="0" cellpadding="0" cellspacing="0" width="100%">
 											<tr>
 												<td align="center">
-													<font class="titulo1">FACTURA NÚMERO <xsl:value-of select="$nFactura"/></font>
+													<font class="titulo1">FACTURA NÃšMERO <xsl:value-of select="$nFactura"/></font>
 												</td>
 											</tr>
 											<tr>
@@ -910,7 +910,7 @@
 															</font>
 														</td>
 														<td align="right">
-															<a id="datosEmisorLink" href="javascript:mostrarCapa('datosEmisor')">Mostrar más datos</a>
+															<a id="datosEmisorLink" href="javascript:mostrarCapa('datosEmisor')">Mostrar mÃ¡s datos</a>
 														</td>        	
 													</tr>
 													<tr>
@@ -920,7 +920,7 @@
 														<tr>											
 															<td width="50%" colspan="2">
 																<font class="titulopeque">
-																	RAZÓN SOCIAL:
+																	RAZÃ“N SOCIAL:
 																</font>
 																   
 																<xsl:value-of select="Parties/SellerParty/LegalEntity/CorporateName"/>
@@ -984,7 +984,7 @@
 														<tr>											
 															<td width="50%" colspan="2">
 															<font class="titulopeque">
-																IDENTIFICACIÓN:
+																IDENTIFICACIÃ“N:
 															</font>
 															   										
 																<xsl:value-of select="Parties/SellerParty/PartyIdentification"/>
@@ -995,7 +995,7 @@
 														<tr>
 															<td valign="top" width="10%">
 																<font class="titulopeque">
-																	DIRECCIÓN:
+																	DIRECCIÃ“N:
 																</font>
 															</td>
 															<td valign="top" width="40%">
@@ -1054,7 +1054,7 @@
 																		</tr>
 																		<tr>
 																			<td width="25%">
-																				<font class="titulopeque">Sección:</font>   
+																				<font class="titulopeque">SecciÃ³n:</font>   
 																				<xsl:value-of select="Parties/SellerParty/LegalEntity/RegistrationData/Section"/>
 																			</td>
 																			<td width="25%">
@@ -1083,7 +1083,7 @@
 																	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																		<tr>
 																			<td width="25%">
-																				<font class="titulopeque">Teléfono:</font>   
+																				<font class="titulopeque">TelÃ©fono:</font>   
 																				<xsl:value-of select="Parties/SellerParty/LegalEntity/ContactDetails/Telephone"/>
 																			</td>
 																			<td width="25%">
@@ -1109,7 +1109,7 @@
 																				<xsl:value-of select="Parties/SellerParty/LegalEntity/ContactDetails/CnoCnae"/>
 																			</td>
 																			<td width="25%">
-																				<font class="titulopeque">Código INE:</font>   
+																				<font class="titulopeque">CÃ³digo INE:</font>   
 																				<xsl:value-of select="Parties/SellerParty/LegalEntity/ContactDetails/INETownCode"/>
 																			</td>
 																			<td width="25%">
@@ -1126,7 +1126,7 @@
 														<tr>
 															<td valign="top" width="10%">
 																<font class="titulopeque">
-																	DIRECCIÓN:
+																	DIRECCIÃ“N:
 																</font>
 															</td>
 															<td valign="top" width="40%">
@@ -1158,7 +1158,7 @@
 																	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																		<tr>
 																			<td width="25%">
-																				<font class="titulopeque">Teléfono:</font>   
+																				<font class="titulopeque">TelÃ©fono:</font>   
 																				<xsl:value-of select="Parties/SellerParty/Individual/ContactDetails/Telephone"/>
 																			</td>
 																			<td width="25%">
@@ -1184,7 +1184,7 @@
 																				<xsl:value-of select="Parties/SellerParty/Individual/ContactDetails/CnoCnae"/>
 																			</td>
 																			<td width="25%">
-																				<font class="titulopeque">Código INE:</font>   
+																				<font class="titulopeque">CÃ³digo INE:</font>   
 																				<xsl:value-of select="Parties/SellerParty/Individual/ContactDetails/INETownCode"/>
 																			</td>
 																			<td width="25%">
@@ -1204,7 +1204,7 @@
 																	<table border="1" cellpadding="0" cellspacing="0" width="100%">
 																		<tr>
 																			<td width="7%" valign="top" align="center">
-																				<font class="titulopeque">Número</font>
+																				<font class="titulopeque">NÃºmero</font>
 																			</td>
 																			<td width="7%" valign="top" align="center">
 																				<font class="titulopeque">Tipo rol</font>
@@ -1213,19 +1213,19 @@
 																				<font class="titulopeque">Nombre</font>
 																			</td>
 																			<td width="15%" valign="top" align="center">
-																				<font class="titulopeque">Dirección</font>
+																				<font class="titulopeque">DirecciÃ³n</font>
 																			</td>
 																			<td width="25%" valign="top" align="center">
 																				<font class="titulopeque">Datos de contacto</font>
 																			</td>
 																			<td width="9%" valign="top" align="center">
-																				<font class="titulopeque">GLN Físico</font>
+																				<font class="titulopeque">GLN FÃ­sico</font>
 																			</td>
 																			<td width="9%" valign="top" align="center">
-																				<font class="titulopeque">Pto op. lógico</font>
+																				<font class="titulopeque">Pto op. lÃ³gico</font>
 																			</td>
 																			<td width="14%" valign="top" align="center">
-																				<font class="titulopeque">Descripción</font>
+																				<font class="titulopeque">DescripciÃ³n</font>
 																			</td>
 																		</tr>
 																		<xsl:for-each select="Parties/SellerParty/AdministrativeCentres/AdministrativeCentre">
@@ -1292,7 +1292,7 @@
 																						<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																							<tr>
 																								<td width="50%">
-																									<font class="titulopeque">Teléfono:</font> 
+																									<font class="titulopeque">TelÃ©fono:</font> 
 																									<xsl:value-of select="ContactDetails/Telephone"/>
 																								</td>
 																								<td width="50%">
@@ -1322,7 +1322,7 @@
 																							</tr>
 																							<tr>
 																								<td width="50%">
-																									<font class="titulopeque">Cód. INE:</font> 
+																									<font class="titulopeque">CÃ³d. INE:</font> 
 																									<xsl:value-of select="ContactDetails/INETownCode"/>
 																								</td>
 																								<td width="50%">
@@ -1400,7 +1400,7 @@
 															</font>
 														</td>
 														<td align="right">											
-															<a id="datosReceptorLink" href="javascript:mostrarCapa('datosReceptor')">Mostrar más datos</a>
+															<a id="datosReceptorLink" href="javascript:mostrarCapa('datosReceptor')">Mostrar mÃ¡s datos</a>
 														</td>    	
 													</tr>
 													<tr>
@@ -1410,7 +1410,7 @@
 														<tr>											
 															<td width="50%" colspan="2">
 																<font class="titulopeque">
-																	RAZÓN SOCIAL:
+																	RAZÃ“N SOCIAL:
 																</font>
 																   										
 																<xsl:value-of select="Parties/BuyerParty/LegalEntity/CorporateName"/>
@@ -1474,7 +1474,7 @@
 														<tr>											
 															<td width="50%" colspan="2">
 															<font class="titulopeque">
-																IDENTIFICACIÓN:
+																IDENTIFICACIÃ“N:
 															</font>
 															   										
 																<xsl:value-of select="Parties/BuyerParty/PartyIdentification"/>
@@ -1485,7 +1485,7 @@
 														<tr>
 															<td valign="top"  width="10%">
 															<font class="titulopeque">
-																DIRECCIÓN:
+																DIRECCIÃ“N:
 															</font>
 															</td>        	
 															<td  width="40%">
@@ -1544,7 +1544,7 @@
 																		</tr>
 																		<tr>
 																			<td width="25%">
-																				<font class="titulopeque">Sección:</font>   
+																				<font class="titulopeque">SecciÃ³n:</font>   
 																				<xsl:value-of select="Parties/BuyerParty/LegalEntity/RegistrationData/Section"/>
 																			</td>
 																			<td width="25%">
@@ -1573,7 +1573,7 @@
 																	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																		<tr>
 																			<td width="25%">
-																				<font class="titulopeque">Teléfono:</font>   
+																				<font class="titulopeque">TelÃ©fono:</font>   
 																				<xsl:value-of select="Parties/BuyerParty/LegalEntity/ContactDetails/Telephone"/>
 																			</td>
 																			<td width="25%">
@@ -1599,7 +1599,7 @@
 																				<xsl:value-of select="Parties/BuyerParty/LegalEntity/ContactDetails/CnoCnae"/>
 																			</td>
 																			<td width="25%">
-																				<font class="titulopeque">Código INE:</font>   
+																				<font class="titulopeque">CÃ³digo INE:</font>   
 																				<xsl:value-of select="Parties/BuyerParty/LegalEntity/ContactDetails/INETownCode"/>
 																			</td>
 																			<td width="25%">
@@ -1616,7 +1616,7 @@
 														<tr>
 															<td valign="top" width="10%">
 															<font class="titulopeque">
-																DIRECCIÓN:
+																DIRECCIÃ“N:
 															</font>
 															</td>        	
 															<td valign="top" width="40%">
@@ -1648,7 +1648,7 @@
 																	<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																		<tr>
 																			<td width="25%">
-																				<font class="titulopeque">Teléfono:</font>   
+																				<font class="titulopeque">TelÃ©fono:</font>   
 																				<xsl:value-of select="Parties/BuyerParty/Individual/ContactDetails/Telephone"/>
 																			</td>
 																			<td width="25%">
@@ -1674,7 +1674,7 @@
 																				<xsl:value-of select="Parties/BuyerParty/Individual/ContactDetails/CnoCnae"/>
 																			</td>
 																			<td width="25%">
-																				<font class="titulopeque">Código INE:</font>   
+																				<font class="titulopeque">CÃ³digo INE:</font>   
 																				<xsl:value-of select="Parties/BuyerParty/Individual/ContactDetails/INETownCode"/>
 																			</td>
 																			<td width="25%">
@@ -1694,7 +1694,7 @@
 																	<table border="1" cellpadding="0" cellspacing="0" width="100%">
 																		<tr>
 																			<td width="7%" valign="top" align="center">
-																				<font class="titulopeque">Número</font>
+																				<font class="titulopeque">NÃºmero</font>
 																			</td>
 																			<td width="7%" valign="top" align="center">
 																				<font class="titulopeque">Tipo rol</font>
@@ -1703,19 +1703,19 @@
 																				<font class="titulopeque">Nombre</font>
 																			</td>
 																			<td width="15%" valign="top" align="center">
-																				<font class="titulopeque">Dirección</font>
+																				<font class="titulopeque">DirecciÃ³n</font>
 																			</td>
 																			<td width="25%" valign="top" align="center">
 																				<font class="titulopeque">Datos de contacto</font>
 																			</td>
 																			<td width="9%" valign="top" align="center">
-																				<font class="titulopeque">GLN Físico</font>
+																				<font class="titulopeque">GLN FÃ­sico</font>
 																			</td>
 																			<td width="9%" valign="top" align="center">
-																				<font class="titulopeque">Pto op. lógico</font>
+																				<font class="titulopeque">Pto op. lÃ³gico</font>
 																			</td>
 																			<td width="14%" valign="top" align="center">
-																				<font class="titulopeque">Descripción</font>
+																				<font class="titulopeque">DescripciÃ³n</font>
 																			</td>
 																		</tr>
 																		<xsl:for-each select="Parties/BuyerParty/AdministrativeCentres/AdministrativeCentre">
@@ -1782,7 +1782,7 @@
 																						<table border="0" cellpadding="0" cellspacing="0" width="100%">
 																							<tr>
 																								<td width="50%">
-																									<font class="titulopeque">Teléfono:</font> 
+																									<font class="titulopeque">TelÃ©fono:</font> 
 																									<xsl:value-of select="ContactDetails/Telephone"/>
 																								</td>
 																								<td width="50%">
@@ -1812,7 +1812,7 @@
 																							</tr>
 																							<tr>
 																								<td width="50%">
-																									<font class="titulopeque">Cód. INE:</font> 
+																									<font class="titulopeque">CÃ³d. INE:</font> 
 																									<xsl:value-of select="ContactDetails/INETownCode"/>
 																								</td>
 																								<td width="50%">
@@ -1895,7 +1895,7 @@
 												<table border="1" cellpadding="0" cellspacing="0" width="100%">
 													<tr>
 														<td width="20%" align="center">
-															<font class="titulopeque">NÚMERO</font>
+															<font class="titulopeque">NÃšMERO</font>
 														</td>
 														<td width="20%" align="center">
 															<font class="titulopeque">SERIE</font>
@@ -1975,7 +1975,7 @@
 										</font>
 									</td>
 									<td align="right">						
-										<a id="datosTerceroLink" href="javascript:mostrarCapa('datosTercero')">Mostrar más datos</a>
+										<a id="datosTerceroLink" href="javascript:mostrarCapa('datosTercero')">Mostrar mÃ¡s datos</a>
 									</td>         	
 								</tr>
 								<tr>
@@ -1985,7 +1985,7 @@
 									<tr>											
 										<td width="50%" colspan="2">
 											<font class="titulopeque">
-												RAZÓN SOCIAL:
+												RAZÃ“N SOCIAL:
 											</font>
 											   
 											<xsl:value-of select="LegalEntity/CorporateName"/>
@@ -2049,7 +2049,7 @@
 									<tr>
 										<td valign="top"  width="10%">
 											<font class="titulopeque">
-												DIRECCIÓN:
+												DIRECCIÃ“N:
 											</font>
 										</td>        	
 										<td valign="top" width="40%">
@@ -2108,7 +2108,7 @@
 													</tr>
 													<tr>
 														<td width="25%">
-															<font class="titulopeque">Sección:</font>   
+															<font class="titulopeque">SecciÃ³n:</font>   
 															<xsl:value-of select="LegalEntity/RegistrationData/Section"/>
 														</td>
 														<td width="25%">
@@ -2137,7 +2137,7 @@
 												<table border="0" cellpadding="0" cellspacing="0" width="100%">
 													<tr>
 														<td width="25%">
-															<font class="titulopeque">Teléfono:</font>   
+															<font class="titulopeque">TelÃ©fono:</font>   
 															<xsl:value-of select="LegalEntity/ContactDetails/Telephone"/>
 														</td>
 														<td width="25%">
@@ -2163,7 +2163,7 @@
 															<xsl:value-of select="LegalEntity/ContactDetails/CnoCnae"/>
 														</td>
 														<td width="25%">
-															<font class="titulopeque">Código INE:</font>   
+															<font class="titulopeque">CÃ³digo INE:</font>   
 															<xsl:value-of select="LegalEntity/ContactDetails/INETownCode"/>
 														</td>
 														<td width="25%">
@@ -2180,7 +2180,7 @@
 									<tr>
 										<td valign="top" width="10%">
 										<font class="titulopeque">
-											DIRECCIÓN:
+											DIRECCIÃ“N:
 										</font>
 										</td>        	
 										<td valign="top" width="40%">
@@ -2212,7 +2212,7 @@
 												<table border="0" cellpadding="0" cellspacing="0" width="100%">
 													<tr>
 														<td width="25%">
-															<font class="titulopeque">Teléfono:</font>   
+															<font class="titulopeque">TelÃ©fono:</font>   
 															<xsl:value-of select="Individual/ContactDetails/Telephone"/>
 														</td>
 														<td width="25%">
@@ -2238,7 +2238,7 @@
 															<xsl:value-of select="Individual/ContactDetails/CnoCnae"/>
 														</td>
 														<td width="25%">
-															<font class="titulopeque">Código INE:</font>   
+															<font class="titulopeque">CÃ³digo INE:</font>   
 															<xsl:value-of select="Individual/ContactDetails/INETownCode"/>
 														</td>
 														<td width="25%">
@@ -2282,7 +2282,7 @@
 										</font>
 									</td>
 									<td align="right">							
-										<a id="datosCesionarioLink" href="javascript:mostrarCapa('datosCesionario')">Mostrar más datos</a>
+										<a id="datosCesionarioLink" href="javascript:mostrarCapa('datosCesionario')">Mostrar mÃ¡s datos</a>
 									</td>
 								</tr>
 								<tr>
@@ -2292,7 +2292,7 @@
 									<xsl:if test='Assignee/LegalEntity!=""' >
 										<td  width="50%" colspan="2">
 											<font class="titulopeque">
-												RAZÓN SOCIAL:
+												RAZÃ“N SOCIAL:
 											</font>
 											   
 											<xsl:value-of select="Assignee/LegalEntity/CorporateName"/>								
@@ -2346,7 +2346,7 @@
 								<tr>									
 									<td width="100%" colspan="3">
 										<font class="titulopeque">
-											CLÁUSULA:
+											CLÃUSULA:
 										</font>
 										   
 										<xsl:value-of select="FactoringAssignmentClauses"/>								
@@ -2356,7 +2356,7 @@
 									<tr>
 										<td valign="top" width="10%">
 											<font class="titulopeque">
-												DIRECCIÓN:
+												DIRECCIÃ“N:
 											</font>
 										</td>        	
 										<td valign="top" width="40%">
@@ -2415,7 +2415,7 @@
 													</tr>
 													<tr>
 														<td width="25%">
-															<font class="titulopeque">Sección:</font>   
+															<font class="titulopeque">SecciÃ³n:</font>   
 															<xsl:value-of select="Assignee/LegalEntity/RegistrationData/Section"/>
 														</td>
 														<td width="25%">
@@ -2444,7 +2444,7 @@
 												<table border="0" cellpadding="0" cellspacing="0" width="100%">
 													<tr>
 														<td width="25%">
-															<font class="titulopeque">Teléfono:</font>   
+															<font class="titulopeque">TelÃ©fono:</font>   
 															<xsl:value-of select="Assignee/LegalEntity/ContactDetails/Telephone"/>
 														</td>
 														<td width="25%">
@@ -2470,7 +2470,7 @@
 															<xsl:value-of select="Assignee/LegalEntity/ContactDetails/CnoCnae"/>
 														</td>
 														<td width="25%">
-															<font class="titulopeque">Código INE:</font>   
+															<font class="titulopeque">CÃ³digo INE:</font>   
 															<xsl:value-of select="Assignee/LegalEntity/ContactDetails/INETownCode"/>
 														</td>
 														<td width="25%">
@@ -2487,7 +2487,7 @@
 									<tr>
 										<td valign="top" width="10%">
 											<font class="titulopeque">
-												DIRECCIÓN:
+												DIRECCIÃ“N:
 											</font>
 										</td>        	
 										<td valign="top" width="40%">
@@ -2519,7 +2519,7 @@
 												<table border="0" cellpadding="0" cellspacing="0" width="100%">
 													<tr>
 														<td width="25%">
-															<font class="titulopeque">Teléfono:</font>   
+															<font class="titulopeque">TelÃ©fono:</font>   
 															<xsl:value-of select="Assignee/Individual/ContactDetails/Telephone"/>
 														</td>
 														<td width="25%">
@@ -2545,7 +2545,7 @@
 															<xsl:value-of select="Assignee/Individual/ContactDetails/CnoCnae"/>
 														</td>
 														<td width="25%">
-															<font class="titulopeque">Código INE:</font>   
+															<font class="titulopeque">CÃ³digo INE:</font>   
 															<xsl:value-of select="Assignee/Individual/ContactDetails/INETownCode"/>
 														</td>
 														<td width="25%">
@@ -2585,10 +2585,10 @@
 													<font class="titulopeque">REFERENCIA</font>
 												</td>
 												<td width="11%" align="center">
-													<font class="titulopeque">REFERENCIA DÉBITO</font>
+													<font class="titulopeque">REFERENCIA DÃ‰BITO</font>
 												</td>
 												<td width="8%" align="center">
-													<font class="titulopeque">CÓD. ESTADÍSTICO</font>
+													<font class="titulopeque">CÃ“D. ESTADÃSTICO</font>
 												</td>
 												<td width="22%" align="center">
 													<font class="titulopeque">OBSERVACIONES</font>
@@ -2624,7 +2624,7 @@
 																	<xsl:if test='AccountToBeCredited/AccountNumber!=""' >
 																		<tr>
 																			<td width="30%">
-																				Núm. cuenta:
+																				NÃºm. cuenta:
 																			</td>
 																			<td width="70%">
 																				<xsl:apply-templates select="AccountToBeCredited/AccountNumber"/>
@@ -2662,7 +2662,7 @@
 																	<xsl:if test='AccountToBeCredited/BranchInSpainAddress!=""' >
 																		<tr>
 																			<td valign="top">
-																				Dirección:
+																				DirecciÃ³n:
 																			</td>
 																			<td>
 																				<xsl:value-of select="AccountToBeCredited/BranchInSpainAddress/Address"/><br/>
@@ -2676,7 +2676,7 @@
 																	<xsl:if test='AccountToBeCredited/OverseasBranchAddress!=""' >
 																		<tr>
 																			<td valign="top">
-																				Dirección:
+																				DirecciÃ³n:
 																			</td>
 																			<td>
 																				<xsl:value-of select="AccountToBeCredited/OverseasBranchAddress/Address"/><br/>
@@ -2703,7 +2703,7 @@
 																	<xsl:if test='AccountToBeDebited/AccountNumber!=""' >
 																		<tr>
 																			<td width="30%">
-																				Núm. cuenta:
+																				NÃºm. cuenta:
 																			</td>
 																			<td width="70%">
 																				<xsl:apply-templates select="AccountToBeDebited/AccountNumber"/>
@@ -2741,7 +2741,7 @@
 																	<xsl:if test='AccountToBeDebited/BranchInSpainAddress!=""' >
 																		<tr>
 																			<td valign="top">
-																				Dirección:
+																				DirecciÃ³n:
 																			</td>
 																			<td>
 																				<xsl:value-of select="AccountToBeDebited/BranchInSpainAddress/Address"/><br/>
@@ -2755,7 +2755,7 @@
 																	<xsl:if test='AccountToBeDebited/OverseasBranchAddress!=""' >
 																		<tr>
 																			<td valign="top">
-																				Dirección:
+																				DirecciÃ³n:
 																			</td>
 																			<td>
 																				<xsl:value-of select="AccountToBeDebited/OverseasBranchAddress/Address"/><br/>
@@ -2984,7 +2984,7 @@
 										<table border="0" cellpadding="0" cellspacing="0" width="100%">
 											<tr>
 												<td align="center" width="25%">
-													<font class="titulopeque">MONEDA OPERACIÓN</font><br/>
+													<font class="titulopeque">MONEDA OPERACIÃ“N</font><br/>
 													<xsl:value-of select="InvoiceIssueData/InvoiceCurrencyCode"/>
 												</td>
 												<xsl:if test='InvoiceIssueData/InvoiceCurrencyCode!="EUR"'>
@@ -3030,7 +3030,7 @@
 							<table border="1" cellpadding="0" cellspacing="0" width="100%">
 								<tr>
 									<td width="48%" align="center">
-										<font class="titulopeque">DESCRIPCIÓN</font>
+										<font class="titulopeque">DESCRIPCIÃ“N</font>
 									</td>
 									<td width="12%" align="center">
 										<font class="titulopeque">FECHA OPER.</font>
@@ -4173,7 +4173,7 @@
 													<font class="titulopeque">FECHA</font>
 												</td>
 												<td width="15%" valign="top" align="center">
-													<font class="titulopeque">NÚMERO</font>
+													<font class="titulopeque">NÃšMERO</font>
 												</td>
 												<td width="15%" valign="top" align="center">
 													<font class="titulopeque">SERIE</font>
@@ -4342,7 +4342,7 @@
 								<xsl:if test='InvoiceTotals/AmountsWithheld!=""' >
 								<tr>
 									<td>									
-										<font class="titulopeque"><i>RETENCIÓN GARANTÍA</i></font>
+										<font class="titulopeque"><i>RETENCIÃ“N GARANTÃA</i></font>
 										<table border="1" cellpadding="0" cellspacing="0" width="100%">
 											<tr>
 												<td width="70%" valign="top" align="center">
@@ -4460,7 +4460,7 @@
 							<xsl:value-of select="ReasonCode"/> - <xsl:value-of select="ReasonDescription"/>
 						</td>
 						<td width="50%">
-							<font class="titulopeque">CRITERIO RECTIFICACIÓN:</font>
+							<font class="titulopeque">CRITERIO RECTIFICACIÃ“N:</font>
 							   
 							<xsl:value-of select="CorrectionMethod"/> - <xsl:value-of select="CorrectionMethodDescription"/>
 						</td>
@@ -4489,7 +4489,7 @@
 					<xsl:if test='AdditionalReasonDescription!=""'>
 						<tr>
 							<td width="100%" colspan="2">
-								<font class="titulopeque">AMPLIACIÓN MOTIVO DE LA RECTIFICACIÓN:</font>
+								<font class="titulopeque">AMPLIACIÃ“N MOTIVO DE LA RECTIFICACIÃ“N:</font>
 								   
 								<xsl:value-of select="AdditionalReasonDescription"/><br/>
 							</td>						
@@ -4536,10 +4536,10 @@
 							<font class="titulopeque">REFERENCIA</font>
 						</td>
 						<td width="11%" align="center">
-							<font class="titulopeque">REFERENCIA DÉBITO</font>
+							<font class="titulopeque">REFERENCIA DÃ‰BITO</font>
 						</td>
 						<td width="8%" align="center">
-							<font class="titulopeque">CÓD. ESTADÍSTICO</font>
+							<font class="titulopeque">CÃ“D. ESTADÃSTICO</font>
 						</td>
 						<td width="22%" align="center">
 							<font class="titulopeque">OBSERVACIONES</font>
@@ -4575,7 +4575,7 @@
 											<xsl:if test='AccountToBeCredited/AccountNumber!=""' >
 												<tr>
 													<td width="30%">
-														Núm. cuenta:
+														NÃºm. cuenta:
 													</td>
 													<td width="70%">
 														<xsl:apply-templates select="AccountToBeCredited/AccountNumber"/>
@@ -4613,7 +4613,7 @@
 											<xsl:if test='AccountToBeCredited/BranchInSpainAddress!=""' >
 												<tr>
 													<td valign="top">
-														Dirección:
+														DirecciÃ³n:
 													</td>
 													<td>
 														<xsl:value-of select="AccountToBeCredited/BranchInSpainAddress/Address"/><br/>
@@ -4627,7 +4627,7 @@
 											<xsl:if test='AccountToBeCredited/OverseasBranchAddress!=""' >
 												<tr>
 													<td valign="top">
-														Dirección:
+														DirecciÃ³n:
 													</td>
 													<td>
 														<xsl:value-of select="AccountToBeCredited/OverseasBranchAddress/Address"/><br/>
@@ -4654,7 +4654,7 @@
 											<xsl:if test='AccountToBeDebited/AccountNumber!=""' >
 												<tr>
 													<td width="30%">
-														Núm. cuenta:
+														NÃºm. cuenta:
 													</td>
 													<td width="70%">
 														<xsl:apply-templates select="AccountToBeDebited/AccountNumber"/>
@@ -4692,7 +4692,7 @@
 											<xsl:if test='AccountToBeDebited/BranchInSpainAddress!=""' >
 												<tr>
 													<td valign="top">
-														Dirección:
+														DirecciÃ³n:
 													</td>
 													<td>
 														<xsl:value-of select="AccountToBeDebited/BranchInSpainAddress/Address"/><br/>
@@ -4706,7 +4706,7 @@
 											<xsl:if test='AccountToBeDebited/OverseasBranchAddress!=""' >
 												<tr>
 													<td valign="top">
-														Dirección:
+														DirecciÃ³n:
 													</td>
 													<td>
 														<xsl:value-of select="AccountToBeDebited/OverseasBranchAddress/Address"/><br/>
@@ -4791,7 +4791,7 @@
 				<table border="1" cellpadding="0" cellspacing="0" width="50%">
 					<tr>
 						<td align="center">
-							<font class="titulopeque">MENCIÓN</font>
+							<font class="titulopeque">MENCIÃ“N</font>
 						</td>						
 					</tr>
 					<xsl:for-each select="LegalReference">
@@ -4823,7 +4823,7 @@
 						</td>
 						<td align="right">			
 							<xsl:if test='RelatedDocuments!=""'>
-								<a id="datosAdicLink" href="javascript:mostrarCapa('datosAdic')">Mostrar más datos</a>
+								<a id="datosAdicLink" href="javascript:mostrarCapa('datosAdic')">Mostrar mÃ¡s datos</a>
 							</xsl:if>
 						</td>
 					</tr>
@@ -4855,7 +4855,7 @@
 								<table border="1" cellpadding="0" cellspacing="0" width="100%">
 									<tr>
 										<td width="10%" valign="top" align="center">
-											<font class="titulopeque">COMPRESIÓN</font>
+											<font class="titulopeque">COMPRESIÃ“N</font>
 										</td>
 										<td width="10%" valign="top" align="center">
 											<font class="titulopeque">FORMATO</font>
@@ -4864,7 +4864,7 @@
 											<font class="titulopeque">ENCODING</font>
 										</td>
 										<td width="35%" valign="top" align="center">
-											<font class="titulopeque">DESCRIPCIÓN</font>
+											<font class="titulopeque">DESCRIPCIÃ“N</font>
 										</td>
 										<td width="35%" valign="top" align="center">
 											<font class="titulopeque">DATOS</font>
@@ -4997,7 +4997,7 @@
 										<table border="0" cellpadding="0" cellspacing="0" width="100%">
 											<tr>
 												<td align="center" width="33%">
-													<font class="titulopeque">NÚMERO DE SECUENCIA</font>
+													<font class="titulopeque">NÃšMERO DE SECUENCIA</font>
 													<br/>
 													<xsl:choose>
 														<xsl:when test='SequenceNumber!=""' >
@@ -5036,7 +5036,7 @@
 											<table border="0" cellpadding="0" cellspacing="0" width="100%">
 												<tr>
 													<td align="center" width="33%">
-														<font class="titulopeque">CÓDIGO ARTÍCULO</font><br/>
+														<font class="titulopeque">CÃ“DIGO ARTÃCULO</font><br/>
 														<xsl:choose>
 															<xsl:when test='ArticleCode!=""' >
 																<xsl:value-of select="ArticleCode"/>
@@ -5047,7 +5047,7 @@
 														</xsl:choose>
 													</td>
 													<td align="center" width="33%">
-														<font class="titulopeque">PERÍODO DETALLE</font><br/>
+														<font class="titulopeque">PERÃODO DETALLE</font><br/>
 														<xsl:choose>
 															<xsl:when test='LineItemPeriod!=""' >
 																<xsl:value-of select="substring(LineItemPeriod/StartDate,9,2)"/>-<xsl:value-of select="substring(LineItemPeriod/StartDate,6,2)"/>-<xsl:value-of select="substring(LineItemPeriod/StartDate,1,4)"/> - 
@@ -5059,7 +5059,7 @@
 														</xsl:choose>
 													</td>
 													<td align="center" width="33%">
-														<font class="titulopeque">FECHA OPERACIÓN</font>
+														<font class="titulopeque">FECHA OPERACIÃ“N</font>
 														<br/>
 														<xsl:choose>
 															<xsl:when test='TransactionDate!=""' >
@@ -5081,7 +5081,7 @@
 											<table border="0" cellpadding="0" cellspacing="0" width="100%">
 												<tr>
 													<td align="center" width="50%">
-														<font class="titulopeque">EXPEDIENTE CONTRATACIÓN EMISOR</font>
+														<font class="titulopeque">EXPEDIENTE CONTRATACIÃ“N EMISOR</font>
 														<br/>
 														<xsl:choose>
 															<xsl:when test='IssuerContractReference!=""' >
@@ -5093,7 +5093,7 @@
 														</xsl:choose>
 													</td>																	
 													<td align="center" width="50%">
-														<font class="titulopeque">FECHA CONTRATACIÓN EMISOR</font>
+														<font class="titulopeque">FECHA CONTRATACIÃ“N EMISOR</font>
 														<br/>
 														<xsl:choose>
 															<xsl:when test='IssuerContractDate!=""' >
@@ -5115,7 +5115,7 @@
 											<table border="0" cellpadding="0" cellspacing="0" width="100%">
 												<tr>
 													<td align="center" width="50%">
-														<font class="titulopeque">REFERENCIA OPERACIÓN/PEDIDO EMISOR</font>
+														<font class="titulopeque">REFERENCIA OPERACIÃ“N/PEDIDO EMISOR</font>
 														<br/>
 														<xsl:choose>
 															<xsl:when test='IssuerTransactionReference!=""' >
@@ -5127,7 +5127,7 @@
 														</xsl:choose>																			
 													</td>
 													<td align="center" width="50%">
-														<font class="titulopeque">FECHA OPERACIÓN/PEDIDO EMISOR</font>
+														<font class="titulopeque">FECHA OPERACIÃ“N/PEDIDO EMISOR</font>
 														<br/>
 														<xsl:choose>
 															<xsl:when test='IssuerTransactionDate!=""' >
@@ -5149,7 +5149,7 @@
 											<table border="0" cellpadding="0" cellspacing="0" width="100%">
 												<tr>																	
 													<td align="center" width="50%">
-														<font class="titulopeque">EXPEDIENTE CONTRATACIÓN RECEPTOR</font>
+														<font class="titulopeque">EXPEDIENTE CONTRATACIÃ“N RECEPTOR</font>
 														<br/>
 														<xsl:choose>
 															<xsl:when test='ReceiverContractReference!=""' >
@@ -5161,7 +5161,7 @@
 														</xsl:choose>
 													</td>
 													<td align="center" width="50%">
-															<font class="titulopeque">FECHA CONTRATACIÓN RECEPTOR</font>
+															<font class="titulopeque">FECHA CONTRATACIÃ“N RECEPTOR</font>
 															<br/>
 															<xsl:choose>
 																<xsl:when test='BuyerPartyContractDate!=""' >
@@ -5183,7 +5183,7 @@
 											<table border="0" cellpadding="0" cellspacing="0" width="100%">
 												<tr>
 													<td align="center" width="50%">
-													<font class="titulopeque">REFERENCIA OPERACIÓN/PEDIDO RECEPTOR</font>
+													<font class="titulopeque">REFERENCIA OPERACIÃ“N/PEDIDO RECEPTOR</font>
 													<br/>
 													<xsl:choose>
 														<xsl:when test='ReceiverTransactionReference!=""' >
@@ -5195,7 +5195,7 @@
 													</xsl:choose>
 												</td>
 													<td align="center" width="50%">
-														<font class="titulopeque">FECHA OPERACIÓN/PEDIDO RECEPTOR</font>
+														<font class="titulopeque">FECHA OPERACIÃ“N/PEDIDO RECEPTOR</font>
 														<br/>
 														<xsl:choose>
 															<xsl:when test='BuyerPartyTransactionDate!=""' >
@@ -5251,13 +5251,13 @@
 											<table border="0" cellpadding="0" cellspacing="0" width="100%">
 												<tr>
 													<td align="center" width="50%">
-														<font class="titulopeque">CÓDIGO FISCALIDAD ESPECIAL</font><br/>
+														<font class="titulopeque">CÃ“DIGO FISCALIDAD ESPECIAL</font><br/>
 														<xsl:choose>
 															<xsl:when test='SpecialTaxableEvent/SpecialTaxableEventCode="01"' >
-																Operación sujeta y exenta
+																OperaciÃ³n sujeta y exenta
 															</xsl:when>
 															<xsl:when test='SpecialTaxableEvent/SpecialTaxableEventCode="02"' >
-																Operación no sujeta
+																OperaciÃ³n no sujeta
 															</xsl:when>																			
 															<xsl:otherwise>
 																<xsl:value-of select="SpecialTaxableEvent/SpecialTaxableEventCode"/>
@@ -5265,7 +5265,7 @@
 														</xsl:choose>
 													</td>
 													<td align="center" width="50%">
-														<font class="titulopeque">JUSTIFICACIÓN FISCALIDAD ESPECIAL</font>
+														<font class="titulopeque">JUSTIFICACIÃ“N FISCALIDAD ESPECIAL</font>
 														<br/>
 														<xsl:value-of select="SpecialTaxableEvent/SpecialTaxableEventReason"/>
 													</td>																		
@@ -6175,10 +6175,10 @@
 							<table border="1" cellpadding="0" cellspacing="0" width="70%">
 								<tr>
 									<td align="center" width="50%">
-										<font class="titulopeque">Nº ALBARÁN</font>
+										<font class="titulopeque">NÂº ALBARÃN</font>
 									</td>
 									<td align="center" width="50%">
-										<font class="titulopeque">FECHA ALBARÁN</font>
+										<font class="titulopeque">FECHA ALBARÃN</font>
 									</td>
 								</tr>
 								<xsl:for-each select="DeliveryNote">

@@ -9,52 +9,35 @@
    more details.
    You should have received a copy of the EUPL1.1 license
    along with this program; if not, you may find it at
-   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl -->
-
-<beans xmlns="http://www.springframework.org/schema/beans"
-  xmlns:sec="http://www.springframework.org/schema/security"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
-           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd">
-
- 	<sec:http use-expressions="true" auto-config="true">
-		
-        <sec:form-login login-page="/login"/>
-					
-		<sec:custom-filter position="PRE_AUTH_FILTER" ref="certificateLoginFilter"/> 
-        
-		<sec:logout invalidate-session="true" logout-url="/logout" logout-success-url="/"/>
-
-		<sec:intercept-url pattern="/login*" access="isAnonymous()" />
-		<sec:intercept-url pattern="/login/error*" access="isAnonymous()" />
-		<sec:intercept-url pattern="/css/**" access="permitAll" />
-		<sec:intercept-url pattern="/images/**" access="permitAll" />
-		<sec:intercept-url pattern="/js/**" access="permitAll" />
-		<sec:intercept-url pattern="/html/**" access="permitAll" />
-		
-		
-		<sec:intercept-url pattern="/usuariosLista*" access="isAuthenticated()"/>		
-		<sec:intercept-url pattern="/borrarUsuario*" access="isAuthenticated()"/>
-		<sec:intercept-url pattern="/altaUsuario*" access="isAuthenticated()"/>
-		
-		<sec:intercept-url pattern="/aplicacionesLista*" access="isAuthenticated()"/>
-		<sec:intercept-url pattern="/borrarAplicacion*" access="isAuthenticated()"/>
-		<sec:intercept-url pattern="/altaAplicacion*" access="isAuthenticated()"/>
-		
-	</sec:http>
-
-	<bean id="certificateLoginFilter" class="es.mpt.dsic.inside.security.interceptor.CertificateLoginFilter">
-    	<property name="authenticationManager" ref="autenticationManager"/>
-    	<property name="authenticationSuccessHandler" ref="eeutilAuthenticationSuccessHandler"></property>
-    	<property name="authenticationFailureHandler" ref="eeutilAuthenticationFailureHandler"></property>
-	</bean>
-	
-	<bean id="eeutilAuthenticationSuccessHandler" class="es.mpt.dsic.inside.security.authentication.EeutilAuthenticationSuccessHandler">
-    	<property name="url" value="/principal"/>
-	</bean>
-	
-	<bean id="eeutilAuthenticationFailureHandler" class="es.mpt.dsic.inside.security.authentication.EeutilAuthenticationFailureHandler">
-    	<property name="url" value="/login?error"/>
-	</bean>
-
+   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl --> 
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:sec="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+           http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd"> 
+    <sec:http use-expressions="true" auto-config="true"> 
+        <sec:form-login login-page="/login" /> 
+        <sec:custom-filter position="PRE_AUTH_FILTER" ref="certificateLoginFilter" /> 
+        <sec:logout invalidate-session="true" logout-url="/logout" logout-success-url="/" /> 
+        <sec:intercept-url pattern="/login*" access="isAnonymous()" /> 
+        <sec:intercept-url pattern="/login/error*" access="isAnonymous()" /> 
+        <sec:intercept-url pattern="/css/**" access="permitAll" /> 
+        <sec:intercept-url pattern="/images/**" access="permitAll" /> 
+        <sec:intercept-url pattern="/js/**" access="permitAll" /> 
+        <sec:intercept-url pattern="/html/**" access="permitAll" /> 
+        <sec:intercept-url pattern="/usuariosLista*" access="isAuthenticated()" /> 
+        <sec:intercept-url pattern="/borrarUsuario*" access="isAuthenticated()" /> 
+        <sec:intercept-url pattern="/altaUsuario*" access="isAuthenticated()" /> 
+        <sec:intercept-url pattern="/aplicacionesLista*" access="isAuthenticated()" /> 
+        <sec:intercept-url pattern="/borrarAplicacion*" access="isAuthenticated()" /> 
+        <sec:intercept-url pattern="/altaAplicacion*" access="isAuthenticated()" /> 
+    </sec:http> 
+    <bean id="certificateLoginFilter" class="es.mpt.dsic.inside.security.interceptor.CertificateLoginFilter"> 
+        <property name="authenticationManager" ref="autenticationManager" /> 
+        <property name="authenticationSuccessHandler" ref="eeutilAuthenticationSuccessHandler"></property> 
+        <property name="authenticationFailureHandler" ref="eeutilAuthenticationFailureHandler"></property> 
+    </bean> 
+    <bean id="eeutilAuthenticationSuccessHandler" class="es.mpt.dsic.inside.security.authentication.EeutilAuthenticationSuccessHandler"> 
+        <property name="url" value="/principal" /> 
+    </bean> 
+    <bean id="eeutilAuthenticationFailureHandler" class="es.mpt.dsic.inside.security.authentication.EeutilAuthenticationFailureHandler"> 
+        <property name="url" value="/login?error" /> 
+    </bean> 
 </beans>

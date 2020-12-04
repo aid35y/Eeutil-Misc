@@ -9,98 +9,98 @@
    more details.
    You should have received a copy of the EUPL1.1 license
    along with this program; if not, you may find it at
-   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl -->
-
-<beans xmlns:sec="http://www.springframework.org/schema/security"
-	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl --> 
+<beans xmlns:sec="http://www.springframework.org/schema/security" xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
 	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
                         http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd 
                         http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
-                       	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-                       	
+                       	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd"> 
     <context:property-placeholder location="
     	file:${config.path}/wsCrypto.properties,
-    	file:${config.path}/eni.properties"
-		ignore-unresolvable="true"/>
-		
-	<!-- Propiedades de la visualizacion -->
-	<bean id="visualizacionTextosPropertyConfigurer"
-		class="es.mpt.dsic.inside.config.resources.EeutilConfigPropertyPlaceHolderConfigurer">
-		<property name="fichero" value="facturae.properties" />
-	</bean>
-	
-	<!-- BEAN EXPEDIENTE -->
-	<bean id="utilFacturae" class="es.mpt.dsic.inside.ws.service.util.UtilFacturae">
-		<property name="templateDefault" value="${templateDefault}"/>	
-		<property name="template" value="${template}"/>
-		<property name="directorio" value="${directorio}"/>		
-	</bean>
-	
-	
-	<!-- PDF/A -->
-	<bean id="pdfAPropertyConfigurer"
-		class="es.mpt.dsic.inside.config.resources.EeutilConfigPropertyPlaceHolderConfigurer">
-		<property name="fichero" value="pdfA.properties" />
-	</bean>
-	
-	<bean id="utilPdfA" class="es.mpt.dsic.inside.ws.service.util.UtilPdfA" init-method="configure">
-		<property name="converterLibrary" value="${pdfa.converter.library}"/>
-		<property name="converterKey" value="${pdfa.converter.key}"/>	
-		<property name="converterReportDetails" value="${pdfa.converter.reportDetails}"/>		
-		<property name="converterReportSummary" value="${pdfa.converter.reportSummary}"/>		
-		<property name="converterSubsetFonts" value="${pdfa.converter.subsetFonts}"/>		
-		<property name="converterPostAnalyze" value="${pdfa.converter.postAnalyze}"/>	
-		
-		<property name="validatorLibrary" value="${pdfa.validator.library}"/>
-		<property name="validatorKey" value="${pdfa.validator.key}"/>
-		<property name="validatorReportingLevel" value="${pdfa.validator.reportingLevel}"/>				
-	</bean>
-	
-	<util:properties id="propertiesSecurity">
-		<prop key="org.apache.ws.security.crypto.provider">${org.apache.ws.security.crypto.provider}</prop>
-		<prop key="org.apache.ws.security.crypto.merlin.file">${org.apache.ws.security.crypto.merlin.file}</prop>
-		<prop key="org.apache.ws.security.crypto.merlin.keystore.type">${org.apache.ws.security.crypto.merlin.keystore.type}</prop>
-		<prop key="org.apache.ws.security.crypto.merlin.keystore.password">${org.apache.ws.security.crypto.merlin.keystore.password}</prop>
-		<prop key="org.apache.ws.security.crypto.merlin.keystore.alias">${org.apache.ws.security.crypto.merlin.keystore.alias}</prop>
-		<prop key="org.apache.ws.security.crypto.merlin.keystore.private.password">${org.apache.ws.security.crypto.merlin.keystore.private.password}</prop>
-		<prop key="WSHandlerConstants.USER">${WSHandlerConstants.USER}</prop>
-		<prop key="passwordCertificado">${passwordCertificado}</prop>
-		<prop key="org.apache.ws.security.crypto.merlin.truststore.file">${org.apache.ws.security.crypto.merlin.truststore.file}</prop>
-		<prop key="org.apache.ws.security.crypto.merlin.truststore.password">${org.apache.ws.security.crypto.merlin.truststore.password}</prop>
-		<prop key="org.apache.ws.security.crypto.merlin.truststore.type">${org.apache.ws.security.crypto.merlin.truststore.type}</prop>
-	</util:properties>
-	
-	<!-- Propiedades de credenciales usuarios -->
-	<bean id="eeutilUsuarioService" class="es.mpt.dsic.inside.service.usuario.EeutilUsuarioServiceImpl">
- 		<property name="credentialProperties"> 
- 			<util:properties location="file:${eeutil-misc.config.path}/credential.properties"/> 
- 		</property> 
- 		<property name="propertiesSecurity" ref="propertiesSecurity"></property>
- 	</bean>	  
- 	
- 	<!-- Propiedades de credenciales aplicaciones --> 
- 	<bean id="eeutilAplicacionService" class="es.mpt.dsic.inside.service.aplicacion.EeutilAplicacionServiceImpl">
- 		<property name="credentialProperties"> 
- 			<util:properties location="file:${eeutil-misc.config.path}/credential.properties"/> 
- 		</property> 
- 		<property name="propertiesSecurity" ref="propertiesSecurity"></property>
- 	</bean>	
- 	
- 	<bean id="consumerEeutilOperFirma" class="es.mpt.dsic.eeutil.operFirma.consumer.impl.ConsumerEeutilOperFirmaImpl">
-		<property name="properties">
-			<util:properties location="file:${eeutil-misc.config.path}/eeutil.properties"/> 
-		</property>
-		<property name="truststore" value="${org.apache.ws.security.crypto.merlin.truststore.file}"/>
-		<property name="passTruststore" value="${org.apache.ws.security.crypto.merlin.truststore.password}"/>
-	</bean>
-	
-	 <bean id="EeutilEniValidationENIService" class="es.mpt.dsic.inside.validacionENI.impl.EeutilEniValidationENIServiceImpl">
- 		<property name="schemasDir" value="${schemasDir}"/>
- 		<property name="versionENI" value="${versionENI}"/>
- 	</bean>
+    	file:${config.path}/eni.properties" ignore-unresolvable="true" /> 
+    <!-- Propiedades de la visualizacion --> 
+    <bean id="visualizacionTextosPropertyConfigurer" class="es.mpt.dsic.inside.config.resources.EeutilConfigPropertyPlaceHolderConfigurer"> 
+        <property name="fichero" value="facturae.properties" /> 
+    </bean> 
+    <!-- BEAN EXPEDIENTE --> 
+    <bean id="utilFacturae" class="es.mpt.dsic.inside.ws.service.util.UtilFacturae"> 
+        <property name="templateDefault" value="${templateDefault}" /> 
+        <property name="template" value="${template}" /> 
+        <property name="directorio" value="${directorio}" /> 
+    </bean> 
+    <!-- PDF/A --> 
+    <bean id="pdfAPropertyConfigurer" class="es.mpt.dsic.inside.config.resources.EeutilConfigPropertyPlaceHolderConfigurer"> 
+        <property name="fichero" value="pdfA.properties" /> 
+    </bean> 
+    <bean id="utilPdfA" class="es.mpt.dsic.inside.ws.service.util.UtilPdfA" init-method="configure"> 
+        <property name="converterLibrary" value="${pdfa.converter.library}" /> 
+        <property name="converterKey" value="${pdfa.converter.key}" /> 
+        <property name="converterReportDetails" value="${pdfa.converter.reportDetails}" /> 
+        <property name="converterReportSummary" value="${pdfa.converter.reportSummary}" /> 
+        <property name="converterSubsetFonts" value="${pdfa.converter.subsetFonts}" /> 
+        <property name="converterPostAnalyze" value="${pdfa.converter.postAnalyze}" /> 
+        <property name="validatorLibrary" value="${pdfa.validator.library}" /> 
+        <property name="validatorKey" value="${pdfa.validator.key}" /> 
+        <property name="validatorReportingLevel" value="${pdfa.validator.reportingLevel}" /> 
+    </bean> 
+    <util:properties id="propertiesSecurity"> 
+        <prop key="org.apache.ws.security.crypto.provider">
+            ${org.apache.ws.security.crypto.provider}
+        </prop> 
+        <prop key="org.apache.ws.security.crypto.merlin.file">
+            ${org.apache.ws.security.crypto.merlin.file}
+        </prop> 
+        <prop key="org.apache.ws.security.crypto.merlin.keystore.type">
+            ${org.apache.ws.security.crypto.merlin.keystore.type}
+        </prop> 
+        <prop key="org.apache.ws.security.crypto.merlin.keystore.password">
+            ${org.apache.ws.security.crypto.merlin.keystore.password}
+        </prop> 
+        <prop key="org.apache.ws.security.crypto.merlin.keystore.alias">
+            ${org.apache.ws.security.crypto.merlin.keystore.alias}
+        </prop> 
+        <prop key="org.apache.ws.security.crypto.merlin.keystore.private.password">
+            ${org.apache.ws.security.crypto.merlin.keystore.private.password}
+        </prop> 
+        <prop key="WSHandlerConstants.USER">
+            ${WSHandlerConstants.USER}
+        </prop> 
+        <prop key="passwordCertificado">
+            ${passwordCertificado}
+        </prop> 
+        <prop key="org.apache.ws.security.crypto.merlin.truststore.file">
+            ${org.apache.ws.security.crypto.merlin.truststore.file}
+        </prop> 
+        <prop key="org.apache.ws.security.crypto.merlin.truststore.password">
+            ${org.apache.ws.security.crypto.merlin.truststore.password}
+        </prop> 
+        <prop key="org.apache.ws.security.crypto.merlin.truststore.type">
+            ${org.apache.ws.security.crypto.merlin.truststore.type}
+        </prop> 
+    </util:properties> 
+    <!-- Propiedades de credenciales usuarios --> 
+    <bean id="eeutilUsuarioService" class="es.mpt.dsic.inside.service.usuario.EeutilUsuarioServiceImpl"> 
+        <property name="credentialProperties"> 
+            <util:properties location="file:${eeutil-misc.config.path}/credential.properties" /> 
+        </property> 
+        <property name="propertiesSecurity" ref="propertiesSecurity"></property> 
+    </bean> 
+    <!-- Propiedades de credenciales aplicaciones --> 
+    <bean id="eeutilAplicacionService" class="es.mpt.dsic.inside.service.aplicacion.EeutilAplicacionServiceImpl"> 
+        <property name="credentialProperties"> 
+            <util:properties location="file:${eeutil-misc.config.path}/credential.properties" /> 
+        </property> 
+        <property name="propertiesSecurity" ref="propertiesSecurity"></property> 
+    </bean> 
+    <bean id="consumerEeutilOperFirma" class="es.mpt.dsic.eeutil.operFirma.consumer.impl.ConsumerEeutilOperFirmaImpl"> 
+        <property name="properties"> 
+            <util:properties location="file:${eeutil-misc.config.path}/eeutil.properties" /> 
+        </property> 
+        <property name="truststore" value="${org.apache.ws.security.crypto.merlin.truststore.file}" /> 
+        <property name="passTruststore" value="${org.apache.ws.security.crypto.merlin.truststore.password}" /> 
+    </bean> 
+    <bean id="EeutilEniValidationENIService" class="es.mpt.dsic.inside.validacionENI.impl.EeutilEniValidationENIServiceImpl"> 
+        <property name="schemasDir" value="${schemasDir}" /> 
+        <property name="versionENI" value="${versionENI}" /> 
+    </bean> 
 </beans>

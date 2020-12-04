@@ -1,26 +1,22 @@
-/* Copyright (C) 2012-13 MINHAP, Gobierno de España
-   This program is licensed and may be used, modified and redistributed under the terms
-   of the European Public License (EUPL), either version 1.1 or (at your
-   option) any later version as soon as they are approved by the European Commission.
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
-   or implied. See the License for the specific language governing permissions and
-   more details.
-   You should have received a copy of the EUPL1.1 license
-   along with this program; if not, you may find it at
-   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl */
+/*
+ * Copyright (C) 2012-13 MINHAP, Gobierno de España This program is licensed and may be used,
+ * modified and redistributed under the terms of the European Public License (EUPL), either version
+ * 1.1 or (at your option) any later version as soon as they are approved by the European
+ * Commission. Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions and
+ * more details. You should have received a copy of the EUPL1.1 license along with this program; if
+ * not, you may find it at http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+ */
 
 package es.mpt.dsic.inside.security.interceptor;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -36,7 +32,6 @@ import org.springframework.security.core.authority.GrantedAuthorityImpl;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedCredentialsNotFoundException;
 import org.springframework.stereotype.Component;
-
 import es.mpt.dsic.inside.security.authentication.UserAuthentication;
 import es.mpt.dsic.inside.security.model.UsuarioCredencialInfo;
 import es.mpt.dsic.inside.security.service.CredentialnfoService;
@@ -49,95 +44,82 @@ import eu.stork.peps.auth.engine.STORKSAMLEngine;
 import eu.stork.peps.exceptions.STORKSAMLEngineException;
 
 @Component
-public class CertificateLoginFilter extends
-		AbstractAuthenticationProcessingFilter {
-	
-	protected static final Log logger = LogFactory
-			.getLog(CertificateLoginFilter.class);
+public class CertificateLoginFilter extends AbstractAuthenticationProcessingFilter {
 
-	public CertificateLoginFilter() {
-		super("/accesoCertificado");
-	}
+  protected static final Log logger = LogFactory.getLog(CertificateLoginFilter.class);
 
-	public CertificateLoginFilter(String defaultFilterProcessesUrl) {
-		super(defaultFilterProcessesUrl);
-	}
-	
-	@Autowired
-	private Environment env;
+  public CertificateLoginFilter() {
+    super("/accesoCertificado");
+  }
 
-	@Autowired
-	private CredentialnfoService credentialnfoService;
+  public CertificateLoginFilter(String defaultFilterProcessesUrl) {
+    super(defaultFilterProcessesUrl);
+  }
 
-	@Qualifier("autenticationManager")
-	private AuthenticationManager autenticationManager;
+  @Autowired
+  private Environment env;
 
-	@Override
-	public Authentication attemptAuthentication(HttpServletRequest request,
-			HttpServletResponse response) throws AuthenticationException,
-			IOException, ServletException {
+  @Autowired
+  private CredentialnfoService credentialnfoService;
 
-		try {
-			logger.debug("login by clave");
+  @Qualifier("autenticationManager")
+  private AuthenticationManager autenticationManager;
 
-			STORKAuthnResponse authnResponse = null;
-			IPersonalAttributeList personalAttributeList = null;
+  @Override
+  public Authentication attemptAuthentication(HttpServletRequest request,
+      HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
 
-			/* Recuperamos la respuesta de la aplicaci�n */
-			String samlResponse = request
-					.getParameter(ConstantsClave.ATRIBUTO_SAML_RESPONSE);
-			logger.debug("Datos de respuesta de cl@ve:" + samlResponse);
-			if (!StringUtils.isBlank(samlResponse)) {
-				/* Decodificamos la respuesta SAML */
-				byte[] decSamlToken = PEPSUtil.decodeSAMLToken(samlResponse);
+    try {
+      logger.debug("login by clave");
 
-				/* Obtenemos la instancia de SAMLEngine */
-				STORKSAMLEngine engine = STORKSAMLEngine
-						.getInstance(ConstantsClave.SP_CONF);
+      STORKAuthnResponse authnResponse = null;
+      IPersonalAttributeList personalAttributeList = null;
 
-				/* Validamos el token SAML */
+      /* Recuperamos la respuesta de la aplicaci�n */
+      String samlResponse = request.getParameter(ConstantsClave.ATRIBUTO_SAML_RESPONSE);
+      logger.debug("Datos de respuesta de cl@ve:" + samlResponse);
+      if (!StringUtils.isBlank(samlResponse)) {
+        /* Decodificamos la respuesta SAML */
+        byte[] decSamlToken = PEPSUtil.decodeSAMLToken(samlResponse);
 
-				authnResponse = engine.validateSTORKAuthnResponse(decSamlToken,
-						(String) request.getRemoteHost());
+        /* Obtenemos la instancia de SAMLEngine */
+        STORKSAMLEngine engine = STORKSAMLEngine.getInstance(ConstantsClave.SP_CONF);
 
-				if (authnResponse.isFail()) {
-					logger.error("Acceso no autorizado");
-					throw new PreAuthenticatedCredentialsNotFoundException(
-							"Acceso no autorizado");
-				} else {
-					/* Recuperamos los atributos */
-					personalAttributeList = authnResponse
-							.getPersonalAttributeList();
+        /* Validamos el token SAML */
 
-					PersonalAttribute identificadorAttribute = personalAttributeList
-							.get(env.getProperty(ConstantsClave.PROPERTY_IDENTIFICADOR));
-					List<String> identificadores = identificadorAttribute
-							.getValue();
-					String id = identificadores.get(0).split("/")[2];
+        authnResponse =
+            engine.validateSTORKAuthnResponse(decSamlToken, (String) request.getRemoteHost());
 
-					UsuarioCredencialInfo usuario = credentialnfoService
-							.getCredentialInfo(id);
-					if (usuario != null) {
-						List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
-						roles.add(new GrantedAuthorityImpl("USER_ROLE"));
-						return new UserAuthentication(usuario.getNif(), null,
-								roles, "1", usuario.getNif());
-					}
+        if (authnResponse.isFail()) {
+          logger.error("Acceso no autorizado");
+          throw new PreAuthenticatedCredentialsNotFoundException("Acceso no autorizado");
+        } else {
+          /* Recuperamos los atributos */
+          personalAttributeList = authnResponse.getPersonalAttributeList();
 
-				}
+          PersonalAttribute identificadorAttribute =
+              personalAttributeList.get(env.getProperty(ConstantsClave.PROPERTY_IDENTIFICADOR));
+          List<String> identificadores = identificadorAttribute.getValue();
+          String id = identificadores.get(0).split("/")[2];
 
-			}
-			throw new PreAuthenticatedCredentialsNotFoundException(
-					"Acceso no autorizado");
-		} catch (DataAccessException e) {
-			logger.error("DataAccessException: " + e.getMessage());
-			throw new PreAuthenticatedCredentialsNotFoundException(
-					"Acceso no autorizado");
-		} catch (STORKSAMLEngineException e) {
-			logger.error("STORKSAMLEngineException: " + e.getMessage());
-			throw new PreAuthenticatedCredentialsNotFoundException(
-					"Acceso no autorizado");
-		}
-	}
+          UsuarioCredencialInfo usuario = credentialnfoService.getCredentialInfo(id);
+          if (usuario != null) {
+            List<GrantedAuthority> roles = new ArrayList<GrantedAuthority>();
+            roles.add(new GrantedAuthorityImpl("USER_ROLE"));
+            return new UserAuthentication(usuario.getNif(), null, roles, "1", usuario.getNif());
+          }
+
+        }
+
+      }
+      throw new PreAuthenticatedCredentialsNotFoundException("Acceso no autorizado");
+    } catch (DataAccessException e) {
+      logger.error("DataAccessException: " + e.getMessage());
+      throw new PreAuthenticatedCredentialsNotFoundException("Acceso no autorizado");
+    } catch (STORKSAMLEngineException e) {
+      logger.error("STORKSAMLEngineException: " + e.getMessage());
+      throw new PreAuthenticatedCredentialsNotFoundException("Acceso no autorizado");
+    }
+  }
 
 }

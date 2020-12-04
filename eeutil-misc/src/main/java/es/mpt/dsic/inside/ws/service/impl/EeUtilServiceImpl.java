@@ -1,15 +1,13 @@
-/* Copyright (C) 2012-13 MINHAP, Gobierno de España
-   This program is licensed and may be used, modified and redistributed under the terms
-   of the European Public License (EUPL), either version 1.1 or (at your
-   option) any later version as soon as they are approved by the European Commission.
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
-   or implied. See the License for the specific language governing permissions and
-   more details.
-   You should have received a copy of the EUPL1.1 license
-   along with this program; if not, you may find it at
-   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl */
+/*
+ * Copyright (C) 2012-13 MINHAP, Gobierno de España This program is licensed and may be used,
+ * modified and redistributed under the terms of the European Public License (EUPL), either version
+ * 1.1 or (at your option) any later version as soon as they are approved by the European
+ * Commission. Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND,
+ * either express or implied. See the License for the specific language governing permissions and
+ * more details. You should have received a copy of the EUPL1.1 license along with this program; if
+ * not, you may find it at http://joinup.ec.europa.eu/software/page/eupl/licence-eupl
+ */
 
 package es.mpt.dsic.inside.ws.service.impl;
 
@@ -19,7 +17,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.ParameterStyle;
@@ -32,7 +29,6 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.StringUtils;
@@ -41,10 +37,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import com.pdftools.NativeLibrary;
 import com.pdftools.pdf2pdf.Pdf2PdfAPI;
-
 import es.mpt.dsic.eeutil.operFirma.consumer.impl.ConsumerEeutilOperFirmaImpl;
 import es.mpt.dsic.inside.config.EeutilApplicationDataConfig;
 import es.mpt.dsic.inside.pdf.converter.HtmlConverter;
@@ -74,250 +68,232 @@ import es.mpt.dsic.inside.ws.service.util.UtilPdfA;
 @SOAPBinding(style = Style.RPC, parameterStyle = ParameterStyle.BARE, use = Use.LITERAL)
 public class EeUtilServiceImpl implements EeUtilService {
 
-	protected final static Log logger = LogFactory
-			.getLog(EeUtilServiceImpl.class);
+  protected final static Log logger = LogFactory.getLog(EeUtilServiceImpl.class);
 
-	@Autowired
-	private UtilFacturae utilFacturae;
+  @Autowired
+  private UtilFacturae utilFacturae;
 
-	@Autowired
-	private AplicacionContext aplicacionContext;
+  @Autowired
+  private AplicacionContext aplicacionContext;
 
-	@Autowired
-	private UtilPdfA utilPdfA;
+  @Autowired
+  private UtilPdfA utilPdfA;
 
-	@Autowired
-	private EeutilAplicacionConversionService aplicacionConversionService;
-	
-	@Autowired
-	@Qualifier(value="consumerEeutilOperFirma")
-	private ConsumerEeutilOperFirmaImpl consumerEeutilOperFirmaImpl;
-	
-	@Autowired
-	TcnToPdfConverter tcnToPdfConverter;
-	
-	@Autowired
-	PdfConverter pdfConverter;
-	
-	@Autowired
-	HtmlConverter htmlConverter;
+  @Autowired
+  private EeutilAplicacionConversionService aplicacionConversionService;
 
-	@Override
-	public byte[] postProcesarFirma(ApplicationLogin info, byte[] firma)
-			throws InSideException {
-		try {
-			return consumerEeutilOperFirmaImpl.postProcesarFirma(info, firma);
-		} catch (es.mpt.dsic.eeutil.operFirma.consumer.model.InSideException e) {
-			throw new InSideException(e.getMessage(), new EstadoInfo(), e);
-		}
-	}
+  @Autowired
+  @Qualifier(value = "consumerEeutilOperFirma")
+  private ConsumerEeutilOperFirmaImpl consumerEeutilOperFirmaImpl;
 
-	@Override
-	public ContenidoInfo convertirTCNAPdf(ApplicationLogin application,
-			TCNInfo tcnInfo) throws InSideException {
-		ContenidoInfo contenidoInfo = new ContenidoInfo();
+  @Autowired
+  TcnToPdfConverter tcnToPdfConverter;
 
-		try {
-			byte[] pdf = tcnToPdfConverter.convertTCNToPdfBytes(tcnInfo.getContenido().getContenido());
-			contenidoInfo.setContenido(pdf);
-			contenidoInfo.setTipoMIME("application/pdf");
-		} catch (PdfConversionException e) {
-			logger.error("Error en la conversi�n a PDF del TCN", e);
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error convirtiendo TCN a PDF: ",
-					estadoInfo);
-		} catch (Throwable t) {
-			logger.error("Error inesperado convirtiendo TCNaPDF", t);
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error convirtiendo TCN a PDF: ",
-					estadoInfo);
-		}
+  @Autowired
+  PdfConverter pdfConverter;
 
-		return contenidoInfo;
-	}
+  @Autowired
+  HtmlConverter htmlConverter;
 
-	@Override
-	public SalidaVisualizacion visualizarFacturae(ApplicationLogin info,
-			byte[] factura, String version) throws InSideException {
-		logger.debug("Inicio visualizarFacturae");
+  @Override
+  public byte[] postProcesarFirma(ApplicationLogin info, byte[] firma) throws InSideException {
+    try {
+      return consumerEeutilOperFirmaImpl.postProcesarFirma(info, firma);
+    } catch (es.mpt.dsic.eeutil.operFirma.consumer.model.InSideException e) {
+      throw new InSideException(e.getMessage(), new EstadoInfo(), e);
+    }
+  }
 
-		SalidaVisualizacion facturaPost = new SalidaVisualizacion();
-		DocumentoContenido contenido = new DocumentoContenido();
-		File cpr =null;
-		try {
-			if(StringUtils.isEmpty(version))
-			{
-				cpr = new File(EeutilApplicationDataConfig.CONFIG_PATH + File.separator + utilFacturae.getTemplateDefault());
-			}
-			else
-			{
-				cpr = new File(EeutilApplicationDataConfig.CONFIG_PATH + File.separator +  utilFacturae.getDirectorio() + File.separator + version + File.separator + utilFacturae.getTemplate());
-				
-			}
-			
-			TransformerFactory tFactory = TransformerFactory.newInstance();
-			Transformer transformer = tFactory.newTransformer(new StreamSource(
-					cpr));
+  @Override
+  public ContenidoInfo convertirTCNAPdf(ApplicationLogin application, TCNInfo tcnInfo)
+      throws InSideException {
+    ContenidoInfo contenidoInfo = new ContenidoInfo();
 
-			ByteArrayInputStream bin = new ByteArrayInputStream(factura);
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+    try {
+      byte[] pdf = tcnToPdfConverter.convertTCNToPdfBytes(tcnInfo.getContenido().getContenido());
+      contenidoInfo.setContenido(pdf);
+      contenidoInfo.setTipoMIME("application/pdf");
+    } catch (PdfConversionException e) {
+      logger.error("Error en la conversi�n a PDF del TCN", e);
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error convirtiendo TCN a PDF: ", estadoInfo);
+    } catch (Throwable t) {
+      logger.error("Error inesperado convirtiendo TCNaPDF", t);
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error convirtiendo TCN a PDF: ", estadoInfo);
+    }
 
-			StreamSource sourceFactura = new StreamSource(bin);
-			StreamResult result = new StreamResult(bos);
-			transformer.transform(sourceFactura, result);
+    return contenidoInfo;
+  }
 
-			contenido.setBytesDocumento(bos.toByteArray());
-			contenido.setMimeDocumento("text/html");
+  @Override
+  public SalidaVisualizacion visualizarFacturae(ApplicationLogin info, byte[] factura,
+      String version) throws InSideException {
+    logger.debug("Inicio visualizarFacturae");
 
-			facturaPost.setDocumentoContenido(contenido);
-		} catch (TransformerConfigurationException e) {
-			logger.error("Error inesperado visualizando Facturae", e);
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error visualizando Facturae: ",
-					estadoInfo);
-		} catch (TransformerFactoryConfigurationError e) {
-			logger.error("Error inesperado visualizando Facturae", e);
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error visualizando Facturae: ",
-					estadoInfo);
-		} catch (TransformerException e) {
-			logger.error("Error inesperado visualizando Facturae", e);
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error visualizando Facturae: ",
-					estadoInfo);
-		}
+    SalidaVisualizacion facturaPost = new SalidaVisualizacion();
+    DocumentoContenido contenido = new DocumentoContenido();
+    File cpr = null;
+    try {
+      if (StringUtils.isEmpty(version)) {
+        cpr = new File(EeutilApplicationDataConfig.CONFIG_PATH + File.separator
+            + utilFacturae.getTemplateDefault());
+      } else {
+        cpr = new File(
+            EeutilApplicationDataConfig.CONFIG_PATH + File.separator + utilFacturae.getDirectorio()
+                + File.separator + version + File.separator + utilFacturae.getTemplate());
 
-		return facturaPost;
-	}
+      }
 
-	@Override
-	public PdfSalida convertirPDFA(ApplicationLogin info,
-			DocumentoEntrada docEntrada, Integer nivelCompilacion) throws InSideException {
-		File pdfOriginal = null;
-		try {
-			logger.debug("convertirPDFA");
-			logger.debug("mime:" + docEntrada.getMime());
-			PdfSalida retorno = new PdfSalida();
+      TransformerFactory tFactory = TransformerFactory.newInstance();
+      Transformer transformer = tFactory.newTransformer(new StreamSource(cpr));
 
-			AppInfo appInfo = aplicacionContext.getAplicacionInfo();
-			String ipOpenOffice = appInfo.getPropiedades().get("ip.openoffice");
-			String portOpenOffice = appInfo.getPropiedades().get(
-					"port.openoffice");
+      ByteArrayInputStream bin = new ByteArrayInputStream(factura);
+      ByteArrayOutputStream bos = new ByteArrayOutputStream();
 
-			String filePathIn = FileUtil.createFilePath("PDFA_", docEntrada.getContenido());
+      StreamSource sourceFactura = new StreamSource(bin);
+      StreamResult result = new StreamResult(bos);
+      transformer.transform(sourceFactura, result);
 
-			pdfOriginal = pdfConverter.convertir(ipOpenOffice,
-					portOpenOffice, new File(filePathIn), docEntrada.getMime());
+      contenido.setBytesDocumento(bos.toByteArray());
+      contenido.setMimeDocumento("text/html");
 
-			Boolean isPDFA = utilPdfA.isPDFA(
-					IOUtils.toByteArray(new FileInputStream(pdfOriginal)),
-					docEntrada.getPassword(), nivelCompilacion);
+      facturaPost.setDocumentoContenido(contenido);
+    } catch (TransformerConfigurationException e) {
+      logger.error("Error inesperado visualizando Facturae", e);
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error visualizando Facturae: ", estadoInfo);
+    } catch (TransformerFactoryConfigurationError e) {
+      logger.error("Error inesperado visualizando Facturae", e);
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error visualizando Facturae: ", estadoInfo);
+    } catch (TransformerException e) {
+      logger.error("Error inesperado visualizando Facturae", e);
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error visualizando Facturae: ", estadoInfo);
+    }
 
-			// Validate document
-			if (!isPDFA) {
-				Pdf2PdfAPI.setLicenseKey(utilPdfA.getConverterKey());
+    return facturaPost;
+  }
 
-				Pdf2PdfAPI api = new Pdf2PdfAPI();
-				if (nivelCompilacion == null) {
-					api.setCompliance(NativeLibrary.COMPLIANCE.ePDFA2b);
-				} else {
-					api.setCompliance(nivelCompilacion);
-				}
-				api.setReportDetails(utilPdfA.isConverterReportDetails());
-				api.setReportSummary(utilPdfA.isConverterReportSummary());
-				api.setSubsetFonts(utilPdfA.isConverterSubsetFonts());
-				api.setPostAnalyze(utilPdfA.isConverterPostAnalyze());
+  @Override
+  public PdfSalida convertirPDFA(ApplicationLogin info, DocumentoEntrada docEntrada,
+      Integer nivelCompilacion) throws InSideException {
+    File pdfOriginal = null;
+    try {
+      logger.debug("convertirPDFA");
+      logger.debug("mime:" + docEntrada.getMime());
+      PdfSalida retorno = new PdfSalida();
 
-				int numberPages = utilPdfA.getPdfNumbersPages(pdfOriginal);
-				// insercion en bbdd
-				aplicacionConversionService.saveAplicacionConversionInfo(info
-						.getIdApplicacion(), numberPages);
+      AppInfo appInfo = aplicacionContext.getAplicacionInfo();
+      String ipOpenOffice = appInfo.getPropiedades().get("ip.openoffice");
+      String portOpenOffice = appInfo.getPropiedades().get("port.openoffice");
 
-				boolean convert = api.convertMem2(
-						IOUtils.toByteArray(new FileInputStream(pdfOriginal)),
-						docEntrada.getPassword());
+      String filePathIn = FileUtil.createFilePath("PDFA_", docEntrada.getContenido());
 
-				if (convert) {
-					retorno.setMime("application/pdf");
-					retorno.setContenido(api.getPDF());
-				} else {
-					EstadoInfo estadoInfo = new EstadoInfo();
-					estadoInfo.setDescripcion(new String(api.getLog(), XMLUtil.UTF8_CHARSET));
-					throw new InSideException("Error al convertir a PDF/A: ",
-							estadoInfo);
-				}
-			} else {
-				retorno.setMime("application/pdf");
-				retorno.setContenido(IOUtils.toByteArray(new FileInputStream(
-						pdfOriginal)));
-			}
+      pdfOriginal = pdfConverter.convertir(ipOpenOffice, portOpenOffice, new File(filePathIn),
+          docEntrada.getMime());
 
-			return retorno;
-		} catch (NumberFormatException e) {
-			logger.error("Error al convertir a PDF/A:" + e.getMessage());
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error al convertir a PDF/A: ",
-					estadoInfo);
-		} catch (FileNotFoundException e) {
-			logger.error("Error al convertir a PDF/A:" + e.getMessage());
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error al convertir a PDF/A: ",
-					estadoInfo);
-		} catch (IOException e) {
-			logger.error("Error al convertir a PDF/A:" + e.getMessage());
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error al convertir a PDF/A: ",
-					estadoInfo);
-		} catch (PdfConversionException e) {
-			logger.error("Error al convertir a PDF/A:" + e.getMessage());
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error al convertir a PDF/A: ",
-					estadoInfo);
-		} finally {
-			try {
-				FileUtils.forceDelete(pdfOriginal);
-			} catch (IOException e) {
-				logger.warn("Error al eliminar fichero temporal:" + pdfOriginal.getAbsolutePath());
-			}
-		}
-	}
+      Boolean isPDFA = utilPdfA.isPDFA(IOUtils.toByteArray(new FileInputStream(pdfOriginal)),
+          docEntrada.getPassword(), nivelCompilacion);
 
-	@Override
-	public Boolean comprobarPDFA(ApplicationLogin info,
-			DocumentoEntrada docEntrada, Integer nivelCompilacion) throws InSideException {
-		return utilPdfA.isPDFA(
-				docEntrada.getContenido(), docEntrada.getPassword(), nivelCompilacion);
-	}
+      // Validate document
+      if (!isPDFA) {
+        Pdf2PdfAPI.setLicenseKey(utilPdfA.getConverterKey());
 
-	@Override
-	public SalidaVisualizacion visualizarFacturaePDF(ApplicationLogin info,	byte[] factura, String version) throws InSideException {
+        Pdf2PdfAPI api = new Pdf2PdfAPI();
+        if (nivelCompilacion == null) {
+          api.setCompliance(NativeLibrary.COMPLIANCE.ePDFA2b);
+        } else {
+          api.setCompliance(nivelCompilacion);
+        }
+        api.setReportDetails(utilPdfA.isConverterReportDetails());
+        api.setReportSummary(utilPdfA.isConverterReportSummary());
+        api.setSubsetFonts(utilPdfA.isConverterSubsetFonts());
+        api.setPostAnalyze(utilPdfA.isConverterPostAnalyze());
 
-		logger.debug("Inicio visualizarFacturaePDF");
+        int numberPages = utilPdfA.getPdfNumbersPages(pdfOriginal);
+        // insercion en bbdd
+        aplicacionConversionService.saveAplicacionConversionInfo(info.getIdApplicacion(),
+            numberPages);
 
-		SalidaVisualizacion facturaPDFPost = new SalidaVisualizacion();
-		
-		DocumentoContenido contenido = new DocumentoContenido();
+        boolean convert = api.convertMem2(IOUtils.toByteArray(new FileInputStream(pdfOriginal)),
+            docEntrada.getPassword());
 
-		try 
-		{			
-			//llamada al visualizarFacturae para obtener el html
-			SalidaVisualizacion facturaHTML = visualizarFacturae( info, factura, version);
-			
-			//metodo que pasa de html a xhtml y desde xhtml a pdf
-			byte[] facturaEPDF = htmlConverter.convertHTMLtoPDF(facturaHTML.getDocumentoContenido().getBytesDocumento());
-			
-			contenido.setBytesDocumento(facturaEPDF);
-			contenido.setMimeDocumento("application/pdf");
-			facturaPDFPost.setDocumentoContenido(contenido);
-			
-			
-		} catch (TransformerFactoryConfigurationError e) {
-			logger.error("Error inesperado visualizando Facturae", e);
-			EstadoInfo estadoInfo = new EstadoInfo();
-			throw new InSideException("Error visualizando Facturae: ",
-					estadoInfo);
-		}
+        if (convert) {
+          retorno.setMime("application/pdf");
+          retorno.setContenido(api.getPDF());
+        } else {
+          EstadoInfo estadoInfo = new EstadoInfo();
+          estadoInfo.setDescripcion(new String(api.getLog(), XMLUtil.UTF8_CHARSET));
+          throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+        }
+      } else {
+        retorno.setMime("application/pdf");
+        retorno.setContenido(IOUtils.toByteArray(new FileInputStream(pdfOriginal)));
+      }
 
-		return facturaPDFPost;
-	}
+      return retorno;
+    } catch (NumberFormatException e) {
+      logger.error("Error al convertir a PDF/A:" + e.getMessage());
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+    } catch (FileNotFoundException e) {
+      logger.error("Error al convertir a PDF/A:" + e.getMessage());
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+    } catch (IOException e) {
+      logger.error("Error al convertir a PDF/A:" + e.getMessage());
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+    } catch (PdfConversionException e) {
+      logger.error("Error al convertir a PDF/A:" + e.getMessage());
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error al convertir a PDF/A: ", estadoInfo);
+    } finally {
+      try {
+        FileUtils.forceDelete(pdfOriginal);
+      } catch (IOException e) {
+        logger.warn("Error al eliminar fichero temporal:" + pdfOriginal.getAbsolutePath());
+      }
+    }
+  }
+
+  @Override
+  public Boolean comprobarPDFA(ApplicationLogin info, DocumentoEntrada docEntrada,
+      Integer nivelCompilacion) throws InSideException {
+    return utilPdfA.isPDFA(docEntrada.getContenido(), docEntrada.getPassword(), nivelCompilacion);
+  }
+
+  @Override
+  public SalidaVisualizacion visualizarFacturaePDF(ApplicationLogin info, byte[] factura,
+      String version) throws InSideException {
+
+    logger.debug("Inicio visualizarFacturaePDF");
+
+    SalidaVisualizacion facturaPDFPost = new SalidaVisualizacion();
+
+    DocumentoContenido contenido = new DocumentoContenido();
+
+    try {
+      // llamada al visualizarFacturae para obtener el html
+      SalidaVisualizacion facturaHTML = visualizarFacturae(info, factura, version);
+
+      // metodo que pasa de html a xhtml y desde xhtml a pdf
+      byte[] facturaEPDF =
+          htmlConverter.convertHTMLtoPDF(facturaHTML.getDocumentoContenido().getBytesDocumento());
+
+      contenido.setBytesDocumento(facturaEPDF);
+      contenido.setMimeDocumento("application/pdf");
+      facturaPDFPost.setDocumentoContenido(contenido);
+
+
+    } catch (TransformerFactoryConfigurationError e) {
+      logger.error("Error inesperado visualizando Facturae", e);
+      EstadoInfo estadoInfo = new EstadoInfo();
+      throw new InSideException("Error visualizando Facturae: ", estadoInfo);
+    }
+
+    return facturaPDFPost;
+  }
 }

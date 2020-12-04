@@ -6,9 +6,9 @@
  ******************************************************************************/
 var scripts = document.getElementsByTagName('script');
 var index = scripts.length - 1;
-var baseDownloadURL  = scripts[index].src.substring(0,scripts[index].src.lastIndexOf('\/')+1);
-if(baseDownloadURL.substring(0,4)!='http'){
-	baseDownloadURL=location.protocol + '//' + location.host + baseDownloadURL;	
+var baseDownloadURL = scripts[index].src.substring(0, scripts[index].src.lastIndexOf('\/') + 1);
+if (baseDownloadURL.substring(0, 4) != 'http') {
+    baseDownloadURL = location.protocol + '//' + location.host + baseDownloadURL;
 }
 
 /*******************************************************************************

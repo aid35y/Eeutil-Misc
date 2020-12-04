@@ -1,4 +1,4 @@
-$mf.init_widgets = function($el){
+$mf.init_widgets = function($el) {
     $mf.my_dialog = $mf.my_dialog || new $mf.Dialog($("div.mf-dialog").empty());
     //$mf.TopBar();
     //$mf.Marquesina(0,$el);
@@ -15,8 +15,6 @@ $mf.init_widgets = function($el){
     $('.mf-veil').length || $('<div class="mf-veil"></div>').appendTo($('body')).hide();
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
     $mf.init_widgets();
 });
-
-
