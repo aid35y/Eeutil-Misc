@@ -1,3 +1,4 @@
+<?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <!-- Copyright (C) 2012-13 MINHAP, Gobierno de España
    This program is licensed and may be used, modified and redistributed under the terms
    of the European Public License (EUPL), either version 1.1 or (at your
@@ -9,7 +10,7 @@
    more details.
    You should have received a copy of the EUPL1.1 license
    along with this program; if not, you may find it at
-   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl --> <?xml version="1.0"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd"> 
+   http://joinup.ec.europa.eu/software/page/eupl/licence-eupl -->
 <!-- Generated 20-may-2014 13:45:55 by Hibernate Tools 3.4.0.CR1 --> 
 <hibernate-mapping> 
     <class name="es.mpt.dsic.loadTables.model.UnidadOrganica" table="UnidadOrganica"> 
