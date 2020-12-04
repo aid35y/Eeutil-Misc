@@ -1,4 +1,4 @@
-# Eeutil-Vis-Docexp
+# Eeutil-Misc
 
 Instalación y evolutivo de la versión distribuible de Eeutil-Vis-Docexp.
 
