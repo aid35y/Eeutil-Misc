@@ -18,7 +18,7 @@
         es.gob.aapp.eeutil
     </groupId>
 	<artifactId>
-        eeutil-misc
+        eeutil-mvn-base
     </artifactId>
 	<version>
         4.1
@@ -26,6 +26,19 @@
 	<packaging>
         pom
     </packaging>
+    
+    <parent>
+    	<groupId>
+        es.gob.aapp.eeutil
+    </groupId>
+	<artifactId>
+        eeutil-misc
+    </artifactId>
+	<version>
+        0.0.1-CARM-SNAPSHOT
+    </version>
+    </parent>
+    
 	<description>
         Librerias del proyecto Eeutil
     </description>
@@ -126,13 +139,6 @@
 	</repositories>
 	<dependencyManagement>
 		<dependencies>
-
-			<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
-			<dependency>
-				<groupId>org.aspectj</groupId>
-				<artifactId>aspectjrt</artifactId>
-				<version>1.9.6</version>
-			</dependency>
 
 			<!-- SPRING -->
 			<dependency>
@@ -790,9 +796,12 @@
 		<module>
             ../eeutil-misc
         </module>
-		<!-- <module>../eeutil-csvbroker-stub</module> <module>../eeutil-csvstoragews-stub</module> 
-			<module>../eeutil-firma</module> <module>../eeutil-oper-firma</module> <module>../eeutil-util-firma</module> 
-			<module>../eeutil-vis-docexp</module> -->
+		<!-- <module>../eeutil-csvbroker-stub</module> 
+		<module>../eeutil-csvstoragews-stub</module>  -->
+		<!-- <module>../eeutil-firma</module> 
+		<module>../eeutil-oper-firma</module> 
+		<module>../eeutil-util-firma</module> 
+		<module>../eeutil-vis-docexp</module>  -->
 	</modules>
 	<build>
 		<!-- Filtrado de recursos para permitir cambios en variables de configuración 
