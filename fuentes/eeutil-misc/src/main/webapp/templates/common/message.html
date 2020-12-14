@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+	<div id="userBoxes" th:fragment="message">
+		<div th:if="${mensajeUsuario == null}">
+			<input type="hidden" name="tipoMensaje" id="tipoMensaje" /> 
+			<input type="hidden" name="valorMensaje" id="valorMensaje" />
+		</div>
+		<div th:if="${mensajeUsuario != null}">
+			<input type="hidden" name="tipoMensaje" id="tipoMensaje" th:value="${mensajeUsuario.level}" />
+			<input type="hidden" name="valorMensaje" id="valorMensaje" th:value="${mensajeUsuario.message}" />
+		</div>
+		<div class="is-hidable dsp_n" role="alert" id="divMessage">
+			<p id="mensajeMostrar"></p>
+			<button th:title="#{message.ocultar}" class="simbutton" href="#!"
+				onclick="ocultarMensaje()">
+				<span class="mf-icon mf-icon-cancel2"></span>
+			</button>
+		</div>
+	</div>
+
+	<div th:fragment="js">
+		<script th:src="|${#httpServletRequest.getContextPath()}/js/libs/messages.js|"></script>
+	</div>
+
+</body>
+</html>

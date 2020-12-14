@@ -1,0 +1,2 @@
+mvn install:install-file -Dfile=Commons-1.4.3-custom.jar -DgroupId=es.clave -DartifactId=Commons -Dversion=1.4.3-custom -Dpackaging=jar
+mvn install:install-file -Dfile=SamlEngine-1.1.3-custom.jar -DgroupId=es.clave -DartifactId=SamlEngine -Dversion=1.1.3-custom -Dpackaging=jar

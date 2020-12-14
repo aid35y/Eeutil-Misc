@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 7 ]> <html class="ie ie7 no-js" lang="en" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie ie8 no-js" lang="en" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html class="no-js" lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+
+<head>
+	<div th:replace="common/layout :: head"></div>
+</head>
+
+<body>
+	<!-- CONTAINER -->
+	<div id="container" class="mf-container">
+
+		<!-- BROWSERS / JS -->
+		<div th:replace="common/header :: nocompl"></div>
+
+		<!-- HEADER -->
+		<div th:replace="common/header :: header"></div>
+
+		<!-- WRAPPER -->
+		<div id="wrap" class="mf-wrapper">
+		
+			<!-- CAJAS DE ADVERTENCIA-->
+			<div th:replace="common/message :: message"></div>
+			<div th:include="common/message :: js"></div>
+			
+			<div th:if="${param.error}" th:remove="tag">    
+                   <script>
+                   $("#tipoMensaje").val(4);
+                   $("#valorMensaje").val("Acceso no permitido");
+                   </script>
+            </div>
+
+			<!-- AQUI EL CONTENIDO-->
+			<div id="login" class="mf-login">
+				<div class="mf-login--content">
+
+					<div class="mf-login--column">
+
+						<h3 class="mf-login--title"
+							th:text="#{login.certificate.access.label}"></h3>
+						<form id="loginFormClave" th:action="@{/loginRedirectClave}" method="post" class="mf-form__stack" >							
+							<input class="primary" id="clave_submit" type="submit" th:value="#{login.certificate.access.button}"/>								
+						</form>	
+					</div>
+					
+					<div class="mf-login--column">
+						<h3 class="mf-login--title" th:text="#{login.tittle}"></h3>
+						<p th:utext="#{login.tittle.p1}"></p>
+						
+						<p th:text="#{login.tittle.p3}"></p>
+						<p th:utext="#{login.requisitos.problemas}"></p>
+
+						<p class="mf-login--title" th:utext="#{login.requisitos.label}"></p>
+						<ul>
+							<li th:text="#{login.requisitos.conexion}"></li>
+							<li th:text="#{login.requisitos.certificado}"></li>
+							<li th:text="#{login.requisitos.java}"></li>
+							<li th:text="#{login.requisitos.navegador}"></li>
+						</ul>
+						
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div th:replace="common/footer :: footer"></div>
+	<div th:replace="common/footer :: js"></div>
+</body>
+
+</html>

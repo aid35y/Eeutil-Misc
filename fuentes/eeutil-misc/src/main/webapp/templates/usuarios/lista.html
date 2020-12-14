@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="common/layout">
+
+<head>
+	<script th:src="|${#httpServletRequest.getContextPath()}/js/usuarios/lista.js|"></script>
+	
+<style>
+div.modal {
+    width: 320px;
+    padding: 10px;
+    border: 5px solid gray;
+    margin: 0;
+}
+</style>
+</head>
+
+<body>
+    <div layout:fragment="content">
+    
+    	<div class="mf-window-header">
+            <div class="mf-window-header--hgroup">
+                <h3 class="mf-window-header--title" th:text="*{titulo}"></h3>
+            </div>
+             <ul class="mf-window-toolbar" th:fragment="actionButtons" id="actionButtons">
+                <li class="mf-window-toolbar--tool">
+                    <a onclick="showDialogAlta()">
+                        <span class="mf-icon mf-icon-doc-new"></span>
+                        <span th:text="#{listaUsuarios.nuevo}"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div id="contentData">
+        	<div  class="js-timer-veil mf-veil hidden"/>
+        	<form id="borrarUsuarioForm" th:action="@{/borrarUsuario}" method="post">
+	                <input type="hidden" name="identificador" id="identificador"/>
+	                <input type="hidden" name="app" id="app" th:value="*{app}"/>
+	        </form>
+	        
+	        <form id="altaUsuarioForm" th:action="@{/altaUsuario}" method="post">
+	                <input type="hidden" name="identificador" id="identificador"/>
+	                <input type="hidden" name="codigoUnidadOrganica" id="codigoUnidadOrganica"/>
+	                <input type="hidden" name="numeroProcedimiento" id="numeroProcedimiento"/>
+	                <input type="hidden" name="app" id="app" th:value="*{app}"/>
+	                 <input type="hidden" name="altaUsuarioRole" id="altaUsuarioRole"/>
+	        </form>
+	        
+	         <form id="modificacionActivoForm" th:action="@{/modificacionActivo}" method="post">
+	                <input type="hidden" name="identificador" id="identificador"/>
+	                <input type="hidden" name="codigoUnidadOrganica" id="codigoUnidadOrganica"/>
+	                <input type="hidden" name="numeroProcedimiento" id="numeroProcedimiento"/>
+	                <input type="hidden" name="activo" id="activo" />
+	                <input type="hidden" name="app" id="app" th:value="*{app}"/>
+	        </form>
+	        
+	        <form id="borrarUnidadForm" th:action="@{/borrarUnidadUsuario}" method="post">
+	                <input type="hidden" name="identificador" id="identificador"/>
+	                <input type="hidden" name="codigoUnidadOrganica" id="codigoUnidadOrganica"/>
+	                <input type="hidden" name="numeroProcedimiento" id="numeroProcedimiento"/>	                
+	                <input type="hidden" name="app" id="app" th:value="*{app}"/>
+	        </form>
+        
+            <table id="userList" class="mf-table-data mf-table-data__sortable mf-table-data__zebra fld">
+            	<thead>
+                    <tr>
+                        <th class="mf-sort-ln" href="·" th:title="#{listaUsuarios.tablaIdentificador.title}" th:text="#{listaUsuarios.tablaIdentificador.title}"></th>
+                        <th class="mf-sort-ln" href="·" th:title="#{listaUsuarios.tablaActivo.dir3}" th:text="#{listaUsuarios.tablaActivo.dir3}"></th>
+                        <th class="mf-sort-ln" href="·" th:title="#{listaUsuarios.tablaActivo.dir3Descripcion}" th:text="#{listaUsuarios.tablaActivo.dir3Descripcion}"></th>
+                        <th class="mf-sort-ln" href="·" th:title="#{listaUsuarios.tablaIdentificador.procedimiento}" th:text="#{listaUsuarios.tablaIdentificador.procedimiento}"></th>
+                        <th class="mf-sort-ln" href="·" th:title="#{listaUsuarios.tablaActivo.title}" th:text="#{listaUsuarios.tablaActivo.title}"></th>
+                        <th class="mf-sort-ln" href="·" th:title="#{listaUsuarios.tablaAcciones.title}" th:text="#{listaUsuarios.tablaAcciones.title}"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+            
+            <div  id="init-modal-borrar-usuario" 
+		            data-title="Borrar usuario" 
+		            data-modal="1" 
+		            data-draggable="0"
+		            data-clazz="tr-dialog tr-help-dialog mf-document-dialog js-dialog-documento" 
+		            data-position_h="center"
+		            data-position_v="center" 
+		            class="buttonbar--btn simbutton hidden">
+		        <div>
+	                <p class="fld">
+	                   <label id="labelBorrar" class="mf-field-doc" th:text="#{listaUsuarios.eliminar.mensaje}"></label>  
+	                </p>                                        
+	            </div>                                      
+		        <div class="js-timer-veil mf-veil hidden">
+		        </div>
+		    </div>
+		    
+		    <div  id="init-modal-alta-usuario" 
+		            data-title="Alta usuario" 
+		            data-modal="1" 
+		            data-draggable="0"
+		            data-clazz="tr-dialog tr-help-dialog mf-document-dialog js-dialog-documento" 
+		            data-position_h="center"
+		            data-position_v="center" 
+		            class="buttonbar--btn simbutton hidden">
+		        <div>
+	                <p class="fld">
+	                   <label id="labelNif" class="mf-field-doc" th:text="#{listaUsuarios.alta.identificador}"></label>  
+	                   <input type="text" name="nif" />
+	                </p>          
+	                
+	                <p class="fld">
+	                   <label id="labelDir3" class="mf-field-doc" th:text="#{listaUsuarios.alta.dir3}"></label>  
+	                   <input type="text" name="codigoUnidadOrganica" />
+	                </p>   
+					<p class="fld">
+	                   <label id="labelNumeroProcedimiento" class="mf-field-doc" th:text="#{listaUsuarios.alta.numeroProcedimiento}"></label>  
+	                   <input type="text" name="numeroProcedimiento" />
+	                </p>   
+	                
+					<p class="fld">
+	                   <label id="labelAltaUsuarioRole" class="mf-field-doc" th:text="#{listaUsuarios.alta.altausuariorole}"></label>  
+	                   <input id="altaUsuarioRole" type="checkbox" name="altaUsuarioRole" checked="checked" />
+	                </p>   
+	                	                       
+	            </div>                                      
+		        <div class="js-timer-veil mf-veil hidden">
+		        </div>
+		    </div>
+		    
+		    <div  id="init-modal-modificar-usuario" 
+		            data-title="Modificar Usuario" 
+		            data-modal="1" 
+		            data-draggable="0"
+		            data-clazz="tr-dialog tr-help-dialog mf-document-dialog js-dialog-documento" 
+		            data-position_h="center"
+		            data-position_v="center" 
+		            class="buttonbar--btn simbutton hidden">
+		        <div>
+				<div class="modal">
+					<p class="fld">
+	                   <label id="labelNif" class="mf-field-doc" th:text="#{listaUsuarios.alta.identificador}"></label>  
+	                   <input type="text" name="nifedit" id="nifedit"/>
+	                </p> 
+	                	               
+	                 <table id="dir3List" class="mf-table-data mf-table-data__sortable mf-table-data__zebra fld">
+		            	<thead>
+		                    <tr>		                        
+		                        <th class="mf-sort-ln" href="·" th:title="#{listaUsuariosEdit.tablaModal.dir3}" th:text="#{listaUsuariosEdit.tablaModal.dir3}"></th>
+		                        <th class="mf-sort-ln" href="·" th:title="#{listaUsuariosEdit.tablaModal.procedimiento}" th:text="#{listaUsuariosEdit.tablaModal.procedimiento}"></th>                        
+		                        <th class="mf-sort-ln" href="·" th:title="#{listaUsuariosEdit.tablaModal.activo}" th:text="#{listaUsuariosEdit.tablaModal.activo}"></th>		                        
+		                    </tr>
+		                </thead>
+		                <tbody>
+
+		                </tbody>
+            		</table>
+            		
+            		<p class="fld">
+	                  <input id="asignar_activo" type="button" th:value="#{listaUsuariosEdit.tablaModal.asignar}" onclick="AsociarDir3Usuario();"/>
+	                  <input id="borrar_unidad" type="button" th:value="#{listaUsuariosEdit.tablaModal.borrarunidad}" onclick="borrarUnidad();"/>
+	                </p> 	           
+	               </div>
+	               <div class="modal">
+	                 <div class="fld">
+	                                <label for="organos" class="required"  th:text="#{listaUsuariosEdit.tablaModal.organo}"></label> 
+	                                <div class="input-auxbtn">
+	                                    <div>
+	                                        <input type="text" class="sticked-input-right medium ui-autocomplete-input" id="organos" name="organos" maxlength="50" />
+	                                        
+	                                    </div>                                
+	                                </div>
+	                 </div>
+	                 	                            
+	                 <div class="fld">
+	                                <label for="procedimientos"  th:text="#{listaUsuariosEdit.tablaModal.anadirprocedimiento}"></label> 
+	                                <div class="input-auxbtn">
+	                                    <div>
+	                                        <input type="text" class="sticked-input-right medium ui-autocomplete-input" id="procedimientos" name="procedimientos" maxlength="50" />
+<!-- 	                                        <button type="button" name="button" th:value="#{button.anadir}" th:text="#{listaUsuariosEdit.tablaModal.anadirorgano}" onclick="addProcedimiento()"></button> -->
+	                                    </div>                                
+	                                </div>
+	                 </div>
+	                 
+	                 <p class="fld">
+	                 	<button type="button" name="button" th:value="#{button.anadir}" th:text="#{listaUsuariosEdit.tablaModal.anadirorgano}" onclick="addOrgano()"></button>
+	                 </p>
+	                </div>                             
+	            </div>                                      
+		        <div class="js-timer-veil mf-veil hidden">
+		        </div>
+		    </div>
+        </div>
+
+    </div>
+</body>
+</html>

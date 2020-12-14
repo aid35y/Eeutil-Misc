@@ -1,0 +1,1940 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/WebService" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/WebService/types/error" name="AdminWS" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/WebService">
+  <wsdl:types>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:insidewscred="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/WebService/types/credential" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/WebService/types/credential">
+	
+  <xsd:complexType name="WSCredentialInside">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="idaplicacion" type="xsd:string"/>
+			
+      <xsd:element name="password" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	
+  <xsd:element name="credential" type="insidewscred:WSCredentialInside"/>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:insidewserror="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/WebService/types/error" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/WebService/types/error">
+	
+  <xsd:complexType name="WSErrorInside">
+		
+    <xsd:annotation>
+			
+      <xsd:documentation xml:lang="es">Error al realizar una operación en Inside (v1.0)</xsd:documentation>
+		
+    </xsd:annotation>
+		
+    <xsd:sequence>
+			
+      <xsd:element name="codigo" type="xsd:int"/>
+			
+      <xsd:element name="descripcion" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	
+  <xsd:element name="errorInside" nillable="true" type="insidewserror:WSErrorInside"/>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:usuario="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/usuario" xmlns:filter="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/filter" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/usuario">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xmlns:xml="http://www.w3.org/XML/1998/namespace" xml:lang="es">XSD Usuarios Inside</xsd:documentation>
+	
+  </xsd:annotation>
+	
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/filter"/>
+	
+	
+  <xsd:complexType name="Usuario">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="nif" type="xsd:string"/>
+			
+      <xsd:element name="codigoUnidadOrganica" type="xsd:string"/>
+			
+      <xsd:element name="nombreUnidadOrganica" type="xsd:string"/>
+			
+      <xsd:element name="numeroProcedimiento" type="xsd:string"/>
+			
+      <xsd:element name="activo" type="xsd:boolean"/>
+			
+      <xsd:element name="idRol" type="xsd:string"/>
+			
+      <xsd:element name="nombre" type="xsd:string"/>
+			
+      <xsd:element name="apellido1" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	
+	
+  <xsd:complexType name="UsuarioResultadoBusqueda">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="paginador" type="filter:FilterPageRequestResponse"/>
+			
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="resultados" type="usuario:Usuario"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	
+	
+  <xsd:complexType name="UsuarioAdminMensajes">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="nif" type="xsd:string"/>
+			
+      <xsd:element name="adminMensajes" type="xsd:boolean"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+		
+	
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:app="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/aplicacion" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/aplicacion">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xml:lang="es">XSD Aplicacion Inside</xsd:documentation>
+	
+  </xsd:annotation>
+	
+  <xsd:complexType name="Aplicacion">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="nombre" type="xsd:string"/>
+			
+      <xsd:element name="password" type="xsd:string"/>
+			
+      <xsd:element name="activo" type="xsd:boolean"/>
+			
+      <xsd:element name="roles" type="app:Roles"/>
+			
+      <xsd:element name="email" type="xsd:string"/>
+			
+      <xsd:element name="telefono" type="xsd:string"/>
+			
+      <xsd:element name="responsable" type="xsd:string"/>
+			
+      <xsd:element name="codigoUnidadOrganica" type="xsd:string"/>
+			
+      <xsd:element name="numeroProcedimiento" type="xsd:string"/>
+			
+      <xsd:element name="credencialEeutil" type="app:CredencialEeutil"/>
+			
+      <xsd:element name="serialNumberCertificado" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	
+  <xsd:complexType name="Roles">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="altaExpediente" type="xsd:boolean"/>
+			
+      <xsd:element name="modificarExpediente" type="xsd:boolean"/>
+			
+      <xsd:element name="leerExpediente" type="xsd:boolean"/>
+			
+      <xsd:element name="altaDocumento" type="xsd:boolean"/>
+			
+      <xsd:element name="modificarDocumento" type="xsd:boolean"/>
+			
+      <xsd:element name="leerDocumento" type="xsd:boolean"/>
+			
+      <xsd:element name="administrarPermisos" type="xsd:boolean"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	
+	
+  <xsd:complexType name="InfAdicional"> 
+		
+    <xsd:sequence>
+			
+      <xsd:element name="key" type="xsd:string"/>
+			
+      <xsd:element name="value" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	
+	
+  <xsd:complexType name="CredencialEeutil"> 
+		
+    <xsd:sequence>
+			
+      <xsd:element name="aplicacion" type="xsd:string"/>
+			
+      <xsd:element name="password" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/unidad">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xml:lang="es">XSD Unidad Órganica Inside</xsd:documentation>
+	
+  </xsd:annotation>
+	
+  <xsd:complexType name="Unidad">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="codigo" type="xsd:string"/>
+			
+      <xsd:element name="nombre" type="xsd:string"/>
+			
+      <xsd:element name="numeroProcedimiento" type="xsd:string"/>
+			
+      <xsd:element name="activo" type="xsd:boolean"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:app="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/unidadAplicacionEeutil" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/unidadAplicacionEeutil">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xml:lang="es">XSD Unidad Aplicacion Eeutil Inside</xsd:documentation>
+	
+  </xsd:annotation>
+	
+  <xsd:complexType name="UnidadAplicacionEeutil">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="codigoUnidad" type="xsd:string"/>
+			
+      <xsd:element name="aplicacion" type="xsd:string"/>
+			
+      <xsd:element name="password" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/numeroProcedimiento">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xml:lang="es">XSD Número Procedimiento Inside</xsd:documentation>
+	
+  </xsd:annotation>
+	
+  <xsd:complexType name="NumeroProcedimiento">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="numeroProcedimiento" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:estcarpt="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/estructuraCarpeta" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/estructuraCarpeta">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xml:lang="es">XSD CONTENIDO INDICE EXPEDIENTE ELECTRONICO ENI (v1.0)</xsd:documentation>
+	
+  </xsd:annotation>
+	
+  <xsd:complexType name="EstructuraCarpeta">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="identificadorEstructura" type="xsd:string"/>
+			
+      <xsd:element name="codigoUnidadOrganica" type="xsd:string"/>
+			
+      <xsd:element name="numeroProcedimiento" type="xsd:string"/>
+			
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="carpetaIndizada" type="estcarpt:TipoCarpetaIndizada"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	
+  <xsd:complexType name="TipoCarpetaIndizada">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="IdentificadorCarpeta" type="xsd:string"/>
+			
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="carpetaIndizada" type="estcarpt:TipoCarpetaIndizada"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:app="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/remisionNubeMapeosDir3" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/remisionNubeMapeosDir3">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xml:lang="es">XSD RemisionNubeMapeosDir3</xsd:documentation>
+	
+  </xsd:annotation>
+	
+  <xsd:complexType name="RemisionNubeMapeosDir3">
+		
+    <xsd:annotation>
+			
+      <xsd:documentation>mapeos de diferentes urls y email para un dir3</xsd:documentation>
+		
+    </xsd:annotation>
+		
+    <xsd:sequence>
+			
+      <xsd:element minOccurs="1" name="dir3" type="xsd:string"/>
+			
+      <xsd:element minOccurs="0" name="dir3Nombre" type="xsd:string"/>
+			
+      <xsd:element minOccurs="0" name="urlComunicacion" type="xsd:string"/>
+			
+      <xsd:element minOccurs="0" name="urlSolicitudAcceso" type="xsd:string"/>
+			
+      <xsd:element minOccurs="0" name="email" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:app="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/remisionNubeMapeosDir3Certificado" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/remisionNubeMapeosDir3Certificado">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xml:lang="es">XSD RemisionNubeMapeosDir3Certificado</xsd:documentation>
+	
+  </xsd:annotation>
+	
+  <xsd:complexType name="RemisionNubeMapeosDir3Certificado">
+		
+    <xsd:annotation>
+			
+      <xsd:documentation>mapeos de dir3 padre con certificado por serial number</xsd:documentation>
+		
+    </xsd:annotation>
+		
+    <xsd:sequence>
+			
+      <xsd:element minOccurs="1" name="dir3Padre" type="xsd:string"/>
+			
+      <xsd:element minOccurs="1" name="serialNumber" type="xsd:string"/>
+			
+      <xsd:element minOccurs="0" name="nombre" type="xsd:string"/>
+			
+      <xsd:element minOccurs="0" name="apellidos" type="xsd:string"/>
+			
+      <xsd:element minOccurs="0" name="email" type="xsd:string"/>
+			
+      <xsd:element minOccurs="0" name="telefono" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/respuestaEnvioJusticia">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xml:lang="es">XSD RespuestaEnvioJusticia Inside</xsd:documentation>
+	
+  </xsd:annotation>
+	
+  <xsd:complexType name="RespuestaEnvioJusticia">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="AuditoriaEsbAplicacion" type="xsd:string"/>
+			
+      <xsd:element name="AuditoriaEsbModulo" type="xsd:string"/>
+			
+      <xsd:element name="AuditoriaEsbServicio" type="xsd:string"/>
+			
+      <xsd:element name="AuditoriaEsbMarcaTiempo" type="xsd:string"/>
+			
+      <xsd:element name="ack" type="xsd:string"/>
+			
+      <xsd:element name="codigoEnvio" type="xsd:string"/>
+			
+      <xsd:element name="codigoUnidadOrganoRemitente" type="xsd:string"/>
+			
+      <xsd:element name="mensaje" type="xsd:string"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:filter="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/filter" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/filter">
+	
+  <xsd:annotation>
+		
+    <xsd:documentation xml:lang="es">XSD FilterPageRequest</xsd:documentation>
+	
+  </xsd:annotation>
+
+	
+  <xsd:complexType name="FilterPageRequest">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="filtro" type="xsd:string"/>
+			
+      <xsd:element name="pagina" type="xsd:int"/>
+			
+      <xsd:element name="limite" type="xsd:int"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	
+	
+  <xsd:complexType name="FilterPageRequestResponse">
+		
+    <xsd:sequence>
+			
+      <xsd:element name="totales" type="xsd:int"/>
+			
+      <xsd:element name="devueltos" type="xsd:int"/>
+			
+      <xsd:element name="pagina" type="xsd:int"/>
+			
+      <xsd:element name="paginas" type="xsd:int"/>
+		
+    </xsd:sequence>
+	
+  </xsd:complexType>
+	    
+
+</xsd:schema>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/WebService" xmlns:ns9="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/filter" xmlns:ns8="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/usuario" xmlns:ns7="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/unidadAplicacionEeutil" xmlns:ns6="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/remisionNubeMapeosDir3" xmlns:ns5="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/respuestaEnvioJusticia" xmlns:ns4="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/aplicacion" xmlns:ns3="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/unidad" xmlns:ns2="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/estructuraCarpeta" xmlns:ns1="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/remisionNubeMapeosDir3Certificado" xmlns:ns0="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/numeroProcedimiento" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/WebService">
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/numeroProcedimiento"/>
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/remisionNubeMapeosDir3Certificado"/>
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/estructuraCarpeta"/>
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/unidad"/>
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/aplicacion"/>
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/respuestaEnvioJusticia"/>
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/remisionNubeMapeosDir3"/>
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/unidadAplicacionEeutil"/>
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/usuario"/>
+  <xsd:import namespace="https://ssweb.seap.minhap.es/Inside/XSD/v1.0/filter"/>
+  <xsd:element name="InSideServiceException" type="tns:InSideServiceException"/>
+  <xsd:complexType name="InSideServiceException">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="reportable" type="xsd:boolean"/>
+      <xsd:element minOccurs="0" name="message" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="listaNumeroProcedimiento" type="tns:listaNumeroProcedimiento"/>
+  <xsd:complexType name="listaNumeroProcedimiento">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="listaNumeroProcedimientoResponse" type="tns:listaNumeroProcedimientoResponse"/>
+  <xsd:complexType name="listaNumeroProcedimientoResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="numeroProcedimiento" type="ns0:NumeroProcedimiento"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarCertificadoRemisionNubeMapeosDir3Certificado" type="tns:actualizarCertificadoRemisionNubeMapeosDir3Certificado"/>
+  <xsd:complexType name="actualizarCertificadoRemisionNubeMapeosDir3Certificado">
+    <xsd:sequence>
+      <xsd:element form="qualified" name="remisionNubeMapeosDir3Certificado" type="ns1:RemisionNubeMapeosDir3Certificado"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarCertificadoRemisionNubeMapeosDir3CertificadoResponse" type="tns:actualizarCertificadoRemisionNubeMapeosDir3CertificadoResponse"/>
+  <xsd:complexType name="actualizarCertificadoRemisionNubeMapeosDir3CertificadoResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="RemisionNubeMapeosDir3Certificado" type="ns1:RemisionNubeMapeosDir3Certificado"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaRemisionNubeMapeosDir3Certificado" type="tns:altaRemisionNubeMapeosDir3Certificado"/>
+  <xsd:complexType name="altaRemisionNubeMapeosDir3Certificado">
+    <xsd:sequence>
+      <xsd:element form="qualified" name="remisionNubeMapeosDir3Certificado" type="ns1:RemisionNubeMapeosDir3Certificado"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaRemisionNubeMapeosDir3CertificadoResponse" type="tns:altaRemisionNubeMapeosDir3CertificadoResponse"/>
+  <xsd:complexType name="altaRemisionNubeMapeosDir3CertificadoResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="RemisionNubeMapeosDir3Certificado" type="ns1:RemisionNubeMapeosDir3Certificado"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="listaEstructuraCarpeta" type="tns:listaEstructuraCarpeta"/>
+  <xsd:complexType name="listaEstructuraCarpeta">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="identificadorEstructura" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="listaEstructuraCarpetaResponse" type="tns:listaEstructuraCarpetaResponse"/>
+  <xsd:complexType name="listaEstructuraCarpetaResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="estructuraCarpeta" type="ns2:EstructuraCarpeta"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="lanzaJobNotificacionesRemisionCallback" type="tns:lanzaJobNotificacionesRemisionCallback"/>
+  <xsd:complexType name="lanzaJobNotificacionesRemisionCallback">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="lanzaJobNotificacionesRemisionCallbackResponse" type="tns:lanzaJobNotificacionesRemisionCallbackResponse"/>
+  <xsd:complexType name="lanzaJobNotificacionesRemisionCallbackResponse">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="altaUnidadUsuario" type="tns:altaUnidadUsuario"/>
+  <xsd:complexType name="altaUnidadUsuario">
+    <xsd:sequence>
+      <xsd:element name="nifUsuario" type="xsd:string"/>
+      <xsd:element name="codigoUnidadOrganica" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="numeroProcedimiento" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaUnidadUsuarioResponse" type="tns:altaUnidadUsuarioResponse"/>
+  <xsd:complexType name="altaUnidadUsuarioResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="Unidad" type="ns3:Unidad"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaEstructuraCarpeta" type="tns:altaEstructuraCarpeta"/>
+  <xsd:complexType name="altaEstructuraCarpeta">
+    <xsd:sequence>
+      <xsd:element name="estructuraCarpeta" type="ns2:EstructuraCarpeta"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaEstructuraCarpetaResponse" type="tns:altaEstructuraCarpetaResponse"/>
+  <xsd:complexType name="altaEstructuraCarpetaResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="estructuraCarpeta" type="ns2:EstructuraCarpeta"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="bajaAplicacion" type="tns:bajaAplicacion"/>
+  <xsd:complexType name="bajaAplicacion">
+    <xsd:sequence>
+      <xsd:element name="nombreAplicacion" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="bajaAplicacionResponse" type="tns:bajaAplicacionResponse"/>
+  <xsd:complexType name="bajaAplicacionResponse">
+    <xsd:sequence>
+      <xsd:element maxOccurs="unbounded" minOccurs="0" name="return" type="ns4:InfAdicional"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="respuestaEnvioJusticia" type="tns:respuestaEnvioJusticia"/>
+  <xsd:complexType name="respuestaEnvioJusticia">
+    <xsd:sequence>
+      <xsd:element name="codigoEnvio" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="respuestaEnvioJusticiaResponse" type="tns:respuestaEnvioJusticiaResponse"/>
+  <xsd:complexType name="respuestaEnvioJusticiaResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="RespuestaEnvioJusticia" type="ns5:RespuestaEnvioJusticia"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getUnidadesUsuario" type="tns:getUnidadesUsuario"/>
+  <xsd:complexType name="getUnidadesUsuario">
+    <xsd:sequence>
+      <xsd:element name="nifUsuario" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getUnidadesUsuarioResponse" type="tns:getUnidadesUsuarioResponse"/>
+  <xsd:complexType name="getUnidadesUsuarioResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="Unidad" type="ns3:Unidad"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="limpiarDirectorioTemporal" type="tns:limpiarDirectorioTemporal"/>
+  <xsd:complexType name="limpiarDirectorioTemporal">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="limpiarDirectorioTemporalResponse" type="tns:limpiarDirectorioTemporalResponse"/>
+  <xsd:complexType name="limpiarDirectorioTemporalResponse">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="getAllCertificadoRemisionNubeMapeosDir3" type="tns:getAllCertificadoRemisionNubeMapeosDir3"/>
+  <xsd:complexType name="getAllCertificadoRemisionNubeMapeosDir3">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="getAllCertificadoRemisionNubeMapeosDir3Response" type="tns:getAllCertificadoRemisionNubeMapeosDir3Response"/>
+  <xsd:complexType name="getAllCertificadoRemisionNubeMapeosDir3Response">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="RemisionNubeMapeosDir3" type="ns6:RemisionNubeMapeosDir3"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarUnidadesDir3NovedadesDesdeFecha" type="tns:actualizarUnidadesDir3NovedadesDesdeFecha"/>
+  <xsd:complexType name="actualizarUnidadesDir3NovedadesDesdeFecha">
+    <xsd:sequence>
+      <xsd:element name="fechaInicio" type="xsd:dateTime"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarUnidadesDir3NovedadesDesdeFechaResponse" type="tns:actualizarUnidadesDir3NovedadesDesdeFechaResponse"/>
+  <xsd:complexType name="actualizarUnidadesDir3NovedadesDesdeFechaResponse">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="altaAplicacion" type="tns:altaAplicacion"/>
+  <xsd:complexType name="altaAplicacion">
+    <xsd:sequence>
+      <xsd:element form="qualified" name="aplicacion" type="ns4:Aplicacion"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaAplicacionResponse" type="tns:altaAplicacionResponse"/>
+  <xsd:complexType name="altaAplicacionResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="Aplicacion" type="ns4:Aplicacion"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getUnidadAplicacionEeutil" type="tns:getUnidadAplicacionEeutil"/>
+  <xsd:complexType name="getUnidadAplicacionEeutil">
+    <xsd:sequence>
+      <xsd:element name="codigoUnidadOrganica" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getUnidadAplicacionEeutilResponse" type="tns:getUnidadAplicacionEeutilResponse"/>
+  <xsd:complexType name="getUnidadAplicacionEeutilResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="UnidadAplicacionEeutil" type="ns7:UnidadAplicacionEeutil"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="lanzaJobComunicacionTokenExpediente" type="tns:lanzaJobComunicacionTokenExpediente"/>
+  <xsd:complexType name="lanzaJobComunicacionTokenExpediente">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="lanzaJobComunicacionTokenExpedienteResponse" type="tns:lanzaJobComunicacionTokenExpedienteResponse"/>
+  <xsd:complexType name="lanzaJobComunicacionTokenExpedienteResponse">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="crearActualizarSerialNumberCertificado" type="tns:crearActualizarSerialNumberCertificado"/>
+  <xsd:complexType name="crearActualizarSerialNumberCertificado">
+    <xsd:sequence>
+      <xsd:element name="idAplicacion" type="xsd:string"/>
+      <xsd:element name="serialNumberCertificado" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="crearActualizarSerialNumberCertificadoResponse" type="tns:crearActualizarSerialNumberCertificadoResponse"/>
+  <xsd:complexType name="crearActualizarSerialNumberCertificadoResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="Aplicacion" type="ns4:Aplicacion"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaRemisionNubeMapeosDir3" type="tns:altaRemisionNubeMapeosDir3"/>
+  <xsd:complexType name="altaRemisionNubeMapeosDir3">
+    <xsd:sequence>
+      <xsd:element form="qualified" name="remisionNubeMapeosDir3" type="ns6:RemisionNubeMapeosDir3"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaRemisionNubeMapeosDir3Response" type="tns:altaRemisionNubeMapeosDir3Response"/>
+  <xsd:complexType name="altaRemisionNubeMapeosDir3Response">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="RemisionNubeMapeosDir3" type="ns6:RemisionNubeMapeosDir3"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaNumeroProcedimiento" type="tns:altaNumeroProcedimiento"/>
+  <xsd:complexType name="altaNumeroProcedimiento">
+    <xsd:sequence>
+      <xsd:element name="numeroProcedimiento" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaNumeroProcedimientoResponse" type="tns:altaNumeroProcedimientoResponse"/>
+  <xsd:complexType name="altaNumeroProcedimientoResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="numeroProcedimiento" type="ns0:NumeroProcedimiento"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaUsuario" type="tns:altaUsuario"/>
+  <xsd:complexType name="altaUsuario">
+    <xsd:sequence>
+      <xsd:element form="qualified" name="usuario" type="ns8:Usuario"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaUsuarioResponse" type="tns:altaUsuarioResponse"/>
+  <xsd:complexType name="altaUsuarioResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="Usuario" type="ns8:Usuario"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getAllCertificadoRemisionNubeMapeosDir3Certificado" type="tns:getAllCertificadoRemisionNubeMapeosDir3Certificado"/>
+  <xsd:complexType name="getAllCertificadoRemisionNubeMapeosDir3Certificado">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="getAllCertificadoRemisionNubeMapeosDir3CertificadoResponse" type="tns:getAllCertificadoRemisionNubeMapeosDir3CertificadoResponse"/>
+  <xsd:complexType name="getAllCertificadoRemisionNubeMapeosDir3CertificadoResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="RemisionNubeMapeosDir3Certificado" type="ns1:RemisionNubeMapeosDir3Certificado"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarRemisionNubeMapeosDir3" type="tns:actualizarRemisionNubeMapeosDir3"/>
+  <xsd:complexType name="actualizarRemisionNubeMapeosDir3">
+    <xsd:sequence>
+      <xsd:element form="qualified" name="remisionNubeMapeosDir3" type="ns6:RemisionNubeMapeosDir3"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarRemisionNubeMapeosDir3Response" type="tns:actualizarRemisionNubeMapeosDir3Response"/>
+  <xsd:complexType name="actualizarRemisionNubeMapeosDir3Response">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="RemisionNubeMapeosDir3" type="ns6:RemisionNubeMapeosDir3"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="eliminarUnidadAplicacion" type="tns:eliminarUnidadAplicacion"/>
+  <xsd:complexType name="eliminarUnidadAplicacion">
+    <xsd:sequence>
+      <xsd:element name="nombreAplicacion" type="xsd:string"/>
+      <xsd:element name="codigoUnidadOrganica" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="numeroProcedimiento" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="eliminarUnidadAplicacionResponse" type="tns:eliminarUnidadAplicacionResponse"/>
+  <xsd:complexType name="eliminarUnidadAplicacionResponse">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="eliminarUnidadUsuario" type="tns:eliminarUnidadUsuario"/>
+  <xsd:complexType name="eliminarUnidadUsuario">
+    <xsd:sequence>
+      <xsd:element name="nifUsuario" type="xsd:string"/>
+      <xsd:element name="codigoUnidadOrganica" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="numeroProcedimiento" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="eliminarUnidadUsuarioResponse" type="tns:eliminarUnidadUsuarioResponse"/>
+  <xsd:complexType name="eliminarUnidadUsuarioResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="InformacionAdicionalAltaApp" type="ns4:InfAdicional"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaUnidadAplicacion" type="tns:altaUnidadAplicacion"/>
+  <xsd:complexType name="altaUnidadAplicacion">
+    <xsd:sequence>
+      <xsd:element name="nombreAplicacion" type="xsd:string"/>
+      <xsd:element name="codigoUnidadOrganica" type="xsd:string"/>
+      <xsd:element minOccurs="0" name="numeroProcedimiento" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="altaUnidadAplicacionResponse" type="tns:altaUnidadAplicacionResponse"/>
+  <xsd:complexType name="altaUnidadAplicacionResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="Unidad" type="ns3:Unidad"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarUnidadesDir3" type="tns:actualizarUnidadesDir3"/>
+  <xsd:complexType name="actualizarUnidadesDir3">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="actualizarUnidadesDir3Response" type="tns:actualizarUnidadesDir3Response"/>
+  <xsd:complexType name="actualizarUnidadesDir3Response">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="listaUsuarios" type="tns:listaUsuarios"/>
+  <xsd:complexType name="listaUsuarios">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="listaUsuariosResponse" type="tns:listaUsuariosResponse"/>
+  <xsd:complexType name="listaUsuariosResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="Usuario" type="ns8:Usuario"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="comprobarDirectorioTemporal" type="tns:comprobarDirectorioTemporal"/>
+  <xsd:complexType name="comprobarDirectorioTemporal">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="comprobarDirectorioTemporalResponse" type="tns:comprobarDirectorioTemporalResponse"/>
+  <xsd:complexType name="comprobarDirectorioTemporalResponse">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="listaUsuariosPaginado" type="tns:listaUsuariosPaginado"/>
+  <xsd:complexType name="listaUsuariosPaginado">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="filterPageRequest" type="ns9:FilterPageRequest"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="listaUsuariosPaginadoResponse" type="tns:listaUsuariosPaginadoResponse"/>
+  <xsd:complexType name="listaUsuariosPaginadoResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="UsuarioResultadoBusqueda" type="ns8:UsuarioResultadoBusqueda"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="listaAplicaciones" type="tns:listaAplicaciones"/>
+  <xsd:complexType name="listaAplicaciones">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="listaAplicacionesResponse" type="tns:listaAplicacionesResponse"/>
+  <xsd:complexType name="listaAplicacionesResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="Aplicacion" type="ns4:Aplicacion"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="bajaUsuario" type="tns:bajaUsuario"/>
+  <xsd:complexType name="bajaUsuario">
+    <xsd:sequence>
+      <xsd:element name="nifUsuario" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="bajaUsuarioResponse" type="tns:bajaUsuarioResponse"/>
+  <xsd:complexType name="bajaUsuarioResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="Usuario" type="ns4:InfAdicional"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="crearActualizarUnidadAplicacionEeutil" type="tns:crearActualizarUnidadAplicacionEeutil"/>
+  <xsd:complexType name="crearActualizarUnidadAplicacionEeutil">
+    <xsd:sequence>
+      <xsd:element form="qualified" name="unidadAplicacionEeutil" type="ns7:UnidadAplicacionEeutil"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="crearActualizarUnidadAplicacionEeutilResponse" type="tns:crearActualizarUnidadAplicacionEeutilResponse"/>
+  <xsd:complexType name="crearActualizarUnidadAplicacionEeutilResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="UnidadAplicacionEeutil" type="ns7:UnidadAplicacionEeutil"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarUsuarioAdminMensajes" type="tns:actualizarUsuarioAdminMensajes"/>
+  <xsd:complexType name="actualizarUsuarioAdminMensajes">
+    <xsd:sequence>
+      <xsd:element form="qualified" name="usuarioAdminMensajes" type="ns8:UsuarioAdminMensajes"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarUsuarioAdminMensajesResponse" type="tns:actualizarUsuarioAdminMensajesResponse"/>
+  <xsd:complexType name="actualizarUsuarioAdminMensajesResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="UsuarioAdminMensajes" type="ns8:UsuarioAdminMensajes"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarCredencialesEeetuilApp" type="tns:actualizarCredencialesEeetuilApp"/>
+  <xsd:complexType name="actualizarCredencialesEeetuilApp">
+    <xsd:sequence>
+      <xsd:element form="qualified" name="aplicacion" type="ns4:Aplicacion"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="actualizarCredencialesEeetuilAppResponse" type="tns:actualizarCredencialesEeetuilAppResponse"/>
+  <xsd:complexType name="actualizarCredencialesEeetuilAppResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" minOccurs="0" name="Aplicacion" type="ns4:Aplicacion"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="infAdicionalAltaApp" type="tns:infAdicionalAltaApp"/>
+  <xsd:complexType name="infAdicionalAltaApp">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="infAdicionalAltaAppResponse" type="tns:infAdicionalAltaAppResponse"/>
+  <xsd:complexType name="infAdicionalAltaAppResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="InformacionAdicionalAltaApp" type="ns4:InfAdicional"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getUnidadesAplicacion" type="tns:getUnidadesAplicacion"/>
+  <xsd:complexType name="getUnidadesAplicacion">
+    <xsd:sequence>
+      <xsd:element name="nombreAplicacion" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getUnidadesAplicacionResponse" type="tns:getUnidadesAplicacionResponse"/>
+  <xsd:complexType name="getUnidadesAplicacionResponse">
+    <xsd:sequence>
+      <xsd:element form="qualified" maxOccurs="unbounded" minOccurs="0" name="Unidad" type="ns3:Unidad"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="deleteEstructuraCarpeta" type="tns:deleteEstructuraCarpeta"/>
+  <xsd:complexType name="deleteEstructuraCarpeta">
+    <xsd:sequence>
+      <xsd:element name="identificadorEstructura" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="deleteEstructuraCarpetaResponse" type="tns:deleteEstructuraCarpetaResponse"/>
+  <xsd:complexType name="deleteEstructuraCarpetaResponse">
+    <xsd:sequence/>
+  </xsd:complexType>
+</xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="InsideWSException">
+    <wsdl:part element="ns1:errorInside" name="InsideWSException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="eliminarUnidadUsuarioResponse">
+    <wsdl:part element="tns:eliminarUnidadUsuarioResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarCertificadoRemisionNubeMapeosDir3CertificadoResponse">
+    <wsdl:part element="tns:actualizarCertificadoRemisionNubeMapeosDir3CertificadoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnidadesAplicacionResponse">
+    <wsdl:part element="tns:getUnidadesAplicacionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnidadesUsuario">
+    <wsdl:part element="tns:getUnidadesUsuario" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllCertificadoRemisionNubeMapeosDir3">
+    <wsdl:part element="tns:getAllCertificadoRemisionNubeMapeosDir3" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaUsuarioResponse">
+    <wsdl:part element="tns:altaUsuarioResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaNumeroProcedimiento">
+    <wsdl:part element="tns:listaNumeroProcedimiento" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarCredencialesEeetuilApp">
+    <wsdl:part element="tns:actualizarCredencialesEeetuilApp" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaUsuario">
+    <wsdl:part element="tns:altaUsuario" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaUsuariosPaginadoResponse">
+    <wsdl:part element="tns:listaUsuariosPaginadoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="comprobarDirectorioTemporal">
+    <wsdl:part element="tns:comprobarDirectorioTemporal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllCertificadoRemisionNubeMapeosDir3Certificado">
+    <wsdl:part element="tns:getAllCertificadoRemisionNubeMapeosDir3Certificado" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaEstructuraCarpetaResponse">
+    <wsdl:part element="tns:altaEstructuraCarpetaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaAplicacionResponse">
+    <wsdl:part element="tns:bajaAplicacionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="infAdicionalAltaApp">
+    <wsdl:part element="tns:infAdicionalAltaApp" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarCertificadoRemisionNubeMapeosDir3Certificado">
+    <wsdl:part element="tns:actualizarCertificadoRemisionNubeMapeosDir3Certificado" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaRemisionNubeMapeosDir3CertificadoResponse">
+    <wsdl:part element="tns:altaRemisionNubeMapeosDir3CertificadoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaUnidadUsuario">
+    <wsdl:part element="tns:altaUnidadUsuario" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaRemisionNubeMapeosDir3">
+    <wsdl:part element="tns:altaRemisionNubeMapeosDir3" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaUsuariosResponse">
+    <wsdl:part element="tns:listaUsuariosResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaEstructuraCarpetaResponse">
+    <wsdl:part element="tns:listaEstructuraCarpetaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaAplicacionResponse">
+    <wsdl:part element="tns:altaAplicacionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllCertificadoRemisionNubeMapeosDir3CertificadoResponse">
+    <wsdl:part element="tns:getAllCertificadoRemisionNubeMapeosDir3CertificadoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaRemisionNubeMapeosDir3Response">
+    <wsdl:part element="tns:altaRemisionNubeMapeosDir3Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnidadesAplicacion">
+    <wsdl:part element="tns:getUnidadesAplicacion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="limpiarDirectorioTemporal">
+    <wsdl:part element="tns:limpiarDirectorioTemporal" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarRemisionNubeMapeosDir3">
+    <wsdl:part element="tns:actualizarRemisionNubeMapeosDir3" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaUsuariosPaginado">
+    <wsdl:part element="tns:listaUsuariosPaginado" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaUsuario">
+    <wsdl:part element="tns:bajaUsuario" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="comprobarDirectorioTemporalResponse">
+    <wsdl:part element="tns:comprobarDirectorioTemporalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaAplicacionesResponse">
+    <wsdl:part element="tns:listaAplicacionesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lanzaJobComunicacionTokenExpediente">
+    <wsdl:part element="tns:lanzaJobComunicacionTokenExpediente" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaUsuarios">
+    <wsdl:part element="tns:listaUsuarios" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaAplicaciones">
+    <wsdl:part element="tns:listaAplicaciones" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteEstructuraCarpetaResponse">
+    <wsdl:part element="tns:deleteEstructuraCarpetaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnidadesUsuarioResponse">
+    <wsdl:part element="tns:getUnidadesUsuarioResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lanzaJobNotificacionesRemisionCallbackResponse">
+    <wsdl:part element="tns:lanzaJobNotificacionesRemisionCallbackResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarUsuarioAdminMensajes">
+    <wsdl:part element="tns:actualizarUsuarioAdminMensajes" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarCredencialesEeetuilAppResponse">
+    <wsdl:part element="tns:actualizarCredencialesEeetuilAppResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="eliminarUnidadUsuario">
+    <wsdl:part element="tns:eliminarUnidadUsuario" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaEstructuraCarpeta">
+    <wsdl:part element="tns:listaEstructuraCarpeta" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="crearActualizarUnidadAplicacionEeutilResponse">
+    <wsdl:part element="tns:crearActualizarUnidadAplicacionEeutilResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaUnidadAplicacion">
+    <wsdl:part element="tns:altaUnidadAplicacion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="limpiarDirectorioTemporalResponse">
+    <wsdl:part element="tns:limpiarDirectorioTemporalResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="listaNumeroProcedimientoResponse">
+    <wsdl:part element="tns:listaNumeroProcedimientoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnidadAplicacionEeutilResponse">
+    <wsdl:part element="tns:getUnidadAplicacionEeutilResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaNumeroProcedimientoResponse">
+    <wsdl:part element="tns:altaNumeroProcedimientoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaAplicacion">
+    <wsdl:part element="tns:bajaAplicacion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="InSideServiceException">
+    <wsdl:part element="tns:InSideServiceException" name="InSideServiceException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lanzaJobComunicacionTokenExpedienteResponse">
+    <wsdl:part element="tns:lanzaJobComunicacionTokenExpedienteResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarUnidadesDir3Response">
+    <wsdl:part element="tns:actualizarUnidadesDir3Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getUnidadAplicacionEeutil">
+    <wsdl:part element="tns:getUnidadAplicacionEeutil" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="crearActualizarUnidadAplicacionEeutil">
+    <wsdl:part element="tns:crearActualizarUnidadAplicacionEeutil" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaAplicacion">
+    <wsdl:part element="tns:altaAplicacion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="crearActualizarSerialNumberCertificado">
+    <wsdl:part element="tns:crearActualizarSerialNumberCertificado" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="deleteEstructuraCarpeta">
+    <wsdl:part element="tns:deleteEstructuraCarpeta" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="respuestaEnvioJusticiaResponse">
+    <wsdl:part element="tns:respuestaEnvioJusticiaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="eliminarUnidadAplicacionResponse">
+    <wsdl:part element="tns:eliminarUnidadAplicacionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarUsuarioAdminMensajesResponse">
+    <wsdl:part element="tns:actualizarUsuarioAdminMensajesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getAllCertificadoRemisionNubeMapeosDir3Response">
+    <wsdl:part element="tns:getAllCertificadoRemisionNubeMapeosDir3Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaEstructuraCarpeta">
+    <wsdl:part element="tns:altaEstructuraCarpeta" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="respuestaEnvioJusticia">
+    <wsdl:part element="tns:respuestaEnvioJusticia" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="crearActualizarSerialNumberCertificadoResponse">
+    <wsdl:part element="tns:crearActualizarSerialNumberCertificadoResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="bajaUsuarioResponse">
+    <wsdl:part element="tns:bajaUsuarioResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="eliminarUnidadAplicacion">
+    <wsdl:part element="tns:eliminarUnidadAplicacion" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaNumeroProcedimiento">
+    <wsdl:part element="tns:altaNumeroProcedimiento" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarRemisionNubeMapeosDir3Response">
+    <wsdl:part element="tns:actualizarRemisionNubeMapeosDir3Response" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaRemisionNubeMapeosDir3Certificado">
+    <wsdl:part element="tns:altaRemisionNubeMapeosDir3Certificado" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaUnidadUsuarioResponse">
+    <wsdl:part element="tns:altaUnidadUsuarioResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarUnidadesDir3NovedadesDesdeFecha">
+    <wsdl:part element="tns:actualizarUnidadesDir3NovedadesDesdeFecha" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="altaUnidadAplicacionResponse">
+    <wsdl:part element="tns:altaUnidadAplicacionResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="lanzaJobNotificacionesRemisionCallback">
+    <wsdl:part element="tns:lanzaJobNotificacionesRemisionCallback" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="infAdicionalAltaAppResponse">
+    <wsdl:part element="tns:infAdicionalAltaAppResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarUnidadesDir3NovedadesDesdeFechaResponse">
+    <wsdl:part element="tns:actualizarUnidadesDir3NovedadesDesdeFechaResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="actualizarUnidadesDir3">
+    <wsdl:part element="tns:actualizarUnidadesDir3" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="AdminWebService">
+    <wsdl:operation name="listaNumeroProcedimiento">
+      <wsdl:input message="tns:listaNumeroProcedimiento" name="listaNumeroProcedimiento">
+    </wsdl:input>
+      <wsdl:output message="tns:listaNumeroProcedimientoResponse" name="listaNumeroProcedimientoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCertificadoRemisionNubeMapeosDir3Certificado">
+      <wsdl:input message="tns:actualizarCertificadoRemisionNubeMapeosDir3Certificado" name="actualizarCertificadoRemisionNubeMapeosDir3Certificado">
+    </wsdl:input>
+      <wsdl:output message="tns:actualizarCertificadoRemisionNubeMapeosDir3CertificadoResponse" name="actualizarCertificadoRemisionNubeMapeosDir3CertificadoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaRemisionNubeMapeosDir3Certificado">
+      <wsdl:input message="tns:altaRemisionNubeMapeosDir3Certificado" name="altaRemisionNubeMapeosDir3Certificado">
+    </wsdl:input>
+      <wsdl:output message="tns:altaRemisionNubeMapeosDir3CertificadoResponse" name="altaRemisionNubeMapeosDir3CertificadoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listaEstructuraCarpeta">
+      <wsdl:input message="tns:listaEstructuraCarpeta" name="listaEstructuraCarpeta">
+    </wsdl:input>
+      <wsdl:output message="tns:listaEstructuraCarpetaResponse" name="listaEstructuraCarpetaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="lanzaJobNotificacionesRemisionCallback">
+      <wsdl:input message="tns:lanzaJobNotificacionesRemisionCallback" name="lanzaJobNotificacionesRemisionCallback">
+    </wsdl:input>
+      <wsdl:output message="tns:lanzaJobNotificacionesRemisionCallbackResponse" name="lanzaJobNotificacionesRemisionCallbackResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaUnidadUsuario">
+      <wsdl:input message="tns:altaUnidadUsuario" name="altaUnidadUsuario">
+    </wsdl:input>
+      <wsdl:output message="tns:altaUnidadUsuarioResponse" name="altaUnidadUsuarioResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaEstructuraCarpeta">
+      <wsdl:input message="tns:altaEstructuraCarpeta" name="altaEstructuraCarpeta">
+    </wsdl:input>
+      <wsdl:output message="tns:altaEstructuraCarpetaResponse" name="altaEstructuraCarpetaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bajaAplicacion">
+      <wsdl:input message="tns:bajaAplicacion" name="bajaAplicacion">
+    </wsdl:input>
+      <wsdl:output message="tns:bajaAplicacionResponse" name="bajaAplicacionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="respuestaEnvioJusticia">
+      <wsdl:input message="tns:respuestaEnvioJusticia" name="respuestaEnvioJusticia">
+    </wsdl:input>
+      <wsdl:output message="tns:respuestaEnvioJusticiaResponse" name="respuestaEnvioJusticiaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUnidadesUsuario">
+      <wsdl:input message="tns:getUnidadesUsuario" name="getUnidadesUsuario">
+    </wsdl:input>
+      <wsdl:output message="tns:getUnidadesUsuarioResponse" name="getUnidadesUsuarioResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="limpiarDirectorioTemporal">
+      <wsdl:input message="tns:limpiarDirectorioTemporal" name="limpiarDirectorioTemporal">
+    </wsdl:input>
+      <wsdl:output message="tns:limpiarDirectorioTemporalResponse" name="limpiarDirectorioTemporalResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCertificadoRemisionNubeMapeosDir3">
+      <wsdl:input message="tns:getAllCertificadoRemisionNubeMapeosDir3" name="getAllCertificadoRemisionNubeMapeosDir3">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllCertificadoRemisionNubeMapeosDir3Response" name="getAllCertificadoRemisionNubeMapeosDir3Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InSideServiceException" name="InSideServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarUnidadesDir3NovedadesDesdeFecha">
+      <wsdl:input message="tns:actualizarUnidadesDir3NovedadesDesdeFecha" name="actualizarUnidadesDir3NovedadesDesdeFecha">
+    </wsdl:input>
+      <wsdl:output message="tns:actualizarUnidadesDir3NovedadesDesdeFechaResponse" name="actualizarUnidadesDir3NovedadesDesdeFechaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaAplicacion">
+      <wsdl:input message="tns:altaAplicacion" name="altaAplicacion">
+    </wsdl:input>
+      <wsdl:output message="tns:altaAplicacionResponse" name="altaAplicacionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUnidadAplicacionEeutil">
+      <wsdl:input message="tns:getUnidadAplicacionEeutil" name="getUnidadAplicacionEeutil">
+    </wsdl:input>
+      <wsdl:output message="tns:getUnidadAplicacionEeutilResponse" name="getUnidadAplicacionEeutilResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="lanzaJobComunicacionTokenExpediente">
+      <wsdl:input message="tns:lanzaJobComunicacionTokenExpediente" name="lanzaJobComunicacionTokenExpediente">
+    </wsdl:input>
+      <wsdl:output message="tns:lanzaJobComunicacionTokenExpedienteResponse" name="lanzaJobComunicacionTokenExpedienteResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="crearActualizarSerialNumberCertificado">
+      <wsdl:input message="tns:crearActualizarSerialNumberCertificado" name="crearActualizarSerialNumberCertificado">
+    </wsdl:input>
+      <wsdl:output message="tns:crearActualizarSerialNumberCertificadoResponse" name="crearActualizarSerialNumberCertificadoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaRemisionNubeMapeosDir3">
+      <wsdl:input message="tns:altaRemisionNubeMapeosDir3" name="altaRemisionNubeMapeosDir3">
+    </wsdl:input>
+      <wsdl:output message="tns:altaRemisionNubeMapeosDir3Response" name="altaRemisionNubeMapeosDir3Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaNumeroProcedimiento">
+      <wsdl:input message="tns:altaNumeroProcedimiento" name="altaNumeroProcedimiento">
+    </wsdl:input>
+      <wsdl:output message="tns:altaNumeroProcedimientoResponse" name="altaNumeroProcedimientoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaUsuario">
+      <wsdl:input message="tns:altaUsuario" name="altaUsuario">
+    </wsdl:input>
+      <wsdl:output message="tns:altaUsuarioResponse" name="altaUsuarioResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCertificadoRemisionNubeMapeosDir3Certificado">
+      <wsdl:input message="tns:getAllCertificadoRemisionNubeMapeosDir3Certificado" name="getAllCertificadoRemisionNubeMapeosDir3Certificado">
+    </wsdl:input>
+      <wsdl:output message="tns:getAllCertificadoRemisionNubeMapeosDir3CertificadoResponse" name="getAllCertificadoRemisionNubeMapeosDir3CertificadoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:InSideServiceException" name="InSideServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarRemisionNubeMapeosDir3">
+      <wsdl:input message="tns:actualizarRemisionNubeMapeosDir3" name="actualizarRemisionNubeMapeosDir3">
+    </wsdl:input>
+      <wsdl:output message="tns:actualizarRemisionNubeMapeosDir3Response" name="actualizarRemisionNubeMapeosDir3Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarUnidadAplicacion">
+      <wsdl:input message="tns:eliminarUnidadAplicacion" name="eliminarUnidadAplicacion">
+    </wsdl:input>
+      <wsdl:output message="tns:eliminarUnidadAplicacionResponse" name="eliminarUnidadAplicacionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarUnidadUsuario">
+      <wsdl:input message="tns:eliminarUnidadUsuario" name="eliminarUnidadUsuario">
+    </wsdl:input>
+      <wsdl:output message="tns:eliminarUnidadUsuarioResponse" name="eliminarUnidadUsuarioResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaUnidadAplicacion">
+      <wsdl:input message="tns:altaUnidadAplicacion" name="altaUnidadAplicacion">
+    </wsdl:input>
+      <wsdl:output message="tns:altaUnidadAplicacionResponse" name="altaUnidadAplicacionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarUnidadesDir3">
+      <wsdl:input message="tns:actualizarUnidadesDir3" name="actualizarUnidadesDir3">
+    </wsdl:input>
+      <wsdl:output message="tns:actualizarUnidadesDir3Response" name="actualizarUnidadesDir3Response">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listaUsuarios">
+      <wsdl:input message="tns:listaUsuarios" name="listaUsuarios">
+    </wsdl:input>
+      <wsdl:output message="tns:listaUsuariosResponse" name="listaUsuariosResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="comprobarDirectorioTemporal">
+      <wsdl:input message="tns:comprobarDirectorioTemporal" name="comprobarDirectorioTemporal">
+    </wsdl:input>
+      <wsdl:output message="tns:comprobarDirectorioTemporalResponse" name="comprobarDirectorioTemporalResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listaUsuariosPaginado">
+      <wsdl:input message="tns:listaUsuariosPaginado" name="listaUsuariosPaginado">
+    </wsdl:input>
+      <wsdl:output message="tns:listaUsuariosPaginadoResponse" name="listaUsuariosPaginadoResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listaAplicaciones">
+      <wsdl:input message="tns:listaAplicaciones" name="listaAplicaciones">
+    </wsdl:input>
+      <wsdl:output message="tns:listaAplicacionesResponse" name="listaAplicacionesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bajaUsuario">
+      <wsdl:input message="tns:bajaUsuario" name="bajaUsuario">
+    </wsdl:input>
+      <wsdl:output message="tns:bajaUsuarioResponse" name="bajaUsuarioResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="crearActualizarUnidadAplicacionEeutil">
+      <wsdl:input message="tns:crearActualizarUnidadAplicacionEeutil" name="crearActualizarUnidadAplicacionEeutil">
+    </wsdl:input>
+      <wsdl:output message="tns:crearActualizarUnidadAplicacionEeutilResponse" name="crearActualizarUnidadAplicacionEeutilResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarUsuarioAdminMensajes">
+      <wsdl:input message="tns:actualizarUsuarioAdminMensajes" name="actualizarUsuarioAdminMensajes">
+    </wsdl:input>
+      <wsdl:output message="tns:actualizarUsuarioAdminMensajesResponse" name="actualizarUsuarioAdminMensajesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCredencialesEeetuilApp">
+      <wsdl:input message="tns:actualizarCredencialesEeetuilApp" name="actualizarCredencialesEeetuilApp">
+    </wsdl:input>
+      <wsdl:output message="tns:actualizarCredencialesEeetuilAppResponse" name="actualizarCredencialesEeetuilAppResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="infAdicionalAltaApp">
+      <wsdl:input message="tns:infAdicionalAltaApp" name="infAdicionalAltaApp">
+    </wsdl:input>
+      <wsdl:output message="tns:infAdicionalAltaAppResponse" name="infAdicionalAltaAppResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUnidadesAplicacion">
+      <wsdl:input message="tns:getUnidadesAplicacion" name="getUnidadesAplicacion">
+    </wsdl:input>
+      <wsdl:output message="tns:getUnidadesAplicacionResponse" name="getUnidadesAplicacionResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteEstructuraCarpeta">
+      <wsdl:input message="tns:deleteEstructuraCarpeta" name="deleteEstructuraCarpeta">
+    </wsdl:input>
+      <wsdl:output message="tns:deleteEstructuraCarpetaResponse" name="deleteEstructuraCarpetaResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:InsideWSException" name="InsideWSException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="AdminWSSoapBinding" type="tns:AdminWebService">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="listaNumeroProcedimiento">
+      <soap:operation soapAction="urn:listaNumeroProcedimiento" style="document"/>
+      <wsdl:input name="listaNumeroProcedimiento">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listaNumeroProcedimientoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCertificadoRemisionNubeMapeosDir3Certificado">
+      <soap:operation soapAction="urn:actualizarCertificadoRemisionNubeMapeosDir3Certificado" style="document"/>
+      <wsdl:input name="actualizarCertificadoRemisionNubeMapeosDir3Certificado">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="actualizarCertificadoRemisionNubeMapeosDir3CertificadoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaRemisionNubeMapeosDir3Certificado">
+      <soap:operation soapAction="urn:altaRemisionNubeMapeosDir3Certificado" style="document"/>
+      <wsdl:input name="altaRemisionNubeMapeosDir3Certificado">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaRemisionNubeMapeosDir3CertificadoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listaEstructuraCarpeta">
+      <soap:operation soapAction="urn:listaEstructuraCarpeta" style="document"/>
+      <wsdl:input name="listaEstructuraCarpeta">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listaEstructuraCarpetaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaEstructuraCarpeta">
+      <soap:operation soapAction="urn:altaEstructuraCarpeta" style="document"/>
+      <wsdl:input name="altaEstructuraCarpeta">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaEstructuraCarpetaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaUnidadUsuario">
+      <soap:operation soapAction="urn:altaUnidadUsuario" style="document"/>
+      <wsdl:input name="altaUnidadUsuario">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaUnidadUsuarioResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="lanzaJobNotificacionesRemisionCallback">
+      <soap:operation soapAction="urn:lanzaJobNotificacionesRemisionCallback" style="document"/>
+      <wsdl:input name="lanzaJobNotificacionesRemisionCallback">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="lanzaJobNotificacionesRemisionCallbackResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bajaAplicacion">
+      <soap:operation soapAction="urn:bajaAplicacion" style="document"/>
+      <wsdl:input name="bajaAplicacion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bajaAplicacionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="respuestaEnvioJusticia">
+      <soap:operation soapAction="urn:respuestaEnvioJusticia" style="document"/>
+      <wsdl:input name="respuestaEnvioJusticia">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="respuestaEnvioJusticiaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUnidadesUsuario">
+      <soap:operation soapAction="urn:getUnidadesUsuario" style="document"/>
+      <wsdl:input name="getUnidadesUsuario">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUnidadesUsuarioResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="limpiarDirectorioTemporal">
+      <soap:operation soapAction="urn:limpiarDirectorioTemporal" style="document"/>
+      <wsdl:input name="limpiarDirectorioTemporal">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="limpiarDirectorioTemporalResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCertificadoRemisionNubeMapeosDir3">
+      <soap:operation soapAction="urn:getAllCertificadoRemisionNubeMapeosDir3" style="document"/>
+      <wsdl:input name="getAllCertificadoRemisionNubeMapeosDir3">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllCertificadoRemisionNubeMapeosDir3Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InSideServiceException">
+        <soap:fault name="InSideServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarUnidadesDir3NovedadesDesdeFecha">
+      <soap:operation soapAction="urn:comprobarDirectorioTemporal" style="document"/>
+      <wsdl:input name="actualizarUnidadesDir3NovedadesDesdeFecha">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="actualizarUnidadesDir3NovedadesDesdeFechaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaAplicacion">
+      <soap:operation soapAction="urn:altaAplicacion" style="document"/>
+      <wsdl:input name="altaAplicacion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaAplicacionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUnidadAplicacionEeutil">
+      <soap:operation soapAction="urn:getUnidadAplicacionEeutil" style="document"/>
+      <wsdl:input name="getUnidadAplicacionEeutil">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUnidadAplicacionEeutilResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaRemisionNubeMapeosDir3">
+      <soap:operation soapAction="urn:altaRemisionNubeMapeosDir3" style="document"/>
+      <wsdl:input name="altaRemisionNubeMapeosDir3">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaRemisionNubeMapeosDir3Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="crearActualizarSerialNumberCertificado">
+      <soap:operation soapAction="urn:crearActualizarSerialNumberCertificado" style="document"/>
+      <wsdl:input name="crearActualizarSerialNumberCertificado">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="crearActualizarSerialNumberCertificadoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="lanzaJobComunicacionTokenExpediente">
+      <soap:operation soapAction="urn:lanzaJobComunicacionTokenExpediente" style="document"/>
+      <wsdl:input name="lanzaJobComunicacionTokenExpediente">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="lanzaJobComunicacionTokenExpedienteResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaNumeroProcedimiento">
+      <soap:operation soapAction="urn:altaNumeroProcedimiento" style="document"/>
+      <wsdl:input name="altaNumeroProcedimiento">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaNumeroProcedimientoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaUsuario">
+      <soap:operation soapAction="urn:altaUsuario" style="document"/>
+      <wsdl:input name="altaUsuario">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaUsuarioResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getAllCertificadoRemisionNubeMapeosDir3Certificado">
+      <soap:operation soapAction="urn:getAllCertificadoRemisionNubeMapeosDir3Certificado" style="document"/>
+      <wsdl:input name="getAllCertificadoRemisionNubeMapeosDir3Certificado">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getAllCertificadoRemisionNubeMapeosDir3CertificadoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="InSideServiceException">
+        <soap:fault name="InSideServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarRemisionNubeMapeosDir3">
+      <soap:operation soapAction="urn:actualizarRemisionNubeMapeosDir3" style="document"/>
+      <wsdl:input name="actualizarRemisionNubeMapeosDir3">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="actualizarRemisionNubeMapeosDir3Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarUnidadAplicacion">
+      <soap:operation soapAction="urn:eliminarUnidadAplicacion" style="document"/>
+      <wsdl:input name="eliminarUnidadAplicacion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="eliminarUnidadAplicacionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="eliminarUnidadUsuario">
+      <soap:operation soapAction="urn:eliminarUnidadUsuario" style="document"/>
+      <wsdl:input name="eliminarUnidadUsuario">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="eliminarUnidadUsuarioResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarUnidadesDir3">
+      <soap:operation soapAction="urn:comprobarDirectorioTemporal" style="document"/>
+      <wsdl:input name="actualizarUnidadesDir3">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="actualizarUnidadesDir3Response">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="altaUnidadAplicacion">
+      <soap:operation soapAction="urn:altaUnidadAplicacion" style="document"/>
+      <wsdl:input name="altaUnidadAplicacion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="altaUnidadAplicacionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listaUsuarios">
+      <soap:operation soapAction="urn:listaUsuarios" style="document"/>
+      <wsdl:input name="listaUsuarios">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listaUsuariosResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="comprobarDirectorioTemporal">
+      <soap:operation soapAction="urn:comprobarDirectorioTemporal" style="document"/>
+      <wsdl:input name="comprobarDirectorioTemporal">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="comprobarDirectorioTemporalResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listaUsuariosPaginado">
+      <soap:operation soapAction="urn:listaUsuariosPaginado" style="document"/>
+      <wsdl:input name="listaUsuariosPaginado">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listaUsuariosPaginadoResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="listaAplicaciones">
+      <soap:operation soapAction="urn:listaAplicaciones" style="document"/>
+      <wsdl:input name="listaAplicaciones">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="listaAplicacionesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="bajaUsuario">
+      <soap:operation soapAction="urn:bajaUsuario" style="document"/>
+      <wsdl:input name="bajaUsuario">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="bajaUsuarioResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="crearActualizarUnidadAplicacionEeutil">
+      <soap:operation soapAction="urn:crearActualizarUnidadAplicacionEeutil" style="document"/>
+      <wsdl:input name="crearActualizarUnidadAplicacionEeutil">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="crearActualizarUnidadAplicacionEeutilResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarUsuarioAdminMensajes">
+      <soap:operation soapAction="urn:actualizarUsuarioAdminMensajes" style="document"/>
+      <wsdl:input name="actualizarUsuarioAdminMensajes">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="actualizarUsuarioAdminMensajesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCredencialesEeetuilApp">
+      <soap:operation soapAction="urn:actualizarCredencialesEeetuilApp" style="document"/>
+      <wsdl:input name="actualizarCredencialesEeetuilApp">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="actualizarCredencialesEeetuilAppResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="infAdicionalAltaApp">
+      <soap:operation soapAction="urn:infAdicionalAltaApp" style="document"/>
+      <wsdl:input name="infAdicionalAltaApp">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="infAdicionalAltaAppResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="deleteEstructuraCarpeta">
+      <soap:operation soapAction="urn:deleteEstructuraCarpeta" style="document"/>
+      <wsdl:input name="deleteEstructuraCarpeta">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="deleteEstructuraCarpetaResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="getUnidadesAplicacion">
+      <soap:operation soapAction="urn:getUnidadesAplicacion" style="document"/>
+      <wsdl:input name="getUnidadesAplicacion">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getUnidadesAplicacionResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="InsideWSException">
+        <soap:fault name="InsideWSException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AdminWS">
+    <wsdl:port binding="tns:AdminWSSoapBinding" name="InsideWSPort">
+      <soap:address location="https://inside.desappjava.seap.minhap.es/inside/ws/AdminService"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

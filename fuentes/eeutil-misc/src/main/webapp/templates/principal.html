@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="common/layout">
+
+<head>
+
+</head>
+
+<body class="inicio">
+    <div layout:fragment="content">
+
+        <div id="contentData">
+            <div class="menu-inicio">
+                <div class="expedientes">
+                    <h4 th:text="#{principal.usuarios}"></h4>
+                    <ul>
+                        <li>
+                            <a th:href="@{/usuariosLista?app=Inside}">
+                                <span class="mf-icon mf-icon-new-folder"></span>
+                                <div class="data">
+                                    <h5 th:text="#{principal.inside}"></h5>
+                                    <p th:text="#{principal.usuarios.inside.desc}"></p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+<!--                     <h4 th:text="#{principal.administracion}"></h4> -->
+<!--                     <ul> -->
+<!--                         <li> -->
+<!--                             <a th:href="@{/administracion/contadorPeticiones}"> -->
+<!--                                 <span class="mf-icon mf-icon-doc-new"></span> -->
+<!--                                 <div class="data"> -->
+<!--                                     <h5 th:text="#{principal.administracion.contadorPeticiones}"></h5> -->
+<!--                                     <p th:text="#{principal.administracion.contadorPeticiones}"></p> -->
+<!--                                 </div> -->
+<!--                             </a> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <a th:href="@{/administracion/capturarPeticiones}"> -->
+<!--                                 <span class="mf-icon mf-icon-doc-new"></span> -->
+<!--                                 <div class="data"> -->
+<!--                                     <h5 th:text="#{principal.administracion.capturarPeticiones}"></h5> -->
+<!--                                     <p th:text="#{principal.administracion.capturarPeticiones}"></p> -->
+<!--                                 </div> -->
+<!--                             </a> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+                    
+                    
+                    
+                    
+                    
+                </div>
+                <div class="documentos">
+                    <h4 th:text="#{principal.aplicaciones}"></h4>
+                    <ul>
+                        <li>
+                            <a th:href="@{/aplicacionesLista?app=Inside}">
+                                <span class="mf-icon mf-icon-doc-new"></span>
+                                <div class="data">
+                                    <h5 th:text="#{principal.inside}"></h5>
+                                    <p th:text="#{principal.aplicaciones.inside.desc}"></p>
+                                </div>
+                            </a>
+                       </li>
+                       <li>
+                            <a th:href="@{/aplicacionesLista?app=Eeutil}">
+                                <span class="mf-icon mf-icon-doc-new"></span>
+                                <div class="data">
+                                    <h5 th:text="#{principal.eeutil}"></h5>
+                                    <p th:text="#{principal.aplicaciones.eeutil.desc}"></p>
+                                </div>
+                            </a>
+                        </li>
+<!--                         <li> -->
+<!--                             <a th:href="@{/aplicacionesLista?app=CsvStorage}"> -->
+<!--                                 <span class="mf-icon mf-icon-doc-new"></span> -->
+<!--                                 <div class="data"> -->
+<!--                                     <h5 th:text="#{principal.csvStorage}"></h5> -->
+<!--                                     <p th:text="#{principal.aplicaciones.csvStorage.desc}"></p> -->
+<!--                                 </div> -->
+<!--                             </a> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <a th:href="@{/aplicacionesLista?app=CsvBroker}"> -->
+<!--                                 <span class="mf-icon mf-icon-doc-new"></span> -->
+<!--                                 <div class="data"> -->
+<!--                                     <h5 th:text="#{principal.csvBroker}"></h5> -->
+<!--                                     <p th:text="#{principal.aplicaciones.csvBroker.desc}"></p> -->
+<!--                                 </div> -->
+<!--                             </a> -->
+<!--                         </li> -->
+                    </ul>               
+                </div>
+<!--                 <div class="expedientes"> -->
+<!--                 	<h4 th:text="#{principal.administracion}"></h4> -->
+<!--                     <ul> -->
+<!--                         <li> -->
+<!--                             <a th:href="@{/administracion/contadorPeticiones}"> -->
+<!--                                 <span class="mf-icon mf-icon-doc-new"></span> -->
+<!--                                 <div class="data"> -->
+<!--                                     <h5 th:text="#{principal.administracion.contadorPeticiones}"></h5> -->
+<!--                                     <p th:text="#{principal.administracion.contadorPeticiones}"></p> -->
+<!--                                 </div> -->
+<!--                             </a> -->
+<!--                         </li> -->
+<!--                         <li> -->
+<!--                             <a th:href="@{/administracion/capturarPeticiones}"> -->
+<!--                                 <span class="mf-icon mf-icon-doc-new"></span> -->
+<!--                                 <div class="data"> -->
+<!--                                     <h5 th:text="#{principal.administracion.capturarPeticiones}"></h5> -->
+<!--                                     <p th:text="#{principal.administracion.capturarPeticiones}"></p> -->
+<!--                                 </div> -->
+<!--                             </a> -->
+<!--                         </li> -->
+<!--                     </ul> -->
+<!--                 </div> -->
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

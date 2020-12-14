@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+layout:decorator="common/layout">
+
+<head>
+
+	<script th:src="|${#httpServletRequest.getContextPath()}/js/administracion/contadorPeticiones.js|"></script>
+
+</head>
+
+<body>
+    <div layout:fragment="content">
+    
+    	<div class="mf-window-header">
+            <div class="mf-window-header--hgroup">
+                <h3 class="mf-window-header--title" th:text="#{principal.administracion.contadorPeticiones}"></h3>
+            </div>
+        </div>
+
+        <div id="contentData">
+			
+			<table id="contadorPeticionesList" class="mf-table-data mf-table-data__sortable mf-table-data__zebra fld">
+            	<thead>
+                    <tr>
+                        <th class="mf-sort-ln" href="·" th:title="#{administracion.contadorPeticiones.tabla.aplicacion}" th:text="#{administracion.contadorPeticiones.tabla.aplicacion}"></th>      
+                        <th class="mf-sort-ln" href="·" th:title="#{administracion.contadorPeticiones.tabla.operacion}" th:text="#{administracion.contadorPeticiones.tabla.operacion}"></th>  
+                        <th class="mf-sort-ln" href="·" th:title="#{administracion.contadorPeticiones.tabla.contador}" th:text="#{administracion.contadorPeticiones.tabla.contador}"></th>                                        
+                    </tr>
+                </thead>
+                <tbody>
+                	<tr th:each="appOperacion,iterationStatus : *{datos}" th:id="'operacion_'+${iterationStatus.count - 1}">
+						<td class="grid-column-creador" th:text="${appOperacion.aplicacion}"></td>
+						<td class="grid-column-creador" th:text="${appOperacion.operacion}"></td>
+						<td class="grid-column-creador" th:text="${appOperacion.contador}"></td>
+                	</tr>
+                </tbody>
+            </table>
+                                              
+	        <div class="js-timer-veil mf-veil hidden">
+	        </div>
+		    
+        </div>
+
+    </div>
+</body>
+</html>

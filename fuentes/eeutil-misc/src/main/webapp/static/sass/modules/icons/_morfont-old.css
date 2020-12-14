@@ -1,0 +1,5 @@
+body:before {
+    white-space: pre;
+    font-family: monospace;
+    content: "Syntax error: Undefined variable: \"$ns\".\A         on line 636 of _morfont-old.scss\A \A 631:     content: \"\";\A 632: }\A 633: \A 634: /* Extensiones morfos */\A 635: \A 636: .#{$ns}-icon-edit {\A 637: 	@extend .mf-icon-pencil;\A 638: }\A 639: \A 640: .#{$ns}-icon-back {\A 641: 	@extend .mf-icon-arrow2-left;"
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie ie6 no-js" lang="en" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 7 ]> <html class="ie ie7 no-js" lang="en" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if IE 8 ]> <html class="ie ie8 no-js" lang="en" xmlns:th="http://www.thymeleaf.org"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> 
+<html class="no-js" lang="en" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"> <!--<![endif]-->
+
+<head></head>
+
+<!--BODY -->
+<body class="app">
+	<div id="container" class="mf-container">
+		<div class="mf-nocompl" style="display: none;" th:fragment="nocompl">
+			<div class="mf-nocompl--container">
+				<div class="mf-nocompl--nobrowser">
+					<div class="browser-text">
+						<h2 th:text="#{layout.explorer.noSoported.tittle}"></h2>
+						<p  th:utext="#{layout.explorer.noSoported.text}"></p>
+					</div>
+					<ul>
+						<li class="mf-nocompl--browser-ie">
+							<a href="http://windows.microsoft.com/es-ES/internet-explorer/products/ie/home" th:utext="#{layout.explorer.ie}">
+							</a>
+						</li>
+						<li class="mf-nocompl--browser-chrome">
+							<a href="http://www.google.es/chrome/" th:text="#{layout.explorer.chrome}">
+							</a>
+						</li>
+						<li class="mf-nocompl--browser-ffox">
+							<a href="http://www.mozilla.org/es-ES/firefox/fx/" th:text="#{layout.explorer.firefox}">
+							</a>
+						</li>
+						<li class="mf-nocompl--browser-opera">
+							<a href="http://www.opera.com/browser/download/"  th:text="#{layout.explorer.opera}">
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="mf-nocompl--nojs" >
+					<h2 th:text="#{layout.javascript.disabled}"></h2>
+					<p th:text="#{layout.javascript.disabled.text1}"></p>
+					<p th:utext="#{layout.javascript.disabled.text2}"></p>
+				</div> 
+			</div>
+		</div>
+		<header id="header" class="mf-header" th:fragment="header">
+			<input type="hidden" id="context" th:value="${#httpServletRequest.getContextPath()}"/>
+			<div class="mf-header--container">
+				<div id="mainHeader" class="mf-header--logo">
+					<h1 class="mf-logo">
+						<a class="mf-logo--link" href="#!" th:title="#{layout.logo.tittle}">
+							<img class="mf-logo--img" th:src="|${#httpServletRequest.getContextPath()}/images/logoSEAP.gif|" th:alt="#{layout.logo.alt}"/>
+						</a>
+					</h1>
+				</div>
+				<div class="mf-topbar">
+					<div class="mf-topbar--container">
+						<div class="mf-usermenu">	
+							<ul class="mf-usermenu--menu" sec:authorize="isAuthenticated()">
+
+	                            <li class="mf-usermenu--item mf-profiles">
+	                                <p id="profile_L01180227" class="mf-profiles--title">
+	                                    <span class="user-profile-name" sec:authentication="name"></span>
+	                                </p>
+	                               
+	                            </li>
+
+
+	                            <li class="last mf-usermenu--item">
+	                                <a class="mf-usermenu--logout" th:href="@{/logout}" th:text="#{layout.logout.label}">
+	                                </a>
+	                            </li>
+	                        </ul>	              
+						</div>
+					</div>
+				</div>
+				<div id="headerContent" class="mf-header--content">
+
+					<h2 class="app-title" th:utext="#{layout.app.tittle}">
+					</h2>
+					<nav id="appMenu" class="mf-appmenu">
+						<h4 class="mf-appmenu--title"><a href="#!" th:text="#{layout.menu}"></a></h4>
+						<ul class="mf-appmenu--menu" role="navigation" sec:authorize="isAuthenticated()">
+						    <li class="mf-appmenu--item mf-appmenu--item__L1 hasnot-submenu">
+						      <a th:href="@{/principal}" th:text="#{layout.menu.option.inicio}"></a>
+						    </li>
+							<li class="mf-appmenu--item mf-appmenu--item__L1 has-submenu">
+								<span th:text="#{layout.menu.option.usuarios}"></span>
+								<ul class="mf-appmenu--submenu">
+									<li class="mf-appmenu--submenu-item"><a th:href="@{/usuariosLista?app=Inside}" th:text="#{layout.menu.option.inside}"></a></li>
+								</ul>
+							</li>
+							<li class="mf-appmenu--item mf-appmenu--item__L1 has-submenu">
+								<span th:text="#{layout.menu.option.aplicaciones}"></span>
+								<ul class="mf-appmenu--submenu">
+									<li class="mf-appmenu--submenu-item"><a th:href="@{/aplicacionesLista?app=Inside}" th:text="#{layout.menu.option.inside}"></a></li>
+									<li class="mf-appmenu--submenu-item"><a th:href="@{/aplicacionesLista?app=Eeutil}" th:text="#{layout.menu.option.eeutil}"></a></li>
+								</ul>
+							</li>
+								
+						</ul>
+					</nav>
+				</div>
+				
+			</div>
+		</header>
+		
+		<!-- WRAPPER -->
+		
+	</div>
+
+</body>
+</html>
