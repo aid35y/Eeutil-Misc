@@ -708,6 +708,14 @@
                     compile
                 </scope>
 			</dependency>
+
+			<dependency>
+				<groupId>commons-collections</groupId>
+				<artifactId>commons-collections</artifactId>
+				<!-- This version should be consistent with versions at other places -->
+				<version>3.2.2</version>
+			</dependency>
+
 		</dependencies>
 	</dependencyManagement>
 

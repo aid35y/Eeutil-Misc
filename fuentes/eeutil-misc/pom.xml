@@ -401,8 +401,8 @@
                 1.2.1
             </version>
 		</dependency>
-		
-		<!--  PDF TOOLS -->
+
+		<!-- PDF TOOLS -->
 		<dependency>
 			<groupId>com.pdfTools</groupId>
 			<artifactId>pdfA</artifactId>
@@ -413,7 +413,7 @@
 			<artifactId>pdfA.validator</artifactId>
 			<version>4.3</version>
 		</dependency>
-		
+
 
 		<!-- para mappear json -->
 		<dependency>
@@ -439,7 +439,7 @@
             </scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<finalName>
             eeutil-misc
@@ -568,10 +568,11 @@
 								</targetPath>
 							</resource>
 						</webResources>
-						<!-- <webXml>${project.basedir}\src\main\webapp\WEB-INF\web.xml</webXml>
-						<failOnMissingWebXml>false</failOnMissingWebXml> -->
+						<webXml>${project.basedir}\src\main\webapp\WEB-INF\web.xml</webXml>
+						<failOnMissingWebXml>false</failOnMissingWebXml>
 					</configuration>
 				</plugin>
+
 			</plugins>
 		</pluginManagement>
 	</build>
